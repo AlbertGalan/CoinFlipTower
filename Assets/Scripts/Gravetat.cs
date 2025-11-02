@@ -25,7 +25,7 @@ public class Gravetat : MonoBehaviour
             Debug.Log("Pitjada tecla g");
             invertit = !invertit;
 
-            transform.Rotate(0f, 180f, 0f);
+            transform.Rotate(180f, 0f, 0f);
         }
     }
      void FixedUpdate()
