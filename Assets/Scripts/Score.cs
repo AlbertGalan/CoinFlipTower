@@ -7,13 +7,13 @@ public class Score : MonoBehaviour
 
 
     //Variable puntuació
-    float score;
-    //Timer en minuts, segons i mil·lesimes de segon, Formatar!!
-    float timer;
+    public float score;
+    //Timer en minuts, segons i mil·lesimes de segon, Formatar!! (JA ESTA FORMATAT)
+    public float timer;
 
 
-    float pointsPerSecond = 1f;
-    float gravityChangePenalty = 5f;
+    public float pointsPerSecond = 1f;
+    public float gravityChangePenalty = 5f;
 
     //Referenciam scripts de gravetat per poder detectar quan un objecte o quan el jugador canvia de gravetat i restar-li puntuació en funció.
     private Gravetat playerGravity;
@@ -40,6 +40,22 @@ public class Score : MonoBehaviour
 
 
     }
-    
 
+    public string GetFormattedTime()
+    {
+        int minutes = (int)(timer / 60f);
+        int seconds = (int)(timer % 60f);
+        int milliseconds = (int)((timer * 1000f) % 1000f);
+        return $"{minutes:00}:{seconds:00}.{milliseconds:000}";
+    }
+
+    public int GetScoreInt()
+    {
+        return Mathf.RoundToInt(score);
+    }
+    
+        public float GetTimer()
+    {
+        return timer;
+    }
 }
