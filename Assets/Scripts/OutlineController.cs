@@ -10,8 +10,8 @@ public class RayCast : MonoBehaviour
     [SerializeField] private string raycastLayerName = "Raycast";
     [SerializeField] private string outlineLayerName = "Outline";
 
-    [Header("Input")]
-    [SerializeField] private KeyCode outlineKey = KeyCode.Mouse1;
+   // [Header("Input")]
+   // [SerializeField] private KeyCode outlineKey = KeyCode.Mouse1;
 
     [Header("Beam Settings")]
     [SerializeField] private Color hitColor = Color.green;
@@ -75,13 +75,14 @@ public class RayCast : MonoBehaviour
 
     void Update()
     {
-        HandleOutline();
+        HandleOutlineAndInteraction();
     }
 
-    private void HandleOutline()
+    private void HandleOutlineAndInteraction()
     {
-        bool shouldShowBeam = Input.GetKey(outlineKey);
+        bool shouldShowBeam = Input.GetKey(KeyCode.Mouse1); // Click dret per mostrar el beam
         
+        // Mostrar/ocultar beam
         if (beamVisual.activeSelf != shouldShowBeam)
         {
             beamVisual.SetActive(shouldShowBeam);
@@ -96,6 +97,12 @@ public class RayCast : MonoBehaviour
         if (!shouldShowBeam) return;
 
         UpdateBeamPosition();
+
+        // Interacció si es pitja click esquerre
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentOutlinedObject != null)
+        {
+            InteractWithCurrentObject();
+        }
     }
 
     private void UpdateBeamPosition()
@@ -134,7 +141,7 @@ public class RayCast : MonoBehaviour
 
     private void PositionBeam(Vector3 start, Vector3 direction, float distance)
     {
-        // Posicionar en el punto medio entre start y end
+        // Posicionar en el punto mitj entre start i end per donar sensació de profunditat (REVISAR!!! HE DE PLANTETJAR DES D'ON PARTEIX EL RAYCAST)
         Vector3 endPoint = start + direction * distance;
         Vector3 midPoint = start + direction * (distance * 0.5f);
 
@@ -159,6 +166,7 @@ public class RayCast : MonoBehaviour
         }
     }
 
+    
     private void EnableOutline(GameObject targetObject)
     {
         currentOutlinedObject = targetObject;
@@ -173,6 +181,19 @@ public class RayCast : MonoBehaviour
         {
             currentOutlinedObject.layer = originalLayer;
             currentOutlinedObject = null;
+        }
+    }
+    ///Interactua amb l'objecte actual al qual esta apuntant el raycast
+    private void InteractWithCurrentObject()
+    {
+        if (currentOutlinedObject != null)
+        {
+            GravityObject gravityObj = currentOutlinedObject.GetComponent<GravityObject>();
+            if (gravityObj != null)
+            {
+                gravityObj.ToggleGravity();
+                Debug.Log($"Gravetat canviada en: {currentOutlinedObject.name}. Invertida: {gravityObj.IsGravityInverted()}");
+            }
         }
     }
 
