@@ -217,8 +217,8 @@ GameObject:
   - component: {fileID: 5996763226090654316}
   - component: {fileID: 6264260880190955810}
   - component: {fileID: 6180841421575091064}
-  - component: {fileID: 3296789598375692615}
   - component: {fileID: 5608086544336112910}
+  - component: {fileID: 8689470579307016076}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -361,7 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c9da0d026e402429995515080d4760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityForce: 9.81
 --- !u!114 &6180841421575091064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,21 +375,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 90
-  camera: {fileID: 309927526654746654}
+  cameraTransform: {fileID: 0}
   mouseSensitivity: 2
---- !u!114 &3296789598375692615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5598781618286544409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72fa7bc5a37b68f4fbd8e29f529597ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionRange: 3
 --- !u!114 &5608086544336112910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +393,21 @@ MonoBehaviour:
   timer: 0
   pointsPerSecond: 1
   gravityChangePenalty: 5
+--- !u!114 &8689470579307016076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598781618286544409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349cf2ae8402c444c9b07629bdbb8cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityObject
+  gravityForce: 9.81
+  gravityInverted: 0
+  rotateOnInvert: 0
 --- !u!1 &6703969619303967514
 GameObject:
   m_ObjectHideFlags: 0

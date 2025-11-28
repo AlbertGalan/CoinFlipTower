@@ -6,7 +6,7 @@ public class MoveCharacter : MonoBehaviour
     public float moveSpeed = 10f;
     public float rotationSpeed = 90f;
 
-    public Transform camera;
+    public Transform cameraTransform;
     public float mouseSensitivity = 2f;
     private float verticalRotation = 0f;
 
@@ -43,6 +43,6 @@ public class MoveCharacter : MonoBehaviour
         // Rotar camara verticalment amb limitacions
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -60f, 60f);
-        camera.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 }

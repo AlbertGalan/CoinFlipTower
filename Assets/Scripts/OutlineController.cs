@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RayCast : MonoBehaviour
+public class OutlineController : MonoBehaviour
 {
     [Header("Raycast settings")]
     [SerializeField] private float rayCastDistance = 4.0f;
@@ -188,7 +188,7 @@ public class RayCast : MonoBehaviour
     {
         if (currentOutlinedObject != null)
         {
-            GravityObject gravityObj = currentOutlinedObject.GetComponent<GravityObject>();
+            GravityController gravityObj = currentOutlinedObject.GetComponent<GravityController>();
             if (gravityObj != null)
             {
                 gravityObj.ToggleGravity();

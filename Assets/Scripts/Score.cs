@@ -16,12 +16,8 @@ public class Score : MonoBehaviour
     public float gravityChangePenalty = 5f;
 
     //Referenciam scripts de gravetat per poder detectar quan un objecte o quan el jugador canvia de gravetat i restar-li puntuació en funció.
-    private Gravetat playerGravity;
-    private InteractGravity interactGravity;
     void Start()
     {
-        playerGravity = GetComponent<Gravetat>();
-        interactGravity = GetComponent<InteractGravity>();
 
         score = 1000f;
         timer = 0f;
