@@ -16,7 +16,7 @@ public class OutlineController : MonoBehaviour
     [Header("Beam Settings")]
     [SerializeField] private Color hitColor = Color.green;
     [SerializeField] private Color missColor = Color.cyan;
-    [SerializeField] [Range(0f, 1f)] private float beamOpacity = 1f; // Poner a 1 temporalmente
+    [SerializeField] [Range(0f, 1f)] private float beamOpacity = 1f; // Posar a 1 temporalment
     
     [Header("References")]
     [SerializeField] private Camera playerCamera;
@@ -141,7 +141,7 @@ public class OutlineController : MonoBehaviour
 
     private void PositionBeam(Vector3 start, Vector3 direction, float distance)
     {
-        // Posicionar en el punto mitj entre start i end per donar sensació de profunditat (REVISAR!!! HE DE PLANTETJAR DES D'ON PARTEIX EL RAYCAST)
+        // Posicionar en el punt mitj entre start i end per donar sensació de profunditat (REVISAR!!! HE DE PLANTETJAR DES D'ON PARTEIX EL RAYCAST)
         Vector3 endPoint = start + direction * distance;
         Vector3 midPoint = start + direction * (distance * 0.5f);
 
