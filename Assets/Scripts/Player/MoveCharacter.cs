@@ -11,22 +11,19 @@ public class MoveCharacter : MonoBehaviour
     private float verticalRotation = 0f;
 
     private Rigidbody rb;
-    // Control flags used by other controllers (e.g. PushPullController)
     [HideInInspector] public bool lockCamera = false;
     [HideInInspector] public bool restrictStrafe = false;
     [Header("Collision/Push settings")]
-    [Tooltip("Layers that should not be pushable by default. Player will be blocked when trying to move into these unless grabbing.")]
+    [Tooltip("Triar les capes que bloquejaran el moviment del jugador quan no estigui agafant res")]
     public LayerMask nonPushLayerMask = 0;
-    [Tooltip("Radius used to check for obstacles when moving")]
+    [Tooltip("Radius emprat per la comprovació d'obstacles quan el jugador es mou")]
     public float obstacleCheckRadius = 0.4f;
     [Header("Animation")]
-    [Tooltip("Animator component controlling the player animations")]
-    public Animator animator;
-
-    // Internal input storage so Update can set animator and FixedUpdate moves the character
+    [Tooltip("Component d'animacions")]
+    private Animator animator;
     private float inputH = 0f;
     private float inputV = 0f;
-    [Tooltip("Name of the float parameter used by your 1D blend tree")]
+    [Tooltip("Nom del paràmetre float emprat per la blend tree d'animacions")]
     public string blendParameter = "Blend";
 
     void Start()
@@ -41,7 +38,7 @@ public class MoveCharacter : MonoBehaviour
                 animator = GetComponentInChildren<Animator>();
 
             if (animator == null)
-                Debug.LogWarning("MoveCharacter: no Animator found on GameObject or children. Assign one in the Inspector if required.");
+                Debug.LogWarning("MoveCharacter: No s'han trobat animacions.");
         }
 
         Cursor.lockState = CursorLockMode.Locked;

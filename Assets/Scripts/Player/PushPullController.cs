@@ -16,6 +16,8 @@ public class PushPullController : MonoBehaviour
     private FixedJoint currentJoint;
     private Rigidbody grabbedRb;
     private bool isGrabbing = false;
+    // Per detectar si s'està agafant un objecte
+    public bool IsGrabbing => isGrabbing;
 
     private MoveCharacter moveController;
 
@@ -59,7 +61,7 @@ public class PushPullController : MonoBehaviour
     {
         grabbedRb = targetRb;
 
-        // Ensure target is non-kinematic so joint can move it
+        // Assignar kinematic per evitar que l'objecte caigui mentre s'agafa
         if (grabbedRb.isKinematic)
             grabbedRb.isKinematic = false;
 
@@ -70,7 +72,7 @@ public class PushPullController : MonoBehaviour
 
         isGrabbing = true;
 
-        // Lock camera and restrict strafing
+        // Bloquejar càmera mentre s'agafa
         if (moveController != null)
         {
             moveController.SetLockCamera(true);
@@ -88,7 +90,7 @@ public class PushPullController : MonoBehaviour
 
         if (grabbedRb != null)
         {
-            // leave kinematic as false (object returns to physics)
+            // deixar de ser kinematic si fa falta
             grabbedRb = null;
         }
 

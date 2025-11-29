@@ -19,6 +19,7 @@ public class GravityController : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 currentGravityDirection;
+    private PushPullController pushPull;
 
     private Quaternion initialLocalRotation;
     private Quaternion invertedLocalRotation;
@@ -36,6 +37,9 @@ public class GravityController : MonoBehaviour
 
         UpdateGravityDirection();
         ApplyVisualRotation(false);
+
+        // cache PushPullController if present to check grabbing state
+        pushPull = GetComponent<PushPullController>();
     }
 
     void Update()
@@ -44,6 +48,12 @@ public class GravityController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
+            // If the player is currently grabbing an object, ignore gravity toggle
+            if (pushPull != null && pushPull.IsGrabbing)
+            {
+                return;
+            }
+
             ToggleGravity();
 
             if (gravityInverted)
