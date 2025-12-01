@@ -20,6 +20,14 @@ public class PushPullController : MonoBehaviour
     public bool IsGrabbing => isGrabbing;
 
     private MoveCharacter moveController;
+    // Proximity highlight
+    [Header("Visual feedback")]
+    [Tooltip("Activar el highlight visual quan s'està a prop d'objectes agafables")]
+    public bool enableProximityHighlight = true;
+    [Tooltip("Distància màxima a la qual els objectes mostraran el highlight de proximitat")]
+    public float highlightDistance = 3f;
+
+    private GrabbableVisual currentProximityVisual;
 
     void Start()
     {
@@ -30,21 +38,29 @@ public class PushPullController : MonoBehaviour
 
     void Update()
     {
+        // Mantenir pitjant el botó d'agafar
+        if (Input.GetMouseButtonDown(0))
+        {
+            TryGrab();
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
-            if (!isGrabbing)
-            {
-                TryGrab();
-            }
-            else
-            {
+            if (isGrabbing)
                 Release();
-            }
+        }
+
+        // Mostrar highlight de proximitat
+        if (enableProximityHighlight && !isGrabbing)
+        {
+            UpdateProximityHighlight();
         }
     }
 
     private void TryGrab()
     {
+        if (isGrabbing) return; // ja s'està agafant
+
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, grabDistance, grabLayerMask))
@@ -54,6 +70,39 @@ public class PushPullController : MonoBehaviour
             {
                 Grab(targetRb, hit.point);
             }
+        }
+    }
+
+    private void UpdateProximityHighlight()
+    {
+        if (playerCamera == null) return;
+
+        Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, highlightDistance, grabLayerMask))
+        {
+            Rigidbody targetRb = hit.collider.attachedRigidbody;
+            if (targetRb != null && targetRb != playerRb)
+            {
+                var visual = targetRb.GetComponentInChildren<GrabbableVisual>();
+                if (visual != null)
+                {
+                    if (currentProximityVisual != visual)
+                    {
+                        if (currentProximityVisual != null) currentProximityVisual.Highlight(false);
+                        currentProximityVisual = visual;
+                        currentProximityVisual.Highlight(true);
+                    }
+                    return;
+                }
+            }
+        }
+
+        // res agafable a prop
+        if (currentProximityVisual != null)
+        {
+            currentProximityVisual.Highlight(false);
+            currentProximityVisual = null;
         }
     }
 
@@ -78,6 +127,12 @@ public class PushPullController : MonoBehaviour
             moveController.SetLockCamera(true);
             moveController.SetRestrictStrafe(true);
         }
+
+        // Cambiar a cámara cenital (top-down) para facilitar el empuje/estirado (prototipo)
+        if (CameraSwitcher.Instance != null)
+        {
+            CameraSwitcher.Instance.SetTopDown();
+        }
     }
 
     private void Release()
@@ -100,6 +155,12 @@ public class PushPullController : MonoBehaviour
         {
             moveController.SetLockCamera(false);
             moveController.SetRestrictStrafe(false);
+        } 
+
+        // Tornar a la càmera en primera persona al deixar anar
+        if (CameraSwitcher.Instance != null)
+        {
+            CameraSwitcher.Instance.SetFirstPerson();
         }
     }
 
