@@ -69,17 +69,17 @@
             {
                 "type": "System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "ShapeBuilder.ActiveShapeIndex",
-                "value": "{\"m_Value\":6}"
+                "value": "{\"m_Value\":3}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-24.35726547241211,\"y\":13.167126655578614,\"z\":-10.32028579711914}}"
+                "value": "{\"m_Value\":{\"x\":-0.4242839813232422,\"y\":3.5349676609039308,\"z\":-3.887303352355957}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Sphere",
-                "value": "{\"m_Value\":{\"x\":11.013214111328125,\"y\":0.0,\"z\":-8.328804969787598}}"
+                "value": "{\"m_Value\":{\"x\":2.195333957672119,\"y\":0.02831430174410343,\"z\":2.3034801483154299}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -94,7 +94,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cone",
-                "value": "{\"m_Value\":{\"x\":8.502747535705567,\"y\":5.0097856521606449,\"z\":7.602613925933838}}"
+                "value": "{\"m_Value\":{\"x\":2.20387601852417,\"y\":0.04387655854225159,\"z\":-2.1334052085876467}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -124,7 +124,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Torus",
-                "value": "{\"m_Value\":{\"x\":808.9345703125,\"y\":448.56292724609377,\"z\":-716.9456787109375}}"
+                "value": "{\"m_Value\":{\"x\":-2.748310089111328,\"y\":3.2711844444274904,\"z\":2.0394930839538576}}"
             },
             {
                 "type": "UnityEngine.Quaternion, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",

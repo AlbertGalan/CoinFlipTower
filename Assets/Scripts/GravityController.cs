@@ -88,6 +88,22 @@ public class GravityController : MonoBehaviour
     {
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
+
+        // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
+        if (isPlayer && rb != null && !IsStuck)
+        {
+            Vector3 pos = rb.position;
+            if (gravityInverted)
+            {
+                pos.y += 2f;
+            }
+            else
+            {
+                pos.y -= 2f;
+            }
+            rb.MovePosition(pos);
+        }
+
         ApplyVisualRotation(true);
     }
 
@@ -96,6 +112,21 @@ public class GravityController : MonoBehaviour
         if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
+        // Crude snap as above
+        if (isPlayer && rb != null && !IsStuck)
+        {
+            Vector3 pos = rb.position;
+            if (gravityInverted)
+            {
+                pos.y += 2f;
+            }
+            else
+            {
+                pos.y -= 2f;
+            }
+            rb.MovePosition(pos);
+        }
+
         ApplyVisualRotation(true);
     }
 
