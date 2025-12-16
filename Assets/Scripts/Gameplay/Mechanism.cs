@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Mechanism : MonoBehaviour
 {
-    public bool isActive = false;
+   // public bool isActive = false;
 
-    private int requiredSwitchesToActivate = 1;
+    //private int requiredSwitchesToActivate = 1;
 
-    private List<PressureSwitch> linkedSwitches = new();
+    //private List<PressureSwitch> linkedSwitches = new();
 
     //[SerializeField] private SlideDoorManager slideDoorManager;
 

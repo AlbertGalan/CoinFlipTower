@@ -13,7 +13,7 @@ public class PressureSwitch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
             animator.SetBool("isPressed", true);
         }
@@ -21,7 +21,7 @@ public class PressureSwitch : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
             animator.SetBool("isPressed", false);
         }
