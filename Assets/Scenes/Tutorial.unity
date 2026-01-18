@@ -3589,6 +3589,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1676609100239073865, guid: 0d780173c250d334f80c9061373c8e4f, type: 3}
   m_PrefabInstance: {fileID: 325038352}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &330298446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6444736323172482476, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+  m_PrefabInstance: {fileID: 1582188499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &330298454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330298446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4826eb08c92d74894f98e56a79f256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionDebugger
 --- !u!1 &336654660
 GameObject:
   m_ObjectHideFlags: 0
@@ -7217,6 +7234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea320c90157f644b8956658bb145be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressureSwitch
+  OnPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &577670575 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1676609100239073865, guid: 0d780173c250d334f80c9061373c8e4f, type: 3}
@@ -9396,7 +9419,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1647062041}
-  - {fileID: 1547427371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &798131673
@@ -14611,6 +14633,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7606602291963647442, guid: ea328bc186793bc47ad40cd0f175812f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885671129310229320, guid: ea328bc186793bc47ad40cd0f175812f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8195913242686254881, guid: ea328bc186793bc47ad40cd0f175812f, type: 3}
       propertyPath: m_Name
       value: PressureSwitch
@@ -17175,106 +17205,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1676609100239073865, guid: 0d780173c250d334f80c9061373c8e4f, type: 3}
   m_PrefabInstance: {fileID: 1750938552}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1547427370
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 788816476}
-    m_Modifications:
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.1300006
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.6131992
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.99088
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.844
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      propertyPath: m_Name
-      value: Portcullis_Wood (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1547427373}
-  m_SourcePrefab: {fileID: 100100000, guid: da389f98d36554042874cf88abbff5ef, type: 3}
---- !u!4 &1547427371 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-  m_PrefabInstance: {fileID: 1547427370}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1547427372 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
-  m_PrefabInstance: {fileID: 1547427370}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1547427373
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547427372}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 35239ffa23db14141b97eb367769a72a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1550771822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4108335079457225371, guid: 70ecfb3272db03f45944e59708b277bc, type: 3}
@@ -17592,7 +17522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 250852990129799126, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 254762734743983233, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_LocalScale.x
@@ -17964,7 +17894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5925502524884838166, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.93334
+      value: -33.89
       objectReference: {fileID: 0}
     - target: {fileID: 5925502524884838166, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17972,7 +17902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5925502524884838166, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.906502
+      value: -19.18
       objectReference: {fileID: 0}
     - target: {fileID: 5925502524884838166, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18180,7 +18110,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5925502524884838166, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       insertIndex: 1
       addedObject: {fileID: 352684782}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6444736323172482476, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 330298454}
   m_SourcePrefab: {fileID: 100100000, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
 --- !u!1001 &1587641932
 PrefabInstance:
@@ -18738,6 +18671,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
   m_PrefabInstance: {fileID: 2011810342}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1647062045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647062032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9fe683d2f3ff4488c5e6de35e9153d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
 --- !u!1001 &1653201065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23075,7 +23020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.99088
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23111,7 +23056,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_Name
-      value: Portcullis_Wood (1)
+      value: Porta1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23120,6 +23069,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1647062037}
+    - targetCorrespondingSourceObject: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1647062045}
   m_SourcePrefab: {fileID: 100100000, guid: da389f98d36554042874cf88abbff5ef, type: 3}
 --- !u!4 &2018344837 stripped
 Transform:
@@ -23822,6 +23774,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea320c90157f644b8956658bb145be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressureSwitch
+  OnPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1647062045}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1647062045}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: Deactivate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2103138902
 PrefabInstance:
   m_ObjectHideFlags: 0
