@@ -8,6 +8,8 @@ public class PushPullController : MonoBehaviour
     public float grabDistance = 3f;
     public LayerMask grabLayerMask = ~0;
 
+   // public float floorDistance = 0.2f;
+
     [Header("Joint settings")] //Un joint agafa es dos rigidbodies i els manté units
     public float breakForce = 1000f;
     public float breakTorque = 1000f;
@@ -15,6 +17,8 @@ public class PushPullController : MonoBehaviour
     private Rigidbody playerRb;
     private FixedJoint currentJoint;
     private Rigidbody grabbedRb;
+
+   // private Vector3 originalGrabbedPosition;
     private bool isGrabbing = false;
     // Per detectar si s'està agafant un objecte
     public bool IsGrabbing => isGrabbing;
@@ -50,6 +54,14 @@ public class PushPullController : MonoBehaviour
                 Release();
         }
 
+       /* if (isGrabbing && grabbedRb != null)
+        {
+            Vector3 targetPosition = grabbedRb.position;
+            targetPosition.y = originalGrabbedPosition.y + floorDistance;
+            grabbedRb.MovePosition(targetPosition);
+            Debug.Log("Objecte pujat a posició: " + targetPosition);
+        }
+*/
         // Mostrar highlight de proximitat
         if (enableProximityHighlight && !isGrabbing)
         {
@@ -128,7 +140,7 @@ public class PushPullController : MonoBehaviour
             moveController.SetRestrictStrafe(true);
         }
 
-        // Cambiar a cámara cenital (top-down) para facilitar el empuje/estirado (prototipo)
+        // Canviar a càmara cenital (top-down) per facilitar la visualització de l'empenta/estirada (prototip)
         if (CameraSwitcher.Instance != null)
         {
             CameraSwitcher.Instance.SetTopDown();

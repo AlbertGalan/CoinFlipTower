@@ -7,18 +7,20 @@ public class PressureSwitch : MonoBehaviour
 
     public UnityEvent OnPressed;
     public UnityEvent OnReleased;
+    public Animator placa;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+       // animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
-            animator.SetBool("isPressed", true);
+            placa.SetBool("isPressed", true);
             OnPressed.Invoke();
+            Debug.Log("Switch presionat");
         }
     }
 
@@ -26,8 +28,9 @@ public class PressureSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Pushable"))
         {
-            animator.SetBool("isPressed", false);
+            placa.SetBool("isPressed", false);
             OnReleased.Invoke();
+            Debug.Log("Switch alliberat");
         }
     }
 }

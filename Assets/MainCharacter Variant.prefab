@@ -3986,6 +3986,11 @@ MonoBehaviour:
   mouseSensitivity: 2
   lockCamera: 0
   restrictStrafe: 0
+  nonPushLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleCheckRadius: 0.4
+  blendParameter: Blend
 --- !u!114 &250852990129799126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4021,6 +4026,8 @@ MonoBehaviour:
     m_Bits: 128
   breakForce: 1000
   breakTorque: 1000
+  enableProximityHighlight: 1
+  highlightDistance: 3
 --- !u!114 &798644619287027389
 MonoBehaviour:
   m_ObjectHideFlags: 0
