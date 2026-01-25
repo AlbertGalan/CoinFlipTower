@@ -50,8 +50,18 @@ public class Score : MonoBehaviour
         return Mathf.RoundToInt(score);
     }
     
-        public float GetTimer()
+    public float GetTimer()
     {
         return timer;
+    }
+    
+    // Mètode per sumar punts des de zones o altres sistemes
+    public void AddPoints(float points, string source = "")
+    {
+        score += points;
+        if (!string.IsNullOrEmpty(source))
+        {
+            Debug.Log($"Punts afegits: +{points} ({source}). Puntuació total: {score:F0}");
+        }
     }
 }

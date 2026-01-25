@@ -10,13 +10,13 @@ public class Door : MonoBehaviour
     }
 public void Activate()
 {
-    Debug.Log("PUERTA ACTIVADA");
+    Debug.Log("ACTIVAT");
     animator.SetBool("isOpen", true);
 }
 
 public void Deactivate()
 {
-    Debug.Log("PUERTA DESACTIVADA");
+    Debug.Log("DESACTIVAT");
     animator.SetBool("isOpen", false);
 }
 

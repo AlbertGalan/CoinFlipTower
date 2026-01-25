@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pushable
   - Placa
+  - EasterEgg
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Grabable
   - Player
   - PressureSwitch
-  - 
+  - Trigger
   - 
   - 
   - 

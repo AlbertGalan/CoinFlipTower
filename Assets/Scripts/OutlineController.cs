@@ -17,15 +17,22 @@ public class OutlineController : MonoBehaviour
     [SerializeField] private Color hitColor = Color.green;
     [SerializeField] private Color missColor = Color.cyan;
     [SerializeField] [Range(0f, 1f)] private float beamOpacity = 1f; // Posar a 1 temporalment
+    [SerializeField] private float beamThickness = 0.3f; // Grosor del beam (escala X y Z)
+    [SerializeField] private float beamLengthMultiplier = 6f; // Multiplicador de longitud del beam
     
     [Header("References")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private GameObject beamVisual;
+    [SerializeField] private Transform beamOrigin;
+    [SerializeField] private GameObject blueWand;
+    [SerializeField] private GameObject greenWand;
     
     private GameObject currentOutlinedObject;
     private int originalLayer;
     private Material beamMaterial;
     private Vector3 originalBeamScale;
+    private bool lastHitState = false;
+    private bool wandsVisible = false;
 
     void Start()
     {
@@ -82,7 +89,7 @@ public class OutlineController : MonoBehaviour
     {
         bool shouldShowBeam = Input.GetKey(KeyCode.Mouse1); // Click dret per mostrar el beam
         
-        // Mostrar/ocultar beam
+        // Mostrar/ocultar beam y varitas
         if (beamVisual.activeSelf != shouldShowBeam)
         {
             beamVisual.SetActive(shouldShowBeam);
@@ -90,6 +97,7 @@ public class OutlineController : MonoBehaviour
             if (!shouldShowBeam)
             {
                 DisableCurrentOutline();
+                HideAllWands();
                 return;
             }
         }
@@ -107,8 +115,12 @@ public class OutlineController : MonoBehaviour
 
     private void UpdateBeamPosition()
     {
-        Vector3 rayOrigin = playerCamera.transform.position;
-        Vector3 rayDirection = playerCamera.transform.forward;
+        // Origen del rayo desde la punta de la varita
+        Vector3 rayOrigin = beamOrigin != null ? beamOrigin.position : playerCamera.transform.position;
+        
+        // Punto focal en el centro de la cámara (donde apunta el jugador)
+        Vector3 cameraCenter = playerCamera.transform.position + playerCamera.transform.forward * rayCastDistance;
+        Vector3 rayDirection = (cameraCenter - rayOrigin).normalized;
 
         RaycastHit hit;
         int raycastLayer = LayerMask.NameToLayer(raycastLayerName);
@@ -120,6 +132,9 @@ public class OutlineController : MonoBehaviour
 
         // Posicionar el beam
         PositionBeam(rayOrigin, rayDirection, distance);
+
+        // Cambiar varita según si hay hit o no
+        UpdateWandVisuals(hasHit);
 
         // Manejar outline
         if (hasHit)
@@ -141,20 +156,22 @@ public class OutlineController : MonoBehaviour
 
     private void PositionBeam(Vector3 start, Vector3 direction, float distance)
     {
-        // Posicionar en el punt mitj entre start i end per donar sensació de profunditat (REVISAR!!! HE DE PLANTETJAR DES D'ON PARTEIX EL RAYCAST)
-        Vector3 endPoint = start + direction * distance;
-        Vector3 midPoint = start + direction * (distance * 0.5f);
+        // Posicionar el beam para que parta desde BeamOrigin y llegue hasta rayCastDistance
+        // El cilindro se posiciona en su centro, así que lo movemos la mitad de la distancia
+        Vector3 beamPosition = start + direction * (distance * 0.5f);
 
-        beamVisual.transform.position = midPoint;
+        beamVisual.transform.position = beamPosition;
         beamVisual.transform.rotation = Quaternion.LookRotation(direction);
         beamVisual.transform.Rotate(90f, 0f, 0f); // Rotar cilindre perque roti correctament
 
-        // Escalar cilindre en base a la distància
+        // Escalar cilindro: Y = longitud exacta del raycast, X y Z = grosor
         Vector3 newScale = originalBeamScale;
-        newScale.y = (distance / 2f) * originalBeamScale.y;
+        newScale.y = (distance / 2f) * originalBeamScale.y * beamLengthMultiplier; // Longitud
+        newScale.x = originalBeamScale.x * beamThickness; // Grosor
+        newScale.z = originalBeamScale.z * beamThickness; // Grosor
         beamVisual.transform.localScale = newScale;
 
-        Debug.Log($"Beam posicionado. Distancia: {distance}, Escala: {newScale}");
+        Debug.Log($"Beam desde BeamOrigin hasta rayCastDistance. Distancia: {distance}, Escala: {newScale}");
     }
 
     private void SetBeamColor(Color baseColor)
@@ -166,7 +183,38 @@ public class OutlineController : MonoBehaviour
         }
     }
 
-    
+    private void UpdateWandVisuals(bool hasHit)
+    {
+        // Forzar actualización si las varitas estaban ocultas o si el estado cambió
+        if (wandsVisible && hasHit == lastHitState)
+            return;
+
+        lastHitState = hasHit;
+        wandsVisible = true;
+
+        if (hasHit)
+        {
+            //Mostrar varita verde (hit)
+            if (greenWand != null) greenWand.SetActive(true);
+            if (blueWand != null) blueWand.SetActive(false);
+            Debug.Log("Varita verde activada (HIT)");
+        }
+        else
+        {
+            //Mostrar varita azul (miss)
+            if (blueWand != null) blueWand.SetActive(true);
+            if (greenWand != null) greenWand.SetActive(false);
+            Debug.Log("Varita azul activada (MISS)");
+        }
+    }
+
+    private void HideAllWands()
+    {
+        if (blueWand != null) blueWand.SetActive(false);
+        if (greenWand != null) greenWand.SetActive(false);
+        wandsVisible = false; // Marcar que las varitas no están visibles
+    }
+
     private void EnableOutline(GameObject targetObject)
     {
         currentOutlinedObject = targetObject;
