@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ZoneTimerScoring : MonoBehaviour
+public class ChallengeTimerScore : MonoBehaviour
 {
     [Header("Detecció")]
     [Tooltip("Tags que activen el sistema de zona")] 
@@ -46,6 +47,10 @@ public class ZoneTimerScoring : MonoBehaviour
     public bool destroyOnComplete = true;
     [Tooltip("Temps d'espera abans de destruir (segons)")]
     public float destroyDelay = 2f;
+    
+    [Header("Introducció")]
+    [Tooltip("Temps que es mostra la pantalla d'introducció abans de començar el repte (segons)")]
+    public float introTime = 3f;
 
     // Almacenamos tiempos de inicio por (zoneId → actor → time)
     private static readonly Dictionary<string, Dictionary<GameObject, float>> startTimes =
@@ -55,8 +60,12 @@ public class ZoneTimerScoring : MonoBehaviour
     private static readonly HashSet<(string, GameObject)> awardedPairs =
         new HashSet<(string, GameObject)>();
     
+    // Controla cuáles zonas están en fase de introducción
+    private static readonly HashSet<string> introInProgress =
+        new HashSet<string>();
+    
     // Estado actual de la zona para el HUD
-    public static ZoneTimerScoring activeZone = null;
+    public static ChallengeTimerScore activeZone = null;
 
     private bool IsTargetTag(string tag) => targetTags.Contains(tag);
 
@@ -71,6 +80,12 @@ public class ZoneTimerScoring : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!IsTargetTag(other.tag)) return;
+        
+        // Evitar múltiples entradas al trigger de entrada si ya está en progreso
+        if (isEntryTrigger && introInProgress.Contains(zoneId))
+        {
+            return;
+        }
 
         if (isEntryTrigger)
         {
@@ -94,6 +109,52 @@ public class ZoneTimerScoring : MonoBehaviour
     }
 
     private void StartZoneFor(GameObject actor)
+    {
+        // Marcar que esta zona está en introducción
+        introInProgress.Add(zoneId);
+        
+        // Pausar el juego
+        Time.timeScale = 0f;
+        
+        // Mostrar la introducción del challenge
+        if (actor.CompareTag("Player"))
+        {
+            HUD_Manager hudManager = FindAnyObjectByType<HUD_Manager>();
+            if (hudManager != null)
+            {
+                hudManager.ShowChallengeEnter(zoneId, goldTime, silverTime, bronzeTime);
+            }
+            
+            // Iniciar coroutine para despausar después de introTime
+            StartCoroutine(StartChallengeAfterIntro(actor));
+        }
+        else
+        {
+            // Para no-jugadores, iniciar inmediatamente
+            StartChallengeImmediate(actor);
+        }
+    }
+    
+    private System.Collections.IEnumerator StartChallengeAfterIntro(GameObject actor)
+    {
+        // Esperar usando unscaledTime porque el juego está pausado
+        yield return new WaitForSecondsRealtime(introTime);
+        
+        // Ocultar la introducción
+        HUD_Manager hudManager = FindAnyObjectByType<HUD_Manager>();
+        if (hudManager != null)
+        {
+            hudManager.HideChallengeEnter();
+        }
+        
+        // Reanudar el juego
+        Time.timeScale = 1f;
+        
+        // Iniciar el challenge
+        StartChallengeImmediate(actor);
+    }
+    
+    private void StartChallengeImmediate(GameObject actor)
     {
         if (!startTimes.TryGetValue(zoneId, out var actors))
         {
@@ -161,6 +222,9 @@ public class ZoneTimerScoring : MonoBehaviour
         actors.Remove(actor);
         OnZoneCompleted?.Invoke();
         
+        // Limpiar zona de progreso
+        introInProgress.Remove(zoneId);
+        
         // Destruir objectes amb el mateix zoneId si és el trigger de sortida
         if (!isEntryTrigger && destroyOnComplete)
         {
@@ -170,10 +234,10 @@ public class ZoneTimerScoring : MonoBehaviour
 
     private void DestroyZoneObjects()
     {
-        // Buscar tots els ZoneTimerScoring amb el mateix zoneId
-        ZoneTimerScoring[] allZones = FindObjectsByType<ZoneTimerScoring>(FindObjectsSortMode.None);
+        // Buscar tots els ChallengeTimerScore amb el mateix zoneId
+        ChallengeTimerScore[] allZones = FindObjectsByType<ChallengeTimerScore>(FindObjectsSortMode.None);
         
-        foreach (ZoneTimerScoring zone in allZones)
+        foreach (ChallengeTimerScore zone in allZones)
         {
             if (zone.zoneId == this.zoneId)
             {

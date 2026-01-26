@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3357363451093458866
 Transform:
   m_ObjectHideFlags: 0
@@ -1149,7 +1149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7839173393617920451
 Transform:
   m_ObjectHideFlags: 0
@@ -2756,7 +2756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4060697125216269587
 Transform:
   m_ObjectHideFlags: 0
@@ -3374,8 +3374,13 @@ MonoBehaviour:
   hitColor: {r: 0, g: 1, b: 0, a: 1}
   missColor: {r: 0, g: 1, b: 1, a: 1}
   beamOpacity: 0.7
+  beamThickness: 0.3
+  beamLengthMultiplier: 6
   playerCamera: {fileID: 2736379214913147645}
   beamVisual: {fileID: 1580974558031894914}
+  beamOrigin: {fileID: 0}
+  blueWand: {fileID: 0}
+  greenWand: {fileID: 0}
 --- !u!120 &7129202685336677545
 LineRenderer:
   serializedVersion: 2
@@ -5098,7 +5103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5336275478791267681
 Transform:
   m_ObjectHideFlags: 0
@@ -5277,7 +5282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5156360284257636353
 Transform:
   m_ObjectHideFlags: 0

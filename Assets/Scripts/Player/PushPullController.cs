@@ -126,10 +126,19 @@ public class PushPullController : MonoBehaviour
         if (grabbedRb.isKinematic)
             grabbedRb.isKinematic = false;
 
+        // Crear joint para mostrar el empuje inicial
         currentJoint = gameObject.AddComponent<FixedJoint>();
         currentJoint.connectedBody = grabbedRb;
         currentJoint.breakForce = breakForce;
         currentJoint.breakTorque = breakTorque;
+
+        // Si es destructible, programar su caída en la dirección de empuje
+        DestructibleOnGrab destructible = targetRb.GetComponent<DestructibleOnGrab>();
+        if (destructible != null)
+        {
+            Vector3 pushDir = moveController != null ? moveController.transform.forward : transform.forward;
+            destructible.TriggerCollapse(pushDir, currentJoint);
+        }
 
         isGrabbing = true;
 
