@@ -4206,9 +4206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 1
-  emissionIntensity: 0.5
+  outlineLayerName: Outline
 --- !u!54 &336654662
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5529,9 +5527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 2
-  emissionIntensity: 1.2
+  outlineLayerName: Outline
 --- !u!1001 &437509798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9161,9 +9157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 2
-  emissionIntensity: 0.5
+  outlineLayerName: GrabbableLayer
 --- !u!54 &638019987
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9172,7 +9166,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638019985}
   serializedVersion: 5
-  m_Mass: 10
+  m_Mass: 40
   m_LinearDamping: 0.5
   m_AngularDamping: 0
   m_CenterOfMass: {x: 10, y: 10, z: 0}
@@ -18141,7 +18135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.16
+      value: -18.93
       objectReference: {fileID: 0}
     - target: {fileID: 5786555726001780566, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18177,7 +18171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18260,7 +18254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7750370834962885026, guid: b7ed1f58ec447ad4fb0c93a62eb4c4b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.958
+      value: -15.021
       objectReference: {fileID: 0}
     - target: {fileID: 7750370834962885026, guid: b7ed1f58ec447ad4fb0c93a62eb4c4b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18268,7 +18262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7750370834962885026, guid: b7ed1f58ec447ad4fb0c93a62eb4c4b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -9.952
       objectReference: {fileID: 0}
     - target: {fileID: 7750370834962885026, guid: b7ed1f58ec447ad4fb0c93a62eb4c4b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18984,7 +18978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 922924961706154322, guid: a8df3746f46c949429b741b6b3defcb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.31
+      value: -13.354
       objectReference: {fileID: 0}
     - target: {fileID: 922924961706154322, guid: a8df3746f46c949429b741b6b3defcb3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21215,9 +21209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 2
-  emissionIntensity: 1.2
+  outlineLayerName: GrabbableLayer
 --- !u!54 &1218541026
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21226,7 +21218,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218541018}
   serializedVersion: 5
-  m_Mass: 4
+  m_Mass: 5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -21487,7 +21479,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -24445,7 +24437,7 @@ MonoBehaviour:
   - Player
   enterAnimatorParameters:
   - animator: {fileID: 916547536}
-    parameterName: Entered
+    parameterName: Enter
     parameterType: 4
     boolValue: 1
     intValue: 0
@@ -25159,11 +25151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7432622557476287136, guid: cb9bc6b96d830b64293c9fdff99b1743, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.674
+      value: -21.55
       objectReference: {fileID: 0}
     - target: {fileID: 7432622557476287136, guid: cb9bc6b96d830b64293c9fdff99b1743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7432622557476287136, guid: cb9bc6b96d830b64293c9fdff99b1743, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25241,9 +25233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 1.2
-  emissionIntensity: 2
+  outlineLayerName: GrabbableLayer
 --- !u!54 &1415090876
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25738,7 +25728,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6322556187633127282, guid: f5e4cf5af47ee60418f92554c028a4ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.574
+      value: -11.593
       objectReference: {fileID: 0}
     - target: {fileID: 6322556187633127282, guid: f5e4cf5af47ee60418f92554c028a4ce, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25746,7 +25736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6322556187633127282, guid: f5e4cf5af47ee60418f92554c028a4ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.845
+      value: -9.945
       objectReference: {fileID: 0}
     - target: {fileID: 6322556187633127282, guid: f5e4cf5af47ee60418f92554c028a4ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25838,9 +25828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 1
-  emissionIntensity: 0.5
+  outlineLayerName: Outline
 --- !u!54 &1461612105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27375,9 +27363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 2
-  emissionIntensity: 1.2
+  outlineLayerName: GrabbableLayer
 --- !u!54 &1579110215
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27386,7 +27372,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579110212}
   serializedVersion: 5
-  m_Mass: 4
+  m_Mass: 15
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -27653,7 +27639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1732602865304662748, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_Mass
-      value: 5
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1732602865304662748, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_IsKinematic
@@ -27806,6 +27792,14 @@ PrefabInstance:
     - target: {fileID: 3730049772906798436, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: grabDistance
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730049772906798436, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      propertyPath: highlightDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730049772906798436, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      propertyPath: grabLayerMask.m_Bits
+      value: 4224
       objectReference: {fileID: 0}
     - target: {fileID: 3752767491788275138, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: m_Layer
@@ -27965,7 +27959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5729914500585016881, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5729914500585016881, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: debugBlend
@@ -30260,9 +30254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda0c30e07cb35c48ab6d519a7ed22fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableVisual
-  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  pulseSpeed: 2
-  emissionIntensity: 1.2
+  outlineLayerName: Outline
 --- !u!4 &1743552468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1676609100239073865, guid: 0d780173c250d334f80c9061373c8e4f, type: 3}
@@ -34542,19 +34534,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.91
+      value: -3.379
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00991305
+      value: 0.009913057
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.39
+      value: -8.58
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.86640334
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -34562,7 +34554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.4993449
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalRotation.z
@@ -34570,11 +34562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -59.913
       objectReference: {fileID: 0}
     - target: {fileID: 8387812288188927564, guid: a13b8883072533940b5bcfde3cbc03a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

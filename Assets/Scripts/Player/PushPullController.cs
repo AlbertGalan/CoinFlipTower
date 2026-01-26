@@ -29,7 +29,7 @@ public class PushPullController : MonoBehaviour
     [Tooltip("Activar el highlight visual quan s'està a prop d'objectes agafables")]
     public bool enableProximityHighlight = true;
     [Tooltip("Distància màxima a la qual els objectes mostraran el highlight de proximitat")]
-    public float highlightDistance = 3f;
+    public float highlightDistance = 2f;
 
     private GrabbableVisual currentProximityVisual;
 
@@ -54,14 +54,6 @@ public class PushPullController : MonoBehaviour
                 Release();
         }
 
-       /* if (isGrabbing && grabbedRb != null)
-        {
-            Vector3 targetPosition = grabbedRb.position;
-            targetPosition.y = originalGrabbedPosition.y + floorDistance;
-            grabbedRb.MovePosition(targetPosition);
-            Debug.Log("Objecte pujat a posició: " + targetPosition);
-        }
-*/
         // Mostrar highlight de proximitat
         if (enableProximityHighlight && !isGrabbing)
         {
@@ -131,14 +123,6 @@ public class PushPullController : MonoBehaviour
         currentJoint.connectedBody = grabbedRb;
         currentJoint.breakForce = breakForce;
         currentJoint.breakTorque = breakTorque;
-
-        // Si es destructible, programar su caída en la dirección de empuje
-        DestructibleOnGrab destructible = targetRb.GetComponent<DestructibleOnGrab>();
-        if (destructible != null)
-        {
-            Vector3 pushDir = moveController != null ? moveController.transform.forward : transform.forward;
-            destructible.TriggerCollapse(pushDir, currentJoint);
-        }
 
         isGrabbing = true;
 
