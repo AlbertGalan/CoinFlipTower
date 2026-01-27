@@ -1,3 +1,4 @@
+using BitWave_Labs.AnimatedTextReveal;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,10 @@ public class HUD_Manager : MonoBehaviour
     public GameObject challengeEnterPanel; // Panel contenedor para la intro
     public TextMeshProUGUI challengeEnterText; // Texto "CHALLENGE" con animación
     public TextMeshProUGUI challengeIdText; // Texto con ZoneID y tiempos
+
+    private AnimatedTextReveal textAnimator;
     public GameObject targetObject; // Objeto Target que se desactiva durante el challenge
+    private Coroutine challengeIdRoutine;
     
     private Score scoreScript;
     private GameObject player;
@@ -48,6 +52,11 @@ public class HUD_Manager : MonoBehaviour
         if (challengeEnterPanel != null)
         {
             challengeEnterPanel.SetActive(false);
+        }
+
+        if (challengeIdText != null)
+        {
+            textAnimator = challengeIdText.GetComponent<AnimatedTextReveal>();
         }
     }
 
@@ -163,6 +172,15 @@ public class HUD_Manager : MonoBehaviour
         if (challengeIdText != null)
         {
             challengeIdText.text = $"{zoneId}\n{goldTime:F0}s - {silverTime:F0}s - {bronzeTime:F0}s";
+            if (textAnimator != null)
+            {
+                textAnimator.SetAllCharactersAlpha(0);
+                if (challengeIdRoutine != null)
+                {
+                    StopCoroutine(challengeIdRoutine);
+                }
+                challengeIdRoutine = StartCoroutine(textAnimator.FadeText(true));
+            }
         }
         
         // Desactivar el Target durante el challenge
@@ -180,6 +198,12 @@ public class HUD_Manager : MonoBehaviour
         if (challengeEnterPanel != null)
         {
             challengeEnterPanel.SetActive(false);
+        }
+
+        if (challengeIdRoutine != null)
+        {
+            StopCoroutine(challengeIdRoutine);
+            challengeIdRoutine = null;
         }
         
         // Reactivar el Target cuando se oculta el challenge
