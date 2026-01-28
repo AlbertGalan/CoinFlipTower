@@ -103,14 +103,6 @@ public class Score : MonoBehaviour
     /// </summary>
     public static string GetLastTimeFormatted()
     {
-        try
-        {
-            return PlayerPrefs.GetString("LastTimeFormatted", "00:00.000");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning($"Error obtenint temps formatat: {e.Message}");
-            return "00:00.000";
-        }
+        return PlayerPrefs.GetString("LastTimeFormatted", "00:00.000");
     }
 }

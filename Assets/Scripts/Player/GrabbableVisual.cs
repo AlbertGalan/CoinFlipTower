@@ -9,7 +9,7 @@ public class GrabbableVisual : MonoBehaviour
 {
     [Header("Layer Settings")]
     [Tooltip("Name of the outline layer to switch to when highlighted (use a dedicated layer like 'OutlineGrabbable' for yellow outline)")]
-    [SerializeField] private string outlineLayerName = "OutlineGrabbable";
+    [SerializeField] private string outlineLayerName = "GrabbableLayer";
     private int originalLayer;
     private bool isHighlighted = false;
 
