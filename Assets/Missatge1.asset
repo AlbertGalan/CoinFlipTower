@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03fddb06cad0684baa0f4d22349b759, type: 3}
+  m_Name: Missatge1
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialMessage
+  messageId: Missatge1
+  lines:
+  - characterName: '<color=red>???</color> '
+    text: Encara no has entrat a la masmorra de la moneda...
+    guardianAnimationTrigger: Idle
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: <color=orange>Edgar</color>
+    text: Qui ets?
+    guardianAnimationTrigger: Idle
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: " <color=red>El Guardi\xE0</color> "
+    text: "S\xF3c <color=red>el Guardi\xE0</color> de la moneda, i tu deus ser <color=orange>n'Edgar</color>"
+    guardianAnimationTrigger: Talk
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: <color=orange>Edgar</color>
+    text: Com ho saps?
+    guardianAnimationTrigger: Talk
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "No importa com ho s\xE9,<br> el cas es que ets a un lloc que jo controlo,<br>
+      entre l'espai i el temps."
+    guardianAnimationTrigger: Tombat2
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.833, y: 0.782, z: 11.427}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Primer he de comprovar si ets digne <br>d'entrar a la meva masmorra <br>
+      i ara ja pots continuar <br> t'anir\xE9 guiant..."
+    guardianAnimationTrigger: Tombat2
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -13.869, y: 0.782, z: 10.946}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 180, z: 0}
+  lineDisplayTime: 2
+  timeBetweenLines: 1
+  canSkip: 1
+  skipKey: 101
+  showGuardian: 1
+  guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+  guardianRotation: {x: 0, y: 0, z: 0}
+  guardianScale: {x: 1.4, y: 1.4, z: 1.4}
+  guardianRelativeToCamera: 1
+  guardianAnimationTrigger: Idle
+  fadeOutLastLine: 0

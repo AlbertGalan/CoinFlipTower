@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class MenuManager : MonoBehaviour
     public Button playButton;
     public Button settingsButton;
     public Button quitButton;
+    
+    [Header("Last Score Display")]
+    [Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
+    public TextMeshProUGUI lastScoreText;
+    
+    [Tooltip("TextMeshProUGUI per mostrar el darrer temps")]
+    public TextMeshProUGUI lastTimeText;
 
     void Start()
     {
@@ -27,6 +35,39 @@ public class MenuManager : MonoBehaviour
 
         if (quitButton != null)
             quitButton.onClick.AddListener(OnQuitClicked);
+        
+        // Mostrar darrera puntuació si existeix
+        UpdateLastScoreDisplay();
+    }
+    
+    void UpdateLastScoreDisplay()
+    {
+        float lastScore = Score.GetLastScore();
+        string lastTime = Score.GetLastTimeFormatted();
+        
+        if (lastScoreText != null)
+        {
+            if (lastScore > 0f)
+            {
+                lastScoreText.text = $"Última Puntuació: {Mathf.RoundToInt(lastScore)}";
+            }
+            else
+            {
+                lastScoreText.text = "Última Puntuació: ---";
+            }
+        }
+        
+        if (lastTimeText != null)
+        {
+            if (lastScore > 0f)
+            {
+                lastTimeText.text = $"Temps: {lastTime}";
+            }
+            else
+            {
+                lastTimeText.text = "Temps: --:--:---";
+            }
+        }
     }
 
     void OnPlayClicked()

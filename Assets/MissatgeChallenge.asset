@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03fddb06cad0684baa0f4d22349b759, type: 3}
+  m_Name: MissatgeChallenge
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialMessage
+  messageId: MissatgeChallenge
+  lines:
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: Excelent <color=orange>Edgar</color>!!
+    guardianAnimationTrigger: AssegutBambelleta
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -23.238, y: 0, z: -10.656}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 180, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Ara far\xE0s la teva primera prova, avan\xE7a.<br>\n<color=green>Amb plaques
+      de pressi\xF3</color>"
+    guardianAnimationTrigger: Pointing2
+    overrideGuardianPosition: 0
+    guardianPosition: {x: 0, y: 180, z: 0}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  lineDisplayTime: 2
+  timeBetweenLines: 1
+  canSkip: 1
+  skipKey: 101
+  showGuardian: 1
+  guardianPosition: {x: -23.238, y: 0, z: -10.656}
+  guardianRotation: {x: 0, y: 180, z: 0}
+  guardianScale: {x: 1, y: 1, z: 1}
+  guardianRelativeToCamera: 0
+  guardianAnimationTrigger: 
+  fadeOutLastLine: 0

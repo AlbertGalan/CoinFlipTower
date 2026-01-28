@@ -171,8 +171,17 @@ public class HUD_Manager : MonoBehaviour
         
         if (challengeIdText != null)
         {
-            challengeIdText.text = $"{zoneId}\n{goldTime:F0}s - {silverTime:F0}s - {bronzeTime:F0}s";
-            if (textAnimator != null)
+            string goldHex = ColorUtility.ToHtmlStringRGB(goldColor);
+            string silverHex = ColorUtility.ToHtmlStringRGB(silverColor);
+            string bronzeHex = ColorUtility.ToHtmlStringRGB(bronzeColor);
+
+            challengeIdText.text =
+                $"{zoneId}\n" +
+                $"<color=#{goldHex}>{goldTime:F0}s</color> - " +
+                $"<color=#{silverHex}>{silverTime:F0}s</color> - " +
+                $"<color=#{bronzeHex}>{bronzeTime:F0}s</color>";
+                
+                if (textAnimator != null)
             {
                 textAnimator.SetAllCharactersAlpha(0);
                 if (challengeIdRoutine != null)

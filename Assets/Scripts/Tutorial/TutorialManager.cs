@@ -17,11 +17,11 @@ public class TutorialManager : MonoBehaviour
     [Tooltip("Panel que conté tot el UI del tutorial")]
     public GameObject tutorialPanel;
     
+    [Tooltip("TextMeshPro on es mostra el nom del personatge que parla")]
+    public TextMeshProUGUI characterNameText;
+    
     [Tooltip("Component TextMeshPro on es mostra el text")]
     public TextMeshProUGUI tutorialText;
-    
-    [Tooltip("AnimatedTextReveal per les animacions de text")]
-    public AnimatedTextReveal textAnimator;
     
     [Header("Guardià")]
     [Tooltip("Transform del guardià que es mou durant els missatges")]
@@ -29,6 +29,9 @@ public class TutorialManager : MonoBehaviour
     
     [Tooltip("GameObject del guardià per mostrar/amagar")]
     public GameObject guardianObject;
+    
+    [Tooltip("Animator del guardià per controlar animacions")]
+    public Animator guardianAnimator;
     
     [Tooltip("Posició per defecte del guardià quan no hi ha missatge")]
     public Vector3 guardianDefaultPosition = new Vector3(-10, 0, 0);
@@ -49,6 +52,7 @@ public class TutorialManager : MonoBehaviour
     private Coroutine currentMessageCoroutine;
     private HashSet<string> shownMessages = new HashSet<string>();
     private Camera mainCamera;
+    private AnimatedTextReveal textAnimator;
     
     private void Awake()
     {
@@ -61,6 +65,19 @@ public class TutorialManager : MonoBehaviour
         Instance = this;
         
         mainCamera = Camera.main;
+        
+        // Auto-asignar Animator si no està assignat
+        if (guardianAnimator == null && guardianObject != null)
+        {
+            guardianAnimator = guardianObject.GetComponent<Animator>();
+        }
+        
+        // CRITICAL: Configurar l'Animator per usar Unscaled Time
+        // Això permet que les animacions funcionin mentre Time.timeScale = 0
+        if (guardianAnimator != null)
+        {
+            guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
     }
     
     private void Start()
@@ -75,11 +92,35 @@ public class TutorialManager : MonoBehaviour
         {
             guardianObject.SetActive(false);
         }
+
+        // Amagar el nom del personatge si existeix
+        if (characterNameText != null)
+        {
+            characterNameText.gameObject.SetActive(false);
+            characterNameText.alignment = TextAlignmentOptions.Center;
+        }
+        
+        // Centrar text del diàleg per defecte
+        if (tutorialText != null)
+        {
+            tutorialText.alignment = TextAlignmentOptions.Center;
+        }
         
         // Validar referències
         if (textAnimator == null && tutorialText != null)
         {
             textAnimator = tutorialText.GetComponent<AnimatedTextReveal>();
+        }
+        
+        if (guardianAnimator == null && guardianObject != null)
+        {
+            guardianAnimator = guardianObject.GetComponent<Animator>();
+            
+            // Assegurar que usa Unscaled Time
+            if (guardianAnimator != null)
+            {
+                guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
         }
     }
     
@@ -88,7 +129,8 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     /// <param name="message">El TutorialMessage a mostrar</param>
     /// <param name="forceShow">Si true, mostra el missatge encara que ja s'hagi mostrat abans</param>
-    public void ShowMessage(TutorialMessage message, bool forceShow = false)
+    /// <param name="pauseOverride">Si té valor, indica si s'ha de pausar el joc per aquest missatge; si és null usa la configuració global</param>
+    public void ShowMessage(TutorialMessage message, bool forceShow = false, bool? pauseOverride = null)
     {
         if (message == null)
         {
@@ -110,18 +152,21 @@ public class TutorialManager : MonoBehaviour
             EndMessage();
         }
         
+        // Determinar si s'ha de pausar segons override o configuració global
+        bool shouldPause = pauseOverride.HasValue ? pauseOverride.Value : pauseGameDuringTutorial;
+        
         // Iniciar nou missatge
-        currentMessageCoroutine = StartCoroutine(ShowMessageCoroutine(message));
+        currentMessageCoroutine = StartCoroutine(ShowMessageCoroutine(message, shouldPause));
     }
-    
-    private IEnumerator ShowMessageCoroutine(TutorialMessage message)
+
+    private IEnumerator ShowMessageCoroutine(TutorialMessage message, bool shouldPause)
     {
         isShowingMessage = true;
         shownMessages.Add(message.messageId);
         
         // Pausar el joc si està configurat
         float previousTimeScale = Time.timeScale;
-        if (pauseGameDuringTutorial)
+        if (shouldPause)
         {
             Time.timeScale = 0f;
         }
@@ -140,6 +185,12 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanel.SetActive(true);
         }
+
+        // Mostrar camp de nom si escau
+        if (characterNameText != null)
+        {
+            characterNameText.gameObject.SetActive(false);
+        }
         
         // Posicionar i mostrar guardià
         if (message.showGuardian && guardianTransform != null && guardianObject != null)
@@ -152,7 +203,23 @@ public class TutorialManager : MonoBehaviour
                 targetPosition = mainCamera.transform.position + mainCamera.transform.TransformDirection(message.guardianPosition);
             }
             
+            // Aplicar transformació completa
             guardianTransform.position = targetPosition;
+            guardianTransform.rotation = Quaternion.Euler(message.guardianRotation);
+            guardianTransform.localScale = message.guardianScale;
+            
+            // CRITICAL: Forçar UnscaledTime abans d'activar per assegurar animacions
+            if (guardianAnimator != null)
+            {
+                guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+                
+                // Activar animació si està especificada
+                if (!string.IsNullOrEmpty(message.guardianAnimationTrigger))
+                {
+                    guardianAnimator.SetTrigger(message.guardianAnimationTrigger);
+                }
+            }
+            
             guardianObject.SetActive(true);
         }
         
@@ -160,22 +227,76 @@ public class TutorialManager : MonoBehaviour
         OnTutorialMessageStart?.Invoke();
         
         // Mostrar cada línia de text
-        for (int i = 0; i < message.textLines.Count; i++)
+        for (int i = 0; i < message.lines.Count; i++)
         {
-            string line = message.textLines[i];
-            bool isLastLine = (i == message.textLines.Count - 1);
+            TutorialLine line = message.lines[i];
+            bool isLastLine = (i == message.lines.Count - 1);
+            
+            // Actualitzar nom del personatge
+            if (characterNameText != null)
+            {
+                if (!string.IsNullOrEmpty(line.characterName))
+                {
+                    characterNameText.text = line.characterName;
+                    characterNameText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    characterNameText.gameObject.SetActive(false);
+                }
+            }
             
             // Actualitzar text
             if (tutorialText != null)
             {
-                tutorialText.text = line;
+                tutorialText.text = line.text;
+                // CRITICAL: Force mesh update after changing text
+                tutorialText.ForceMeshUpdate();
             }
+            
+            // Actualitzar guardià si aquesta línia té configuració específica
+            if (message.showGuardian && guardianObject != null && guardianObject.activeSelf)
+            {
+                // Animació
+                if (!string.IsNullOrEmpty(line.guardianAnimationTrigger) && guardianAnimator != null)
+                {
+                    guardianAnimator.SetTrigger(line.guardianAnimationTrigger);
+                }
+                
+                // Posició override
+                if (line.overrideGuardianPosition && guardianTransform != null)
+                {
+                    Vector3 newPosition = line.guardianPosition;
+                    if (message.guardianRelativeToCamera && mainCamera != null)
+                    {
+                        newPosition = mainCamera.transform.position + mainCamera.transform.TransformDirection(line.guardianPosition);
+                    }
+                    guardianTransform.position = newPosition;
+                }
+                
+                // Rotació override
+                if (line.overrideGuardianRotation && guardianTransform != null)
+                {
+                    guardianTransform.rotation = Quaternion.Euler(line.guardianRotation);
+                }
+            }
+            
+            // Esperar un frame per assegurar que el mesh s'ha actualitzat
+            yield return null;
             
             // Fade in
             if (textAnimator != null)
             {
                 textAnimator.SetAllCharactersAlpha(0);
                 yield return StartCoroutine(textAnimator.FadeText(true));
+            }
+            else
+            {
+                // Si no hi ha animador, mostrar text directament
+                if (tutorialText != null)
+                {
+                    tutorialText.alpha = 1f;
+                }
             }
             
             // Esperar temps de visualització o input de saltar
@@ -188,7 +309,7 @@ public class TutorialManager : MonoBehaviour
                     // Saltar a l'última línia si no hi som ja
                     if (!isLastLine)
                     {
-                        i = message.textLines.Count - 2; // -2 perquè el for farà +1
+                        i = message.lines.Count - 2; // -2 perquè el for farà +1
                         break;
                     }
                     else
@@ -210,6 +331,16 @@ public class TutorialManager : MonoBehaviour
                 {
                     yield return StartCoroutine(textAnimator.FadeText(false));
                 }
+                else if (tutorialText != null)
+                {
+                    tutorialText.alpha = 0f;
+                }
+                
+                // CRITICAL: Netejar el text després del fade-out per evitar veure'l
+                if (tutorialText != null && !isLastLine)
+                {
+                    tutorialText.text = "";
+                }
                 
                 // Esperar entre línies
                 if (!isLastLine)
@@ -223,7 +354,7 @@ public class TutorialManager : MonoBehaviour
         EndMessage();
         
         // Restaurar time scale
-        if (pauseGameDuringTutorial)
+        if (shouldPause)
         {
             Time.timeScale = previousTimeScale;
         }

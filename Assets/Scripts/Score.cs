@@ -1,8 +1,9 @@
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class Score : MonoBehaviour
 {
+    public static Score Instance { get; private set; }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -16,6 +17,18 @@ public class Score : MonoBehaviour
     public float gravityChangePenalty = 5f;
 
     //Referenciam scripts de gravetat per poder detectar quan un objecte o quan el jugador canvia de gravetat i restar-li puntuació en funció.
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     void Start()
     {
 
@@ -62,6 +75,42 @@ public class Score : MonoBehaviour
         if (!string.IsNullOrEmpty(source))
         {
             Debug.Log($"Punts afegits: +{points} ({source}). Puntuació total: {score:F0}");
+        }
+    }
+    
+    /// <summary>
+    /// Guarda la puntuació i temps finals a PlayerPrefs
+    /// </summary>
+    public void SaveLastScore()
+    {
+        PlayerPrefs.SetFloat("LastScore", score);
+        PlayerPrefs.SetFloat("LastTime", timer);
+        PlayerPrefs.SetString("LastTimeFormatted", GetFormattedTime());
+        PlayerPrefs.Save();
+        Debug.Log($"Puntuació final guardada: {score:F0} - Temps: {GetFormattedTime()}");
+    }
+    
+    /// <summary>
+    /// Obté la darrera puntuació guardada
+    /// </summary>
+    public static float GetLastScore()
+    {
+        return PlayerPrefs.GetFloat("LastScore", 0f);
+    }
+    
+    /// <summary>
+    /// Obté el darrer temps guardat (formatat)
+    /// </summary>
+    public static string GetLastTimeFormatted()
+    {
+        try
+        {
+            return PlayerPrefs.GetString("LastTimeFormatted", "00:00.000");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"Error obtenint temps formatat: {e.Message}");
+            return "00:00.000";
         }
     }
 }

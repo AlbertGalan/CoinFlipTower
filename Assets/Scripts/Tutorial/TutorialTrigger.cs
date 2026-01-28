@@ -21,6 +21,13 @@ public class TutorialTrigger : MonoBehaviour
     
     [Tooltip("Forçar mostrar el missatge encara que ja s'hagi mostrat abans")]
     public bool forceShow = false;
+
+    [Header("Pausa opcional")]
+    [Tooltip("Sobrescriure la configuració de pausa del TutorialManager per aquest trigger")]
+    public bool overridePauseSetting = false;
+    
+    [Tooltip("Pausar el joc mentre es mostra aquest missatge (s'aplica només si overridePauseSetting és true)")]
+    public bool pauseGameDuringMessage = true;
     
     [Header("Destrucció")]
     [Tooltip("Destruir aquest GameObject després d'activar-se")]
@@ -91,7 +98,14 @@ public class TutorialTrigger : MonoBehaviour
         }
         
         // Activar el missatge
-        TutorialManager.Instance.ShowMessage(tutorialMessage, forceShow);
+        if (overridePauseSetting)
+        {
+            TutorialManager.Instance.ShowMessage(tutorialMessage, forceShow, pauseGameDuringMessage);
+        }
+        else
+        {
+            TutorialManager.Instance.ShowMessage(tutorialMessage, forceShow);
+        }
         
         // Disparar esdeveniment
         OnTriggerActivated?.Invoke();
