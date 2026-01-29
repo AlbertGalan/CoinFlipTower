@@ -18,44 +18,44 @@ MonoBehaviour:
     text: Encara no has entrat a la masmorra de la moneda...
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 1
-    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    guardianPosition: {x: -13.863, y: -0.435, z: 11.3}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: <color=orange>Edgar</color>
     text: Qui ets?
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 1
-    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    guardianPosition: {x: -13.863, y: -0.435, z: 11.3}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: " <color=red>El Guardi\xE0</color> "
     text: "S\xF3c <color=red>el Guardi\xE0</color> de la moneda, i tu deus ser <color=orange>n'Edgar</color>"
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 1
-    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    guardianPosition: {x: -13.863, y: 0.124, z: 11.306}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: <color=orange>Edgar</color>
     text: Com ho saps?
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 1
-    guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+    guardianPosition: {x: -13.863, y: 0.124, z: 11.306}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
     text: "No importa com ho s\xE9,<br> el cas es que ets a un lloc que jo controlo,<br>
       entre l'espai i el temps."
     guardianAnimationTrigger: Tombat2
-    overrideGuardianPosition: 1
-    guardianPosition: {x: -13.833, y: 0.782, z: 11.427}
+    overrideGuardianPosition: 0
+    guardianPosition: {x: -13.863, y: -0.435, z: 11.3}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: "Primer he de comprovar si ets digne <br>d'entrar a la meva masmorra <br>
-      i ara ja pots continuar <br> t'anir\xE9 guiant..."
+    text: 'Primer he de comprovar si ets digne <br>d''entrar a la meva masmorra <br>
+      i ara continua... '
     guardianAnimationTrigger: Tombat2
-    overrideGuardianPosition: 1
-    guardianPosition: {x: -13.869, y: 0.782, z: 10.946}
+    overrideGuardianPosition: 0
+    guardianPosition: {x: -13.863, y: -0.435, z: 11.3}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   lineDisplayTime: 2
@@ -63,9 +63,9 @@ MonoBehaviour:
   canSkip: 1
   skipKey: 101
   showGuardian: 1
-  guardianPosition: {x: -13.869, y: -0.052, z: 10.946}
+  guardianPosition: {x: -13.863, y: 0.124, z: 10.976}
   guardianRotation: {x: 0, y: 0, z: 0}
-  guardianScale: {x: 1.4, y: 1.4, z: 1.4}
+  guardianScale: {x: 1, y: 1, z: 1}
   guardianRelativeToCamera: 1
   guardianAnimationTrigger: Idle
   fadeOutLastLine: 0

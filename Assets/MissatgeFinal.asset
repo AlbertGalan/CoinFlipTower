@@ -18,14 +18,14 @@ MonoBehaviour:
     text: "Molt b\xE9 <color=orange>Edgar</color>!!"
     guardianAnimationTrigger: AssegutBambelleta
     overrideGuardianPosition: 1
-    guardianPosition: {x: -16.796, y: 1.499, z: -33.295}
+    guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
     overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: -90, z: 0}
   - characterName: <color=orange>Edgar</color>
     text: I la sortida?
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
-    guardianPosition: {x: 0, y: 0, z: 0}
+    guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
@@ -55,7 +55,7 @@ MonoBehaviour:
   canSkip: 1
   skipKey: 101
   showGuardian: 1
-  guardianPosition: {x: -16.796, y: 1.499, z: -33.295}
+  guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
   guardianRotation: {x: 0, y: -90, z: 0}
   guardianScale: {x: 1, y: 1, z: 1}
   guardianRelativeToCamera: 0

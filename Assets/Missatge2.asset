@@ -15,7 +15,7 @@ MonoBehaviour:
   messageId: Missatge2
   lines:
   - characterName: '<color=orange>Edgar</color> '
-    text: "D'acord, segons el <color=blue>Professor Tirius</color> els controls eren<br>\n<color=green>W+A+S+D</color>
+    text: "Segons el <color=blue>Professor Tirius</color> els controls eren<br><color=green>W+A+S+D</color>
       per mourer-se<br> i  <color=green>el ratol\xED</color> per mirar al voltant"
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0

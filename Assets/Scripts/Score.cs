@@ -45,7 +45,7 @@ public class Score : MonoBehaviour
 
         score -= pointsPerSecond * Time.deltaTime;
 
-        Debug.Log("Temps:" + " " + timer + " " + "Puntuació:" + score);
+       // Debug.Log("Temps:" + " " + timer + " " + "Puntuació:" + score);
 
 
     }

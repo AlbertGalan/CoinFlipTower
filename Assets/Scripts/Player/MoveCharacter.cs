@@ -136,7 +136,7 @@ public class MoveCharacter : MonoBehaviour
 
             // Rotar camara verticalment amb limitacions
             verticalRotation -= mouseY;
-            verticalRotation = Mathf.Clamp(verticalRotation, -60f, 60f);
+            verticalRotation = Mathf.Clamp(verticalRotation, -80f, 60f);
             if (cameraTransform != null)
                 cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         }

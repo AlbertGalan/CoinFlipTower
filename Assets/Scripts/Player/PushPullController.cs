@@ -43,7 +43,7 @@ public class PushPullController : MonoBehaviour
     void Update()
     {
         // Mantenir pitjant el botó d'agafar
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1))
         {
             TryGrab();
         }
@@ -54,10 +54,15 @@ public class PushPullController : MonoBehaviour
                 Release();
         }
 
-        // Mostrar highlight de proximitat
-        if (enableProximityHighlight && !isGrabbing)
+        // Mostrar highlight de proximitat (no quan està actiu el click dret)
+        if (enableProximityHighlight && !isGrabbing && !Input.GetMouseButton(1))
         {
             UpdateProximityHighlight();
+        }
+        else if (Input.GetMouseButton(1) && currentProximityVisual != null)
+        {
+            currentProximityVisual.Highlight(false);
+            currentProximityVisual = null;
         }
     }
 
@@ -72,6 +77,13 @@ public class PushPullController : MonoBehaviour
             Rigidbody targetRb = hit.collider.attachedRigidbody;
             if (targetRb != null && targetRb != playerRb)
             {
+                // Bloquejar l'agafar uns instants després d'invertir la gravetat
+                GravityController gravityObj = targetRb.GetComponent<GravityController>();
+                if (gravityObj != null && !gravityObj.CanBeGrabbed())
+                {
+                    return;
+                }
+
                 Grab(targetRb, hit.point);
             }
         }

@@ -18,15 +18,14 @@ MonoBehaviour:
     text: Excelent <color=orange>Edgar</color>!!
     guardianAnimationTrigger: AssegutBambelleta
     overrideGuardianPosition: 1
-    guardianPosition: {x: -23.238, y: 0, z: -10.656}
-    overrideGuardianRotation: 0
+    guardianPosition: {x: -23.707, y: -0.855, z: -10.701}
+    overrideGuardianRotation: 1
     guardianRotation: {x: 0, y: 180, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: "Ara far\xE0s la teva primera prova, avan\xE7a.<br>\n<color=green>Amb plaques
-      de pressi\xF3</color>"
+    text: "Ara far\xE0s la teva primera prova.<br><color=green>Amb plaques de pressi\xF3</color>\n"
     guardianAnimationTrigger: Pointing2
-    overrideGuardianPosition: 0
-    guardianPosition: {x: 0, y: 180, z: 0}
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -23.632, y: -0.409, z: -10.701}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   lineDisplayTime: 2
@@ -34,7 +33,7 @@ MonoBehaviour:
   canSkip: 1
   skipKey: 101
   showGuardian: 1
-  guardianPosition: {x: -23.238, y: 0, z: -10.656}
+  guardianPosition: {x: -23.707, y: -0.855, z: -10.701}
   guardianRotation: {x: 0, y: 180, z: 0}
   guardianScale: {x: 1, y: 1, z: 1}
   guardianRelativeToCamera: 0

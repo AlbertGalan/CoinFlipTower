@@ -13,6 +13,10 @@ public class GravityController : MonoBehaviour
     [Tooltip("Si es vol que l'objecte/jugador giri quan s'inverteix la gravetat")]
     public bool rotateOnInvert = false;
 
+    [Header("Grab Block")]
+    [Tooltip("Temps (segons) que es bloqueja l'agafar després d'invertir gravetat")]
+    public float grabBlockDuration = 0.75f;
+
     [Header("Configuració per a l'stick del jugador")]
     [Tooltip("Màxima distància per cercar un sostre quan s'intenta enganxar")] public float stickMaxDistance = 1.5f;
     [Tooltip("Layermask utilitzada per detectar sostres per enganxar-se")] public LayerMask stickLayerMask = ~0;
@@ -23,6 +27,8 @@ public class GravityController : MonoBehaviour
 
     private Quaternion initialLocalRotation;
     private Quaternion invertedLocalRotation;
+
+    private float lastGravityToggleTime = -999f;
 
     // IsStuck estat (utilitzat quan el jugador s'enganxa al sostre)
     public bool IsStuck { get; private set; } = false;
@@ -45,6 +51,9 @@ public class GravityController : MonoBehaviour
     void Update()
     {
         if (!isPlayer) return;
+
+        // Bloquejar la inversió de gravetat quan el joc està pausat
+        if (Time.timeScale == 0f) return;
 
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -88,6 +97,7 @@ public class GravityController : MonoBehaviour
     {
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
+        lastGravityToggleTime = Time.time;
 
         // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
         if (isPlayer && rb != null && !IsStuck)
@@ -112,6 +122,7 @@ public class GravityController : MonoBehaviour
         if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
+        lastGravityToggleTime = Time.time;
         // Crude snap as above
         if (isPlayer && rb != null && !IsStuck)
         {
@@ -138,6 +149,11 @@ public class GravityController : MonoBehaviour
     public bool IsGravityInverted()
     {
         return gravityInverted;
+    }
+
+    public bool CanBeGrabbed()
+    {
+        return Time.time - lastGravityToggleTime >= grabBlockDuration;
     }
 
     private void ApplyVisualRotation(bool smooth)
