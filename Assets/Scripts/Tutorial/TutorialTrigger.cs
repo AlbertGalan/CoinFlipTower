@@ -22,12 +22,12 @@ public class TutorialTrigger : MonoBehaviour
     [Tooltip("Forçar mostrar el missatge encara que ja s'hagi mostrat abans")]
     public bool forceShow = false;
 
-    [Header("Pausa opcional")]
-    [Tooltip("Sobrescriure la configuració de pausa del TutorialManager per aquest trigger")]
-    public bool overridePauseSetting = false;
+    [Header("Pausa artificial (opcional)")]
+    [Tooltip("Sobrescriure la configuració de pausa artificial per aquest trigger")]
+    public bool overridePausaArtificial = false;
     
-    [Tooltip("Pausar el joc mentre es mostra aquest missatge (s'aplica només si overridePauseSetting és true)")]
-    public bool pauseGameDuringMessage = true;
+    [Tooltip("Aplicar pausa artificial mentre es mostra aquest missatge (s'aplica només si overridePausaArtificial és true)")]
+    public bool pausaArtificialDuringMessage = true;
     
     [Header("Destrucció")]
     [Tooltip("Destruir aquest GameObject després d'activar-se")]
@@ -45,6 +45,25 @@ public class TutorialTrigger : MonoBehaviour
     
     private bool hasTriggered = false;
     
+    private void Awake()
+    {
+        // Subscriure's a l'esdeveniment de final de missatge del TutorialManager
+        // Això permet que aquest trigger es comprovi quan un altre missatge acabi
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnTutorialMessageEnd.AddListener(OnTutorialMessageEnded);
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        // Desubscriure's de l'esdeveniment
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnTutorialMessageEnd.RemoveListener(OnTutorialMessageEnded);
+        }
+    }
+    
     private void Start()
     {
         // Validar que tenim el missatge assignat
@@ -60,6 +79,70 @@ public class TutorialTrigger : MonoBehaviour
             Debug.LogWarning($"TutorialTrigger '{gameObject.name}': El Collider no està marcat com Trigger!");
             col.isTrigger = true;
         }
+        
+        // Esperar a que la escena esté completamente cargada
+        StartCoroutine(CheckPlayerAfterSceneLoaded());
+    }
+    
+    private System.Collections.IEnumerator CheckPlayerAfterSceneLoaded()
+    {
+        // Esperar un frame a que todo esté inicializado
+        yield return null;
+        CheckIfPlayerAlreadyInside();
+    }
+    
+    /// <summary>
+    /// Cridat quan un missatge del tutorial acaba.
+    /// Comprova si el jugador ja està dins del trigger per activar-lo.
+    /// </summary>
+    private void OnTutorialMessageEnded()
+    {
+        // Si aquest trigger ja s'ha activat, no fer res
+        if (triggerOnce && hasTriggered)
+        {
+            return;
+        }
+        
+        // Esperar un frame perquè el TutorialManager acabi de netejar
+        StartCoroutine(CheckPlayerAfterMessageEnded());
+    }
+    
+    private System.Collections.IEnumerator CheckPlayerAfterMessageEnded()
+    {
+        yield return null;
+        CheckIfPlayerAlreadyInside();
+    }
+    
+    private void CheckIfPlayerAlreadyInside()
+    {
+        Collider col = GetComponent<Collider>();
+        if (col == null) return;
+        
+        // Usar OverlapBox para detectar si hay un objeto con los tags dentro
+        Collider[] overlappingColliders = Physics.OverlapBox(
+            col.bounds.center,
+            col.bounds.extents,
+            transform.rotation
+        );
+        
+        foreach (Collider other in overlappingColliders)
+        {
+            // Ignorar nuestro propio collider
+            if (other == col) continue;
+            
+            // Comprobar si este collider tiene uno de los tags requeridos
+            if (triggerTags.Contains(other.tag))
+            {
+                if (showDebugMessages)
+                {
+                    Debug.Log($"TutorialTrigger '{gameObject.name}': Jugador '{other.name}' ja detectat dins. Activant trigger.");
+                }
+                
+                // Activar el trigger como si acabara de entrar
+                OnTriggerEnter(other);
+                return;
+            }
+        }
     }
     
     private void OnTriggerEnter(Collider other)
@@ -73,6 +156,16 @@ public class TutorialTrigger : MonoBehaviour
         // Comprovar si el tag és correcte
         if (!triggerTags.Contains(other.tag))
         {
+            return;
+        }
+        
+        // Comprovar si TutorialManager està mostrant un mensaje
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsShowingMessage())
+        {
+            if (showDebugMessages)
+            {
+                Debug.Log($"TutorialTrigger '{gameObject.name}': Ignorat perquè el TutorialManager ja està mostrant un missatge.");
+            }
             return;
         }
         
@@ -98,9 +191,9 @@ public class TutorialTrigger : MonoBehaviour
         }
         
         // Activar el missatge
-        if (overridePauseSetting)
+        if (overridePausaArtificial)
         {
-            TutorialManager.Instance.ShowMessage(tutorialMessage, forceShow, pauseGameDuringMessage);
+            TutorialManager.Instance.ShowMessage(tutorialMessage, forceShow, pausaArtificialDuringMessage);
         }
         else
         {

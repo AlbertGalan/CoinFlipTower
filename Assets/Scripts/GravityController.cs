@@ -26,7 +26,7 @@ public class GravityController : MonoBehaviour
     private PushPullController pushPull;
 
     private Quaternion initialLocalRotation;
-    private Quaternion invertedLocalRotation;
+    private float lastYaw;
 
     private float lastGravityToggleTime = -999f;
 
@@ -39,7 +39,7 @@ public class GravityController : MonoBehaviour
         if (rb != null) rb.useGravity = false;
 
         initialLocalRotation = transform.localRotation;
-        invertedLocalRotation = initialLocalRotation * Quaternion.Euler(180f, 0f, 0f);
+        lastYaw = transform.localEulerAngles.y;
 
         UpdateGravityDirection();
         ApplyVisualRotation(false);
@@ -55,7 +55,13 @@ public class GravityController : MonoBehaviour
         // Bloquejar la inversió de gravetat quan el joc està pausat
         if (Time.timeScale == 0f) return;
 
-        if (Input.GetKeyDown(KeyCode.G))
+        // Bloquejar la inversió de gravetat mentre es mostra un diàleg del tutorial
+        if (TutorialManager.Instance != null && TutorialManager.Instance.IsShowingMessage())
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             // If the player is currently grabbing an object, ignore gravity toggle
             if (pushPull != null && pushPull.IsGrabbing)
@@ -160,7 +166,12 @@ public class GravityController : MonoBehaviour
     {
         if (!rotateOnInvert) return;
 
-        Quaternion target = gravityInverted ? invertedLocalRotation : initialLocalRotation;
+        // Guardar la direcció actual (yaw) i mantenir-la
+        lastYaw = transform.localEulerAngles.y;
+
+        // Forçar X a 0 per evitar inclinacions i només girar Z
+        float z = gravityInverted ? 180f : 0f;
+        Quaternion target = Quaternion.Euler(0f, lastYaw, z);
         transform.localRotation = target;
     }
 

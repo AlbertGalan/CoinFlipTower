@@ -23,6 +23,16 @@ public class TutorialManager : MonoBehaviour
     [Tooltip("Component TextMeshPro on es mostra el text")]
     public TextMeshProUGUI tutorialText;
     
+        [Header("Fletxa")]
+    [Tooltip("Objecte de la fletxa animada del diàleg")]
+    public GameObject dialogueArrowObject;
+
+    [Tooltip("Animator de la fletxa (opcional)")]
+    public Animator dialogueArrowAnimator;
+
+    [Tooltip("Trigger per forçar l'animació de la fletxa en iniciar diàleg")]
+    public string dialogueArrowAnimationTrigger = "isOpen";
+
     [Header("Guardià")]
     [Tooltip("Transform del guardià que es mou durant els missatges")]
     public Transform guardianTransform;
@@ -37,8 +47,8 @@ public class TutorialManager : MonoBehaviour
     public Vector3 guardianDefaultPosition = new Vector3(-10, 0, 0);
     
     [Header("Configuració")]
-    [Tooltip("Pausar el joc durant els missatges del tutorial")]
-    public bool pauseGameDuringTutorial = true;
+    [Tooltip("Aplicar pausa artificial per defecte quan el missatge no té override")]
+    public bool pausaArtificialDefault = true;
     
     [Tooltip("Objectes que es desactiven durant el tutorial (ex: HUD, target...)")]
     public List<GameObject> objectsToHideDuringTutorial = new List<GameObject>();
@@ -53,6 +63,7 @@ public class TutorialManager : MonoBehaviour
     private HashSet<string> shownMessages = new HashSet<string>();
     private Camera mainCamera;
     private AnimatedTextReveal textAnimator;
+    private bool currentMessageUsedPausaArtificial = false;
     
     private void Awake()
     {
@@ -70,13 +81,6 @@ public class TutorialManager : MonoBehaviour
         if (guardianAnimator == null && guardianObject != null)
         {
             guardianAnimator = guardianObject.GetComponent<Animator>();
-        }
-        
-        // CRITICAL: Configurar l'Animator per usar Unscaled Time
-        // Això permet que les animacions funcionin mentre Time.timeScale = 0
-        if (guardianAnimator != null)
-        {
-            guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
     }
     
@@ -100,6 +104,16 @@ public class TutorialManager : MonoBehaviour
             characterNameText.alignment = TextAlignmentOptions.Center;
         }
         
+        // Auto-asignar components si no estan assignats
+              if (dialogueArrowAnimator == null && dialogueArrowObject != null)
+        {
+            dialogueArrowAnimator = dialogueArrowObject.GetComponent<Animator>();
+        }
+
+        if (dialogueArrowObject != null)
+        {
+            dialogueArrowObject.SetActive(false);
+        }
         // Centrar text del diàleg per defecte
         if (tutorialText != null)
         {
@@ -115,12 +129,6 @@ public class TutorialManager : MonoBehaviour
         if (guardianAnimator == null && guardianObject != null)
         {
             guardianAnimator = guardianObject.GetComponent<Animator>();
-            
-            // Assegurar que usa Unscaled Time
-            if (guardianAnimator != null)
-            {
-                guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            }
         }
     }
     
@@ -129,8 +137,8 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     /// <param name="message">El TutorialMessage a mostrar</param>
     /// <param name="forceShow">Si true, mostra el missatge encara que ja s'hagi mostrat abans</param>
-    /// <param name="pauseOverride">Si té valor, indica si s'ha de pausar el joc per aquest missatge; si és null usa la configuració global</param>
-    public void ShowMessage(TutorialMessage message, bool forceShow = false, bool? pauseOverride = null)
+    /// <param name="pausaArtificialOverride">Si té valor, indica si s'ha d'aplicar pausa artificial; si és null usa configuració del missatge o per defecte</param>
+    public void ShowMessage(TutorialMessage message, bool forceShow = false, bool? pausaArtificialOverride = null)
     {
         if (message == null)
         {
@@ -149,28 +157,51 @@ public class TutorialManager : MonoBehaviour
         if (isShowingMessage && currentMessageCoroutine != null)
         {
             StopCoroutine(currentMessageCoroutine);
-            EndMessage();
+            EndMessage(currentMessageUsedPausaArtificial);
         }
         
-        // Determinar si s'ha de pausar segons override o configuració global
-        bool shouldPause = pauseOverride.HasValue ? pauseOverride.Value : pauseGameDuringTutorial;
-        
+        // Determinar si s'ha d'aplicar pausa artificial
+        bool shouldApplyPausaArtificial = pausaArtificialOverride.HasValue
+            ? pausaArtificialOverride.Value
+            : (message != null ? message.pausaArtificial : pausaArtificialDefault);
+
         // Iniciar nou missatge
-        currentMessageCoroutine = StartCoroutine(ShowMessageCoroutine(message, shouldPause));
+        currentMessageCoroutine = StartCoroutine(ShowMessageCoroutine(message, shouldApplyPausaArtificial));
     }
 
-    private IEnumerator ShowMessageCoroutine(TutorialMessage message, bool shouldPause)
+    private IEnumerator ShowMessageCoroutine(TutorialMessage message, bool applyPausaArtificial)
     {
         isShowingMessage = true;
         shownMessages.Add(message.messageId);
-        
-        // Pausar el joc si està configurat
-        float previousTimeScale = Time.timeScale;
-        if (shouldPause)
+
+        currentMessageUsedPausaArtificial = applyPausaArtificial;
+
+        // Aplicar pausa artificial (bloquear movimiento y score)
+        if (applyPausaArtificial)
         {
-            Time.timeScale = 0f;
+            MoveCharacter playerController = FindFirstObjectByType<MoveCharacter>();
+            if (playerController != null)
+            {
+                playerController.SetBlockMovement(true);
+            }
+
+            Score scoreScript = FindFirstObjectByType<Score>();
+            if (scoreScript != null)
+            {
+                scoreScript.FreezeGameplay();
+            }
         }
         
+                if (dialogueArrowObject != null)
+        {
+            dialogueArrowObject.SetActive(true);
+            if (dialogueArrowAnimator != null && !string.IsNullOrEmpty(dialogueArrowAnimationTrigger))
+            {
+                dialogueArrowAnimator.ResetTrigger(dialogueArrowAnimationTrigger);
+                dialogueArrowAnimator.SetTrigger(dialogueArrowAnimationTrigger);
+            }
+        }
+
         // Amagar objectes especificats
         foreach (GameObject obj in objectsToHideDuringTutorial)
         {
@@ -208,16 +239,10 @@ public class TutorialManager : MonoBehaviour
             guardianTransform.rotation = Quaternion.Euler(message.guardianRotation);
             guardianTransform.localScale = message.guardianScale;
             
-            // CRITICAL: Forçar UnscaledTime abans d'activar per assegurar animacions
-            if (guardianAnimator != null)
+            // Activar animació si està especificada
+            if (guardianAnimator != null && !string.IsNullOrEmpty(message.guardianAnimationTrigger))
             {
-                guardianAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-                
-                // Activar animació si està especificada
-                if (!string.IsNullOrEmpty(message.guardianAnimationTrigger))
-                {
-                    guardianAnimator.SetTrigger(message.guardianAnimationTrigger);
-                }
+                guardianAnimator.SetTrigger(message.guardianAnimationTrigger);
             }
             
             guardianObject.SetActive(true);
@@ -299,29 +324,65 @@ public class TutorialManager : MonoBehaviour
                 }
             }
             
-            // Esperar temps de visualització o input de saltar
-            float timeWaited = 0f;
-            while (timeWaited < message.lineDisplayTime)
+            // Esperar input del jugador o tiempo según configuración
+            if (message.playerControlledAdvance)
             {
-                // Comprovar si es vol saltar
-                if (message.canSkip && Input.GetKeyDown(message.skipKey))
+                // Modo: El jugador controla l'avanç
+                bool playerAdvanced = false;
+                while (!playerAdvanced)
                 {
-                    // Saltar a l'última línia si no hi som ja
-                    if (!isLastLine)
+                    // Comprovar si es vol avançar
+                    if (Input.GetKeyDown(message.advanceKey))
                     {
-                        i = message.lines.Count - 2; // -2 perquè el for farà +1
-                        break;
+                        playerAdvanced = true;
                     }
-                    else
+                    
+                    // Comprovar si es vol saltar
+                    if (message.canSkip && Input.GetKeyDown(message.skipKey))
                     {
-                        // Si ja som a l'última, acabar
-                        timeWaited = message.lineDisplayTime;
-                        break;
+                        // Saltar a l'última línia si no hi som ja
+                        if (!isLastLine)
+                        {
+                            i = message.lines.Count - 2; // -2 perquè el for farà +1
+                            break;
+                        }
+                        else
+                        {
+                            // Si ja som a l'última, acabar
+                            playerAdvanced = true;
+                            break;
+                        }
                     }
+                    
+                    yield return null;
                 }
-                
-                yield return null;
-                timeWaited += Time.unscaledDeltaTime;
+            }
+            else
+            {
+                // Modo: Automàtic (comportament original)
+                float timeWaited = 0f;
+                while (timeWaited < message.lineDisplayTime)
+                {
+                    // Comprovar si es vol saltar
+                    if (message.canSkip && Input.GetKeyDown(message.skipKey))
+                    {
+                        // Saltar a l'última línia si no hi som ja
+                        if (!isLastLine)
+                        {
+                            i = message.lines.Count - 2; // -2 perquè el for farà +1
+                            break;
+                        }
+                        else
+                        {
+                            // Si ja som a l'última, acabar
+                            timeWaited = message.lineDisplayTime;
+                            break;
+                        }
+                    }
+                    
+                    yield return null;
+                    timeWaited += Time.deltaTime;
+                }
             }
             
             // Fade out si no és l'última línia o si està configurat per fer-ho
@@ -345,24 +406,39 @@ public class TutorialManager : MonoBehaviour
                 // Esperar entre línies
                 if (!isLastLine)
                 {
-                    yield return new WaitForSecondsRealtime(message.timeBetweenLines);
+                    yield return new WaitForSeconds(message.timeBetweenLines);
                 }
             }
         }
         
         // Acabar missatge
-        EndMessage();
-        
-        // Restaurar time scale
-        if (shouldPause)
-        {
-            Time.timeScale = previousTimeScale;
-        }
+        EndMessage(currentMessageUsedPausaArtificial);
     }
-    
-    private void EndMessage()
+
+    private void EndMessage(bool hadPausaArtificial = false)
     {
         isShowingMessage = false;
+
+        if (dialogueArrowObject != null)
+        {
+            dialogueArrowObject.SetActive(false);
+        }
+
+        // Quitar pausa artificial
+        if (hadPausaArtificial)
+        {
+            MoveCharacter playerController = FindFirstObjectByType<MoveCharacter>();
+            if (playerController != null)
+            {
+                playerController.SetBlockMovement(false);
+            }
+
+            Score scoreScript = FindFirstObjectByType<Score>();
+            if (scoreScript != null)
+            {
+                scoreScript.UnfreezeGameplay();
+            }
+        }
         
         // Desactivar panel
         if (tutorialPanel != null)
@@ -398,6 +474,14 @@ public class TutorialManager : MonoBehaviour
     }
     
     /// <summary>
+    /// Comprova si el TutorialManager està mostrant un missatge en aquest moment.
+    /// </summary>
+    public bool IsShowingMessage()
+    {
+        return isShowingMessage;
+    }
+    
+    /// <summary>
     /// Reinicia el tracking de missatges mostrats (útil per reinicis/debug).
     /// </summary>
     public void ResetShownMessages()
@@ -413,8 +497,7 @@ public class TutorialManager : MonoBehaviour
         if (isShowingMessage && currentMessageCoroutine != null)
         {
             StopCoroutine(currentMessageCoroutine);
-            EndMessage();
-            Time.timeScale = 1f; // Assegurar que el joc no quedi pausat
+            EndMessage(currentMessageUsedPausaArtificial);
         }
     }
 }

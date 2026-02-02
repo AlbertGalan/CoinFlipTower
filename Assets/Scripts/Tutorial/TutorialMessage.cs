@@ -45,19 +45,29 @@ public class TutorialMessage : ScriptableObject
     [Header("Contingut")]
     [Tooltip("Línies de text que es mostraran seqüencialment amb les seves animacions")]
     public List<TutorialLine> lines = new List<TutorialLine>();
+
+    [Header("Pausa artificial")]
+    [Tooltip("Bloqueja el moviment del jugador i el temps del Score mentre es mostra el diàleg")]
+    public bool pausaArtificial = true;
     
     [Header("Temps")]
-    [Tooltip("Temps que cada línia es manté visible després de fer fade-in (segons)")]
+    [Tooltip("El jugador controla l'avanç presionant una tecla (Si està desactivat, els diàlegs avancen automàticament)")]
+    public bool playerControlledAdvance = true;
+    
+    [Tooltip("Temps que cada línia es manté visible després de fer fade-in (segons, només es usa si playerControlledAdvance és false)")]
     public float lineDisplayTime = 2f;
     
     [Tooltip("Temps entre línies després de fade-out (segons)")]
     public float timeBetweenLines = 0.5f;
     
-    [Tooltip("Permet al jugador saltar el missatge amb una tecla")]
+    [Tooltip("Tecla per avançar de línia (quan playerControlledAdvance està habilitat)")]
+    public KeyCode advanceKey = KeyCode.E;
+    
+    [Tooltip("Permet al jugador saltar al final del missatge amb una tecla")]
     public bool canSkip = true;
     
     [Tooltip("Tecla per saltar el missatge")]
-    public KeyCode skipKey = KeyCode.Space;
+    public KeyCode skipKey = KeyCode.P;
     
     [Header("Guardià")]
     [Tooltip("Mostrar el guardià durant aquest missatge")]

@@ -18,45 +18,47 @@ MonoBehaviour:
     text: "Molt b\xE9 <color=orange>Edgar</color>!!"
     guardianAnimationTrigger: AssegutBambelleta
     overrideGuardianPosition: 1
-    guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
-    overrideGuardianRotation: 1
+    guardianPosition: {x: -16.952, y: 9.693, z: -33.248}
+    overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: -90, z: 0}
   - characterName: <color=orange>Edgar</color>
     text: I la sortida?
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
-    guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
+    guardianPosition: {x: -16.952, y: 9.693, z: -33.248}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
     text: "M'agrada que ho demanis, pero aqu\xED no hi es."
     guardianAnimationTrigger: AssegutCatxondo
     overrideGuardianPosition: 1
-    guardianPosition: {x: -16.864, y: 1.4, z: -33.277}
-    overrideGuardianRotation: 1
+    guardianPosition: {x: -16.86, y: 9.573, z: -33.248}
+    overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: -90, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
     text: "No trobes que aqu\xED fa un poc de fred?<br> A la primera habitaci\xF3
       s'estaven <br><color=green>m\xE9s calentets...</color>"
     guardianAnimationTrigger: AssegutCatxondo
     overrideGuardianPosition: 1
-    guardianPosition: {x: -16.864, y: 1.4, z: -33.277}
-    overrideGuardianRotation: 1
+    guardianPosition: {x: -16.86, y: 9.573, z: -33.248}
+    overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: -90, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
     text: Recorda que <color=green>el temps</color> segueix corrent<br>
     guardianAnimationTrigger: AssegutCatxondo
     overrideGuardianPosition: 1
-    guardianPosition: {x: -16.864, y: 1.4, z: -33.277}
-    overrideGuardianRotation: 1
+    guardianPosition: {x: -16.86, y: 9.573, z: -33.248}
+    overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: -90, z: 0}
+  playerControlledAdvance: 1
   lineDisplayTime: 2
   timeBetweenLines: 0.5
+  advanceKey: 101
   canSkip: 1
-  skipKey: 101
+  skipKey: 112
   showGuardian: 1
-  guardianPosition: {x: -16.844, y: 1.483, z: -33.154}
-  guardianRotation: {x: 0, y: -90, z: 0}
+  guardianPosition: {x: -16.943, y: 9.541, z: -33.248}
+  guardianRotation: {x: 0, y: -90, z: -180}
   guardianScale: {x: 1, y: 1, z: 1}
   guardianRelativeToCamera: 0
   guardianAnimationTrigger: 

@@ -16,6 +16,8 @@ public class Score : MonoBehaviour
     public float pointsPerSecond = 1f;
     public float gravityChangePenalty = 5f;
 
+    private bool isGameplayFrozen = false;
+
     //Referenciam scripts de gravetat per poder detectar quan un objecte o quan el jugador canvia de gravetat i restar-li puntuació en funció.
     private void Awake()
     {
@@ -40,6 +42,9 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // No actualizar si el gameplay está congelado por tutoriales
+        if (isGameplayFrozen)
+            return;
 
         timer += Time.deltaTime;
 
@@ -49,6 +54,19 @@ public class Score : MonoBehaviour
 
 
     }
+
+    // Congelar/descongelar la actualización de tiempo y puntuación (para tutoriales)
+    public void FreezeGameplay()
+    {
+        isGameplayFrozen = true;
+    }
+
+    public void UnfreezeGameplay()
+    {
+        isGameplayFrozen = false;
+    }
+
+    public bool IsGameplayFrozen => isGameplayFrozen;
 
     public string GetFormattedTime()
     {

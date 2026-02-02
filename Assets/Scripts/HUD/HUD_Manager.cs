@@ -9,7 +9,7 @@ public class HUD_Manager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI challengeText;
-    
+
     [Header("Challenge Enter UI")]
     public GameObject challengeEnterPanel; // Panel contenedor para la intro
     public TextMeshProUGUI challengeEnterText; // Texto "CHALLENGE" con animación
@@ -58,6 +58,7 @@ public class HUD_Manager : MonoBehaviour
         {
             textAnimator = challengeIdText.GetComponent<AnimatedTextReveal>();
         }
+
     }
 
     // Update is called once per frame

@@ -26,9 +26,13 @@ public class MoveCharacter : MonoBehaviour
     [Tooltip("Nom del paràmetre float emprat per la blend tree d'animacions")]
     public string blendParameter = "Blend";
 
+    private bool blockMovement = false;
+    private PauseManager pauseManager;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        pauseManager = FindFirstObjectByType<PauseManager>();
 
         // Auto-assign animator if not set in inspector
         if (animator == null)
@@ -88,13 +92,31 @@ public class MoveCharacter : MonoBehaviour
 
     void Update()
     {
+        // Si el juego está en pausa (menú), bloquear toda la entrada incluida la cámara
+        if (pauseManager != null && pauseManager.IsPaused)
+        {
+            inputH = 0f;
+            inputV = 0f;
+            return;
+        }
+
+        // Bloquear solo el movimiento, no la cámara
+        if (blockMovement)
+        {
+            inputH = 0f;
+            inputV = 0f;
+        }
+
         // --- Rotació ratolí ---
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         // read movement input here so we can update the animator immediately
-        inputH = Input.GetAxis("Horizontal");
-        inputV = Input.GetAxis("Vertical");
+        if (!blockMovement)
+        {
+            inputH = Input.GetAxis("Horizontal");
+            inputV = Input.GetAxis("Vertical");
+        }
 
         // Update animator parameters. You configured a 1D blend tree using a single
         // float parameter with thresholds: Idle=0, Forward=0.25, Back=0.5, Left=0.75, Right=1.
@@ -156,4 +178,12 @@ public class MoveCharacter : MonoBehaviour
     {
         restrictStrafe = restrict;
     }
+
+    // Bloquear/desbloquear movimiento (W/A/S/D) sin afectar cámara
+    public void SetBlockMovement(bool block)
+    {
+        blockMovement = block;
+    }
+
+    public bool IsMovementBlocked => blockMovement;
 }

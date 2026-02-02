@@ -28,10 +28,12 @@ MonoBehaviour:
     guardianPosition: {x: -23.632, y: -0.409, z: -10.701}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
+  playerControlledAdvance: 1
   lineDisplayTime: 2
   timeBetweenLines: 1
+  advanceKey: 101
   canSkip: 1
-  skipKey: 101
+  skipKey: 112
   showGuardian: 1
   guardianPosition: {x: -23.707, y: -0.855, z: -10.701}
   guardianRotation: {x: 0, y: 180, z: 0}

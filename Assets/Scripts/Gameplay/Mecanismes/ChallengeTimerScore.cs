@@ -86,6 +86,12 @@ public class ChallengeTimerScore : MonoBehaviour
         {
             return;
         }
+        
+        // Evitar que el trigger de salida se active mientras la introducción está en curso
+        if (!isEntryTrigger && introInProgress.Contains(zoneId))
+        {
+            return;
+        }
 
         if (isEntryTrigger)
         {
