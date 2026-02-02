@@ -119,8 +119,18 @@ public class ChallengeTimerScore : MonoBehaviour
         // Marcar que esta zona está en introducción
         introInProgress.Add(zoneId);
         
-        // Pausar el juego
-        Time.timeScale = 0f;
+        // Aplicar pausa artificial (bloquear movimiento y score)
+        MoveCharacter playerController = FindFirstObjectByType<MoveCharacter>();
+        if (playerController != null)
+        {
+            playerController.SetBlockMovement(true);
+        }
+
+        Score scoreScript = FindFirstObjectByType<Score>();
+        if (scoreScript != null)
+        {
+            scoreScript.FreezeGameplay();
+        }
         
         // Mostrar la introducción del challenge
         if (actor.CompareTag("Player"))
@@ -143,8 +153,8 @@ public class ChallengeTimerScore : MonoBehaviour
     
     private System.Collections.IEnumerator StartChallengeAfterIntro(GameObject actor)
     {
-        // Esperar usando unscaledTime porque el juego está pausado
-        yield return new WaitForSecondsRealtime(introTime);
+        // Esperar el tiempo de introducción
+        yield return new WaitForSeconds(introTime);
         
         // Ocultar la introducción
         HUD_Manager hudManager = FindAnyObjectByType<HUD_Manager>();
@@ -153,8 +163,18 @@ public class ChallengeTimerScore : MonoBehaviour
             hudManager.HideChallengeEnter();
         }
         
-        // Reanudar el juego
-        Time.timeScale = 1f;
+        // Quitar pausa artificial
+        MoveCharacter playerController = FindFirstObjectByType<MoveCharacter>();
+        if (playerController != null)
+        {
+            playerController.SetBlockMovement(false);
+        }
+
+        Score scoreScript = FindFirstObjectByType<Score>();
+        if (scoreScript != null)
+        {
+            scoreScript.UnfreezeGameplay();
+        }
         
         // Iniciar el challenge
         StartChallengeImmediate(actor);

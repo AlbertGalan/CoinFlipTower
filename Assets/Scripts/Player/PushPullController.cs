@@ -8,8 +8,6 @@ public class PushPullController : MonoBehaviour
     public float grabDistance = 3f;
     public LayerMask grabLayerMask = ~0;
 
-   // public float floorDistance = 0.2f;
-
     [Header("Joint settings")] //Un joint agafa es dos rigidbodies i els manté units
     public float breakForce = 1000f;
     public float breakTorque = 1000f;
@@ -32,6 +30,16 @@ public class PushPullController : MonoBehaviour
     public float highlightDistance = 2f;
 
     private GrabbableVisual currentProximityVisual;
+
+    [Header("Curved push settings")]
+    [Tooltip("Fuerza base de empuje hacia adelante")]
+    public float pushForceForward = 500f;
+    [Tooltip("Fuerza lateral aplicada al empujar en diagonal")]
+    public float pushForceLateral = 300f;
+    [Tooltip("Suavidad de la curva (0-1, menor = más suave)")]
+    public float curveSmoothing = 0.3f;
+
+    private Vector3 lastPushDirection = Vector3.forward;
 
     void Start()
     {
