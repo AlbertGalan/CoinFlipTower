@@ -30,7 +30,7 @@ public class GravityControllerTests
         Assert.IsFalse(gravityController.IsGravityInverted());
     }
 
-    // TEST 2: Verificar que Toggle funciona
+    // TEST 2: Verificar que es Toggle per canviar gravetat funciona
     [Test]
     public void ToggleChangesGravity()
     {
@@ -41,7 +41,7 @@ public class GravityControllerTests
         Assert.IsFalse(gravityController.IsGravityInverted());
     }
 
-    // TEST 3: Verificar SetGravityInverted
+    // TEST 3: Verificar si s'inverteix sa gravetat correctament
     [Test]
     public void SetGravityInvertedWorks()
     {

@@ -22,7 +22,7 @@ MonoBehaviour:
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  pausaArtificial: 0
+  pausaArtificial: 1
   playerControlledAdvance: 1
   lineDisplayTime: 3
   timeBetweenLines: 1

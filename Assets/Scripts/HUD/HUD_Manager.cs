@@ -11,12 +11,12 @@ public class HUD_Manager : MonoBehaviour
     public TextMeshProUGUI challengeText;
 
     [Header("Challenge Enter UI")]
-    public GameObject challengeEnterPanel; // Panel contenedor para la intro
-    public TextMeshProUGUI challengeEnterText; // Texto "CHALLENGE" con animación
-    public TextMeshProUGUI challengeIdText; // Texto con ZoneID y tiempos
+    public GameObject challengeEnterPanel; //Panel que conté el texte de "CHALLENGE" i ZoneID
+    public TextMeshProUGUI challengeEnterText; // Texte "CHALLENGE" amb animació
+    public TextMeshProUGUI challengeIdText; // Texte amb zoneId o id des challenge i es temps que te cada challenge
 
     private AnimatedTextReveal textAnimator;
-    public GameObject targetObject; // Objeto Target que se desactiva durante el challenge
+    public GameObject targetObject; // Objecte del Target que se desactiva per veure es challenge
     private Coroutine challengeIdRoutine;
     
     private Score scoreScript;
@@ -66,7 +66,6 @@ public class HUD_Manager : MonoBehaviour
     {
         UpdateHUD();
         
-        // Actualizar el Animator manualmente cuando Time.timeScale = 0
         if (updatingAnimator && challengeEnterText != null)
         {
             Animator animator = challengeEnterText.GetComponent<Animator>();
@@ -92,7 +91,6 @@ public class HUD_Manager : MonoBehaviour
     {
         if (challengeText == null) return;
         
-        // Mostrar missatge de compleció
         if (showingCompletion)
         {
             challengeCompleteTimer -= Time.deltaTime;
