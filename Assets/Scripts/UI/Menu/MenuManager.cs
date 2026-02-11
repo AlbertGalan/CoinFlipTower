@@ -12,6 +12,10 @@ public class MenuManager : MonoBehaviour
     public Button playButton;
     public Button settingsButton;
     public Button quitButton;
+    public Button classificationButton;
+    
+    [Header("UI Panels")]
+    public GameObject classificationPanel;
     
     [Header("Last Score Display")]
     [Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
@@ -35,6 +39,9 @@ public class MenuManager : MonoBehaviour
 
         if (quitButton != null)
             quitButton.onClick.AddListener(OnQuitClicked);
+        
+        if (classificationButton != null)
+            classificationButton.onClick.AddListener(OnClassificationClicked);
         
         // Mostrar darrera puntuació si existeix
         UpdateLastScoreDisplay();
@@ -87,5 +94,14 @@ public class MenuManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+    
+    void OnClassificationClicked()
+    {
+        if (classificationPanel != null)
+        {
+            classificationPanel.SetActive(true);
+        
+        }
     }
 }
