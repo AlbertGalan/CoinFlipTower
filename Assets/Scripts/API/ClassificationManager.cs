@@ -26,9 +26,15 @@ public class ClassificationManager : MonoBehaviour
     private void OnEnable()
     {
         // Cargar clasificación cuando el panel se abre
-        StartCoroutine(GetClassificationCoroutine());
-    }
+        //StartCoroutine(GetClassificationCoroutine());
+            StartCoroutine(LoadAfterFrame());
 
+    }
+private IEnumerator LoadAfterFrame()
+{
+    yield return null; // Espera un frame
+    StartCoroutine(GetClassificationCoroutine());
+}
     private void ClosePanel()
     {
         gameObject.SetActive(false);
@@ -105,6 +111,12 @@ public class ClassificationManager : MonoBehaviour
 
         Debug.Log($"Mostrando {scores.Count} clasificaciones");
 
+        for (int i = 0; i < scores.Count; i++)
+        {
+            ScoreDTO score = scores[i];
+            Debug.Log($"[UI] Posición {i + 1}: {score.name} - {score.puntuacion}");
+        }
+
         // Limpiar filas previas
         foreach (Transform child in contentParent)
         {
@@ -129,5 +141,6 @@ public class ClassificationManager : MonoBehaviour
             }
         }
     }
+    
 }
 
