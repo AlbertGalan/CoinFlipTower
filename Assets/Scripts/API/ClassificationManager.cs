@@ -123,7 +123,20 @@ private IEnumerator LoadAfterFrame()
             Destroy(child.gameObject);
         }
 
-        // Crear nuevas filas
+        // Crear fila de encabezado (sin datos, mostrará NAME y SCORE por defecto)
+        GameObject headerInstance = Instantiate(classificationRowPrefab, contentParent);
+        Debug.Log("Fila de encabezado creada");
+        ClassificationRowUI headerRowUI = headerInstance.GetComponent<ClassificationRowUI>();
+        if (headerRowUI != null)
+        {
+            headerRowUI.SetHeaderStyle(Color.white);
+        }
+        else
+        {
+            Debug.LogWarning("headerInstance no tiene el componente ClassificationRowUI");
+        }
+
+        // Crear nuevas filas con datos de la API
         for (int i = 0; i < scores.Count; i++)
         {
             ScoreDTO score = scores[i];
@@ -134,6 +147,7 @@ private IEnumerator LoadAfterFrame()
             if (rowUI != null)
             {
                 rowUI.SetData(i + 1, score.name, score.puntuacion);
+                rowUI.SetContentFontSize(30f);
             }
             else
             {
