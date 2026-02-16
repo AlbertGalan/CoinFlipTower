@@ -17,11 +17,14 @@ public class UIMenuGravityManager : MonoBehaviour
     public bool blockDuringPause = true;
     [Tooltip("Bloquear toggle durante pausa artificial (tutorial, challenges)")]
     public bool blockDuringArtificialPause = true;
+    [Tooltip("Bloquear toggle mientras el jugador empuja o tira de un objeto")]
+    public bool blockWhileGrabbing = true;
     
     private bool gravityInverted = false;
     private float targetRotation = 0f;
     private PauseManager pauseManager;
     private Score scoreManager;
+    private PushPullController pushPullController;
 
     private void Awake()
     {
@@ -46,6 +49,7 @@ public class UIMenuGravityManager : MonoBehaviour
         // Buscar PauseManager y Score en la escena
         pauseManager = FindFirstObjectByType<PauseManager>();
         scoreManager = FindFirstObjectByType<Score>();
+        pushPullController = FindFirstObjectByType<PushPullController>();
     }
 
     private void Update()
@@ -86,6 +90,12 @@ public class UIMenuGravityManager : MonoBehaviour
         
         // Bloquear si hay pausa artificial (tutorial, challenges)
         if (blockDuringArtificialPause && scoreManager != null && scoreManager.IsGameplayFrozen)
+        {
+            return true;
+        }
+
+        // Bloquear si el jugador esta empujando o tirando de un objeto
+        if (blockWhileGrabbing && pushPullController != null && pushPullController.IsGrabbing)
         {
             return true;
         }
