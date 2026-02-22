@@ -51969,6 +51969,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333959471}
     m_Modifications:
+    - target: {fileID: 6822879176331142233, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822879176331142233, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822879176331142234, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
       propertyPath: m_Name
       value: Shelf_Wall
@@ -51983,11 +51991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822879176331573370, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.233
+      value: 9.158
       objectReference: {fileID: 0}
     - target: {fileID: 6822879176331573370, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.826
+      value: 0.586
       objectReference: {fileID: 0}
     - target: {fileID: 6822879176331573370, guid: 559f839e0f294cf499731ff6070352ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -66893,7 +66901,7 @@ Transform:
   m_GameObject: {fileID: 544378681}
   serializedVersion: 2
   m_LocalRotation: {x: 0.65089524, y: -0.2762886, z: 0.2762886, w: 0.65089524}
-  m_LocalPosition: {x: 13.33, y: 4.91, z: 11.83}
+  m_LocalPosition: {x: 13.33, y: 4.27, z: 11.83}
   m_LocalScale: {x: 4.1, y: 0.5, z: 4.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -66947,7 +66955,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b1debaad09e5204c9285dba9aaa12f7, type: 2}
+  - {fileID: 2100000, guid: 639da1217e09745499b37f948d392336, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149763,7 +149771,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1151846264}
   - component: {fileID: 1151846263}
-  - component: {fileID: 1151846262}
   - component: {fileID: 1151846265}
   m_Layer: 0
   m_Name: Main Camera
@@ -149772,14 +149779,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!81 &1151846262
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151846261}
-  m_Enabled: 1
 --- !u!20 &1151846263
 Camera:
   m_ObjectHideFlags: 0

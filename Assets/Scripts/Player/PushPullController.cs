@@ -12,9 +12,26 @@ public class PushPullController : MonoBehaviour
     public float breakForce = 1000f;
     public float breakTorque = 1000f;
 
+    [Header("Configurable Joint settings")]
+    [Tooltip("Distancia maxima permitida entre el jugador y el objeto agarrado")]
+    public float grabMaxDistance = 0.2f;
+    [Tooltip("Rigidez del muelle del joint (alto = agarre mas firme)")]
+    public float jointSpring = 5000f;
+    [Tooltip("Amortiguacion del muelle del joint")]
+    public float jointDamper = 500f;
+    
+    [Header("Mass amplification")]
+    [Tooltip("Multiplicador de masa del jugador mientras agarra (para empujar objetos pesados)")]
+    //public float massMultiplier = 5f;
+    //[Tooltip("Aplicar fuerza extra al objeto cuando el jugador se mueve")]
+    public bool applyPushForce = true;
+    [Tooltip("Multiplicador de la fuerza de empuje")]
+    public float pushForceMultiplier = 2f;
+
     private Rigidbody playerRb;
-    private FixedJoint currentJoint;
+    private ConfigurableJoint currentJoint;
     private Rigidbody grabbedRb;
+    private float originalPlayerMass;
 
    // private Vector3 originalGrabbedPosition;
     private bool isGrabbing = false;
@@ -46,6 +63,23 @@ public class PushPullController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         if (playerCamera == null) playerCamera = Camera.main;
         moveController = GetComponent<MoveCharacter>();
+        originalPlayerMass = playerRb.mass;
+    }
+
+    void FixedUpdate()
+    {
+        // Aplicar fuerza extra al objeto cuando el jugador se mueve mientras lo agarra
+        if (isGrabbing && grabbedRb != null && applyPushForce)
+        {
+            Vector3 playerVelocity = playerRb.linearVelocity;
+            Vector3 horizontalVelocity = new Vector3(playerVelocity.x, 0f, playerVelocity.z);
+            
+            if (horizontalVelocity.sqrMagnitude > 0.01f)
+            {
+                // Aplicar fuerza en la dirección del movimiento del jugador
+                grabbedRb.AddForce(horizontalVelocity * pushForceMultiplier * grabbedRb.mass, ForceMode.Force);
+            }
+        }
     }
 
     void Update()
@@ -138,11 +172,36 @@ public class PushPullController : MonoBehaviour
         if (grabbedRb.isKinematic)
             grabbedRb.isKinematic = false;
 
-        // Crear joint para mostrar el empuje inicial
-        currentJoint = gameObject.AddComponent<FixedJoint>();
+        // Amplificar masa del jugador para poder empujar objetos pesados
+       // playerRb.mass = originalPlayerMass * massMultiplier;
+
+        // ConfigurableJoint para un agarre mas flexible
+        currentJoint = gameObject.AddComponent<ConfigurableJoint>();
+        currentJoint.autoConfigureConnectedAnchor = false;
         currentJoint.connectedBody = grabbedRb;
+        currentJoint.anchor = transform.InverseTransformPoint(hitPoint);
+        currentJoint.connectedAnchor = grabbedRb.transform.InverseTransformPoint(hitPoint);
         currentJoint.breakForce = breakForce;
         currentJoint.breakTorque = breakTorque;
+
+        currentJoint.xMotion = ConfigurableJointMotion.Limited;
+        currentJoint.yMotion = ConfigurableJointMotion.Limited;
+        currentJoint.zMotion = ConfigurableJointMotion.Limited;
+        currentJoint.angularXMotion = ConfigurableJointMotion.Locked;
+        currentJoint.angularYMotion = ConfigurableJointMotion.Locked;
+        currentJoint.angularZMotion = ConfigurableJointMotion.Locked;
+
+        SoftJointLimit linearLimit = new SoftJointLimit();
+        linearLimit.limit = grabMaxDistance;
+        currentJoint.linearLimit = linearLimit;
+
+        JointDrive drive = new JointDrive();
+        drive.positionSpring = jointSpring;
+        drive.positionDamper = jointDamper;
+        drive.maximumForce = Mathf.Infinity;
+        currentJoint.xDrive = drive;
+        currentJoint.yDrive = drive;
+        currentJoint.zDrive = drive;
 
         isGrabbing = true;
 
@@ -170,9 +229,16 @@ public class PushPullController : MonoBehaviour
 
         if (grabbedRb != null)
         {
-            // deixar de ser kinematic si fa falta
+            // Reducir velocidad del objeto al soltar para evitar que salga disparado
+            Vector3 vel = grabbedRb.linearVelocity;
+            grabbedRb.linearVelocity = vel * 0.5f;
+            grabbedRb.angularVelocity *= 0.5f;
+            
             grabbedRb = null;
         }
+
+        // Restaurar masa original del jugador
+        playerRb.mass = originalPlayerMass;
 
         isGrabbing = false;
 
