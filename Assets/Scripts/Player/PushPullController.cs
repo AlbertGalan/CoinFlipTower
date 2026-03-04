@@ -172,7 +172,7 @@ public class PushPullController : MonoBehaviour
         if (grabbedRb.isKinematic)
             grabbedRb.isKinematic = false;
 
-        // Amplificar masa del jugador para poder empujar objetos pesados
+        // Amplificar masa del jugador para poder empenyer objectes pesats
        // playerRb.mass = originalPlayerMass * massMultiplier;
 
         // ConfigurableJoint para un agarre mas flexible

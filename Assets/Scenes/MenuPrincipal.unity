@@ -1174,6 +1174,7 @@ MonoBehaviour:
   quitButton: {fileID: 9403380}
   classificationButton: {fileID: 269810238}
   classificationPanel: {fileID: 908927389}
+  credentialsPanel: {fileID: 0}
   lastScoreText: {fileID: 1318544156}
   lastTimeText: {fileID: 44516587}
 --- !u!1 &508304050
@@ -5070,7 +5071,11 @@ MonoBehaviour:
   invertAllElements: 0
   rotateCanvas: 1
   canvasToRotate: {fileID: 2076211007}
+  containerChildName: MenuContent
   rotationSpeed: 5
+  blockDuringPause: 1
+  blockDuringArtificialPause: 1
+  blockWhileGrabbing: 1
 --- !u!1 &2086040530
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,6 +5085,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086040531}
+  - component: {fileID: 2086040532}
+  - component: {fileID: 2086040533}
   m_Layer: 5
   m_Name: TaulaRegistre
   m_TagString: Untagged
@@ -5118,6 +5125,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2086040532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086040530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649758f19d65c1a4492a91aca115c30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::CredentialsPanel
+  nameInputField: {fileID: 1169837236}
+  emailInputField: {fileID: 1677939755}
+  acceptButton: {fileID: 537416394}
+  cancelButton: {fileID: 1664113535}
+--- !u!114 &2086040533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086040530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d63430d6533054a82ec07d2061b187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::UserManager
+  networkingData: {fileID: 11400000, guid: 2375e5c13fc58784ea9fdca10004bc38, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

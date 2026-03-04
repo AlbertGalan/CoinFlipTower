@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     
     [Header("UI Panels")]
     public GameObject classificationPanel;
+    public GameObject credentialsPanel;
     
     [Header("Last Score Display")]
     [Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
@@ -79,7 +80,14 @@ public class MenuManager : MonoBehaviour
 
     void OnPlayClicked()
     {
-        SceneManager.LoadScene(tutorialSceneName);
+        if (credentialsPanel != null)
+        {
+            credentialsPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("credentialsPanel no está asignado en el Inspector");
+        }
     }
 
     void OnSettingsClicked()
