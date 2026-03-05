@@ -11,7 +11,7 @@ public class UserManager : MonoBehaviour
 
     [SerializeField] private NetworkingData networkingData;
 
-    // Datos del usuario actual
+    // Dades usuari actuals
     private string currentUserName;
     private string currentUserEmail;
 
