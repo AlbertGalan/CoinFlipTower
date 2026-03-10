@@ -44,7 +44,7 @@ private IEnumerator LoadAfterFrame()
     {
         if (networkingData == null)
         {
-            Debug.LogError("NetworkingData no configurado");
+            Debug.LogError("NetworkingData no configurat");
             yield break;
         }
 
@@ -60,21 +60,21 @@ private IEnumerator LoadAfterFrame()
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string jsonResponse = request.downloadHandler.text;
-                Debug.Log("Respuesta JSON: " + jsonResponse);
+                Debug.Log("Resposta JSON: " + jsonResponse);
                 
                 ClassificationResponseDTO response = JsonConvert.DeserializeObject<ClassificationResponseDTO>(jsonResponse);
                 
                 if (response != null && response.data != null)
                 {
-                    Debug.Log($"Total de clasificaciones recibidas: {response.data.Count}");
+                    Debug.Log($"Total de clasificacions rebudes: {response.data.Count}");
                     foreach (var score in response.data)
                     {
-                        Debug.Log($"Nombre: {score.name}, Puntuación: {score.puntuacion}");
+                        Debug.Log($"Nom: {score.name}, Puntuació: {score.puntuacion}");
                     }
                 }
                 else
                 {
-                    Debug.LogWarning("La respuesta o data es null");
+                    Debug.LogWarning("La resposta es null");
                 }
                 
                 // Actualizar UI
@@ -123,7 +123,7 @@ private IEnumerator LoadAfterFrame()
             Destroy(child.gameObject);
         }
 
-        // Crear fila de encabezado (sin datos, mostrará NAME y SCORE por defecto)
+        // Crear fila de capçalera
         GameObject headerInstance = Instantiate(classificationRowPrefab, contentParent);
         Debug.Log("Fila de encabezado creada");
         ClassificationRowUI headerRowUI = headerInstance.GetComponent<ClassificationRowUI>();

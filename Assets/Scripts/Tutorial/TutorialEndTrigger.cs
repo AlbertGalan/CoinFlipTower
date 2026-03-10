@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Trigger final del tutorial que guarda la puntuació i torna al menú principal
+/// Trigger final del tutorial que guarda la puntuació, envia classificació i redirigeix.
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class TutorialEndTrigger : MonoBehaviour
@@ -10,6 +9,9 @@ public class TutorialEndTrigger : MonoBehaviour
     [Header("Configuració")]
     [Tooltip("Nom de l'escena del menú principal")]
     public string menuSceneName = "MenuPrincipal";
+    
+    [Tooltip("Nom de l'escena de valoració")]
+    public string ratingSceneName = "Valoracio";
     
     [Tooltip("Tags que activen el trigger (normalment 'Player')")]
     public string playerTag = "Player";
@@ -47,23 +49,41 @@ public class TutorialEndTrigger : MonoBehaviour
         
         hasTriggered = true;
         
-        if (showDebugMessages)
-        {
-            Debug.Log($"TutorialEndTrigger '{gameObject.name}': Activat per '{other.name}', guardant puntuació i tornant al menú");
-        }
+        Debug.Log($"===== TUTORIAL END TRIGGER ACTIVATED =====");
+        Debug.Log($"Triggered by: {other.name}");
         
         // Guardar puntuació final
+        int finalScore = 0;
+
         if (Score.Instance != null)
         {
             Score.Instance.SaveLastScore();
+            finalScore = Mathf.RoundToInt(Score.Instance.score);
+            Debug.Log($"Score obtenido de Score.Instance: {finalScore}");
         }
         else
         {
             Debug.LogWarning("TutorialEndTrigger: No s'ha trobat Score.Instance a l'escena!");
+            finalScore = Mathf.RoundToInt(Score.GetLastScore());
+            Debug.Log($"Score obtenido de PlayerPrefs: {finalScore}");
         }
-        
-        // Tornar al menú
-        SceneManager.LoadScene(menuSceneName);
+
+        // Fer POST de classificació i redirigir segons rated
+        UserManager manager = UserManager.EnsureInstance();
+
+        if (manager != null)
+        {
+            Debug.Log($"UserManager encontrado, enviando clasificación...");
+            Debug.Log($"MenuScene: {menuSceneName}, RatingScene: {ratingSceneName}");
+            
+            manager.PostClassificationAndLoadNextScene(finalScore, menuSceneName, ratingSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("TutorialEndTrigger: UserManager.Instance no disponible!");
+            Debug.Log($"TutorialEndTrigger: fallback a menú ({menuSceneName})");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
+        }
     }
     
     private void OnDrawGizmos()
