@@ -210,6 +210,7 @@ public class PushPullController : MonoBehaviour
         {
             moveController.SetLockCamera(true);
             moveController.SetRestrictStrafe(true);
+            moveController.SetGrabbingState(true);
         }
 
         // Canviar a càmara cenital (top-down) per facilitar la visualització de l'empenta/estirada (prototip)
@@ -246,6 +247,7 @@ public class PushPullController : MonoBehaviour
         {
             moveController.SetLockCamera(false);
             moveController.SetRestrictStrafe(false);
+            moveController.SetGrabbingState(false);
         } 
 
         // Tornar a la càmera en primera persona al deixar anar

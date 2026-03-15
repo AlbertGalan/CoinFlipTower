@@ -17,6 +17,10 @@ public class GravityController : MonoBehaviour
     [Tooltip("Temps (segons) que es bloqueja l'agafar després d'invertir gravetat")]
     public float grabBlockDuration = 0.75f;
 
+    [Header("Gravity Lock")]
+    [Tooltip("Bloqueja nous canvis de gravetat després del primer canvi")]
+    public bool lockAfterFirstGravityChange = false;
+
     [Header("Configuració per a l'stick del jugador")]
     [Tooltip("Màxima distància per cercar un sostre quan s'intenta enganxar")] public float stickMaxDistance = 1.5f;
     [Tooltip("Layermask utilitzada per detectar sostres per enganxar-se")] public LayerMask stickLayerMask = ~0;
@@ -29,6 +33,7 @@ public class GravityController : MonoBehaviour
     private float lastYaw;
 
     private float lastGravityToggleTime = -999f;
+    private bool gravityChangeLocked = false;
 
     // IsStuck estat (utilitzat quan el jugador s'enganxa al sostre)
     public bool IsStuck { get; private set; } = false;
@@ -101,6 +106,9 @@ public class GravityController : MonoBehaviour
 
     public void ToggleGravity()
     {
+        if (gravityChangeLocked)
+            return;
+
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
@@ -121,10 +129,16 @@ public class GravityController : MonoBehaviour
         }
 
         ApplyVisualRotation(true);
+
+        if (lockAfterFirstGravityChange)
+            gravityChangeLocked = true;
     }
 
     public void SetGravityInverted(bool inverted)
     {
+        if (gravityChangeLocked)
+            return;
+
         if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
@@ -145,6 +159,9 @@ public class GravityController : MonoBehaviour
         }
 
         ApplyVisualRotation(true);
+
+        if (lockAfterFirstGravityChange)
+            gravityChangeLocked = true;
     }
 
     public void UpdateGravityDirection()
@@ -160,6 +177,21 @@ public class GravityController : MonoBehaviour
     public bool CanBeGrabbed()
     {
         return Time.time - lastGravityToggleTime >= grabBlockDuration;
+    }
+
+    public bool IsGravityChangeLocked()
+    {
+        return gravityChangeLocked;
+    }
+
+    public void LockGravityChanges()
+    {
+        gravityChangeLocked = true;
+    }
+
+    public void UnlockGravityChanges()
+    {
+        gravityChangeLocked = false;
     }
 
     private void ApplyVisualRotation(bool smooth)

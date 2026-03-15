@@ -51,6 +51,10 @@ public class TriggerAction : MonoBehaviour
     public UnityEvent OnTriggerEntered;
     public UnityEvent OnTriggerExited;
 
+    [Header("Audio on Enter")]
+    [Tooltip("AudioSource a reproducir al entrar en el trigger")]
+    public AudioSource enterAudioSource;
+
     [Header("Destruction")]
     [Tooltip("¿Destruir el trigger al entrar o al salir?")]
 
@@ -85,6 +89,12 @@ public class TriggerAction : MonoBehaviour
 
         // Activar/desactivar components de l'objecte que entra
         ApplyComponentToggles(other.gameObject, enterComponentToggles);
+
+        // Reproducir audio al entrar
+        if (enterAudioSource != null)
+        {
+            enterAudioSource.Play();
+        }
 
         OnTriggerEntered.Invoke();
         Debug.Log($"Trigger entered: {gameObject.name}");

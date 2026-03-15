@@ -25,8 +25,15 @@ public class MoveCharacter : MonoBehaviour
     private float inputV = 0f;
     [Tooltip("Nom del paràmetre float emprat per la blend tree d'animacions")]
     public string blendParameter = "Blend";
+    [Tooltip("Paràmetre trigger per reproduir l'animació d'agafar objecte")]
+    public string grabTriggerParameter = "GrabObject";
+    [Tooltip("Paràmetre bool que indica si s'està agafant un objecte")]
+    public string isGrabbingParameter = "IsGrabbingObject";
+    [Tooltip("Paràmetre float per empènyer/tirar (-1=tirar, 0=quiet, 1=empènyer)")]
+    public string pushPullBlendParameter = "PushPullBlend";
 
     private bool blockMovement = false;
+    private bool isGrabbingObject = false;
     private PauseManager pauseManager;
 
     void Start()
@@ -148,6 +155,20 @@ public class MoveCharacter : MonoBehaviour
             // Smoothly set the blend parameter
             animator.SetFloat(blendParameter, blendValue, 0.08f, Time.deltaTime);
 
+            if (!string.IsNullOrEmpty(isGrabbingParameter))
+            {
+                animator.SetBool(isGrabbingParameter, isGrabbingObject);
+            }
+
+            if (!string.IsNullOrEmpty(pushPullBlendParameter))
+            {
+                float pushPullValue = isGrabbingObject ? Mathf.Clamp(inputV, -1f, 1f) : 0f;
+                if (Mathf.Abs(pushPullValue) < 0.1f)
+                    pushPullValue = 0f;
+
+                animator.SetFloat(pushPullBlendParameter, pushPullValue, 0.08f, Time.deltaTime);
+            }
+
          
         }
 
@@ -186,4 +207,30 @@ public class MoveCharacter : MonoBehaviour
     }
 
     public bool IsMovementBlocked => blockMovement;
+
+    public void SetGrabbingState(bool grabbing)
+    {
+        if (isGrabbingObject == grabbing)
+            return;
+
+        isGrabbingObject = grabbing;
+
+        if (animator == null)
+            return;
+
+        if (!string.IsNullOrEmpty(isGrabbingParameter))
+        {
+            animator.SetBool(isGrabbingParameter, isGrabbingObject);
+        }
+
+        if (grabbing && !string.IsNullOrEmpty(grabTriggerParameter))
+        {
+            animator.ResetTrigger(grabTriggerParameter);
+            animator.SetTrigger(grabTriggerParameter);
+        }
+        else if (!grabbing && !string.IsNullOrEmpty(pushPullBlendParameter))
+        {
+            animator.SetFloat(pushPullBlendParameter, 0f);
+        }
+    }
 }
