@@ -54,18 +54,26 @@ public class TutorialEndTrigger : MonoBehaviour
         
         // Guardar puntuació final
         int finalScore = 0;
+        float finalTime = 0f;
 
         if (Score.Instance != null)
         {
             Score.Instance.SaveLastScore();
             finalScore = Mathf.RoundToInt(Score.Instance.score);
+            finalTime = Score.Instance.GetTimer();
             Debug.Log($"Score obtenido de Score.Instance: {finalScore}");
         }
         else
         {
             Debug.LogWarning("TutorialEndTrigger: No s'ha trobat Score.Instance a l'escena!");
             finalScore = Mathf.RoundToInt(Score.GetLastScore());
+            finalTime = PlayerPrefs.GetFloat("LastTime", 0f);
             Debug.Log($"Score obtenido de PlayerPrefs: {finalScore}");
+        }
+
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.SaveFinalLog(finalScore, finalTime);
         }
 
         // Fer POST de classificació i redirigir segons rated

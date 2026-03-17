@@ -42,13 +42,38 @@ private IEnumerator LoadAfterFrame()
 
     private IEnumerator GetClassificationCoroutine()
     {
+        // Comprobar si API está habilitada (con fallback seguro)
+        bool apiEnabled = true;
+        float networkDelay = 0.5f;
+        try
+        {
+            apiEnabled = APIConfig.Instance.IsAPIEnabled();
+            networkDelay = APIConfig.Instance.simulatedNetworkDelay;
+            if (!apiEnabled)
+            {
+                APIConfig.Instance.Log("API déshabilitada. Mostrando clasificación vacía...");
+            }
+        }
+        catch
+        {
+            Debug.LogWarning("No se pudo acceder a APIConfig. Continuando con API habilitada.");
+            apiEnabled = true;
+        }
+
+        if (!apiEnabled)
+        {
+            yield return new WaitForSeconds(networkDelay);
+            DisplayClassification(new System.Collections.Generic.List<ScoreDTO>());
+            yield break;
+        }
+
         if (networkingData == null)
         {
             Debug.LogError("NetworkingData no configurat");
             yield break;
         }
 
-        string url = $"{networkingData.ApiUrl}/classification/{networkingData.ApiToken}";
+        string url = $"{networkingData.ApiUrl}/classification/{networkingData.ApiToken}/5";
         Debug.Log("URL de clasificación: " + url);
         
         using (UnityWebRequest request = UnityWebRequest.Get(url))

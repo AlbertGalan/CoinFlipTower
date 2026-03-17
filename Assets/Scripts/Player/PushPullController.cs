@@ -32,6 +32,8 @@ public class PushPullController : MonoBehaviour
     private ConfigurableJoint currentJoint;
     private Rigidbody grabbedRb;
     private float originalPlayerMass;
+    private float grabStartTime;
+    private string grabbedObjectName;
 
    // private Vector3 originalGrabbedPosition;
     private bool isGrabbing = false;
@@ -167,6 +169,8 @@ public class PushPullController : MonoBehaviour
     private void Grab(Rigidbody targetRb, Vector3 hitPoint)
     {
         grabbedRb = targetRb;
+        grabStartTime = Time.time;
+        grabbedObjectName = grabbedRb != null ? grabbedRb.gameObject.name : "UnnamedObject";
 
         // Assignar kinematic per evitar que l'objecte caigui mentre s'agafa
         if (grabbedRb.isKinematic)
@@ -222,6 +226,12 @@ public class PushPullController : MonoBehaviour
 
     private void Release()
     {
+        if (isGrabbing && !string.IsNullOrWhiteSpace(grabbedObjectName) && GameSessionLogger.Instance != null)
+        {
+            float duration = Time.time - grabStartTime;
+            GameSessionLogger.Instance.LogGrabEvent(grabbedObjectName, duration);
+        }
+
         if (currentJoint != null)
         {
             Destroy(currentJoint);
@@ -242,6 +252,8 @@ public class PushPullController : MonoBehaviour
         playerRb.mass = originalPlayerMass;
 
         isGrabbing = false;
+        grabbedObjectName = string.Empty;
+        grabStartTime = 0f;
 
         if (moveController != null)
         {

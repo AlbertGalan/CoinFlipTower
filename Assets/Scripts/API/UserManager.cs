@@ -70,6 +70,32 @@ public class UserManager : MonoBehaviour
 
     private IEnumerator VerifyUserCoroutine(System.Action<bool> onComplete = null)
     {
+        // Comprobar si API está habilitada (con fallback seguro)
+        bool apiEnabled = true;
+        float networkDelay = 0.5f;
+        try
+        {
+            apiEnabled = APIConfig.Instance.IsAPIEnabled();
+            networkDelay = APIConfig.Instance.simulatedNetworkDelay;
+            if (!apiEnabled)
+            {
+                APIConfig.Instance.Log("API déshabilitada. Saltando verificación y iniciando partida directamente...");
+            }
+        }
+        catch
+        {
+            Debug.LogWarning("No se pudo acceder a APIConfig. Continuando con API habilitada.");
+            apiEnabled = true;
+        }
+
+        if (!apiEnabled)
+        {
+            onComplete?.Invoke(true);
+            yield return new WaitForSeconds(networkDelay);
+            StartGame();
+            yield break;
+        }
+
         if (!EnsureNetworkingData())
         {
             Debug.LogError("NetworkingData no configurado");
@@ -144,6 +170,13 @@ public class UserManager : MonoBehaviour
     private void StartGame()
     {
         Debug.Log("Iniciando partida...");
+        
+        // Reiniciar el logger de sesión para una nueva partida
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.InitializeNewSession();
+        }
+        
         SceneManager.LoadScene("Tutorial");
     }
 
@@ -154,6 +187,28 @@ public class UserManager : MonoBehaviour
     {
         if (isPostingClassification)
             return;
+
+        // Si API está deshabilitada, cargar menú directamente (con fallback seguro)
+        bool apiEnabled = true;
+        try
+        {
+            apiEnabled = APIConfig.Instance.IsAPIEnabled();
+            if (!apiEnabled)
+            {
+                APIConfig.Instance.Log($"API déshabilitada. Cargando menú ({menuSceneName}) sin enviar puntuación...");
+            }
+        }
+        catch
+        {
+            Debug.LogWarning("No se pudo acceder a APIConfig. Continuando con API habilitada.");
+            apiEnabled = true;
+        }
+
+        if (!apiEnabled)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(menuSceneName);
+            return;
+        }
 
         StartCoroutine(PostClassificationCoroutine(score, menuSceneName, ratingSceneName));
     }

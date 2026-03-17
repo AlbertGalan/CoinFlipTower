@@ -13,6 +13,12 @@ public class ScorePickup : MonoBehaviour
     [Tooltip("Nom identificador que apareixerà al log de puntuació.")]
     public string pickupName = "Pickup";
 
+    [Tooltip("Id unic del pickup per al log. Si queda buit s'utilitza el nom de l'objecte.")]
+    public string pickupId = "";
+
+    [Tooltip("Id de zona del pickup (opcional). Si queda buit es resol amb la zona activa en recollir.")]
+    public string zoneId = "";
+
     [Header("Animation")]
     [Tooltip("Velocitat de rotació")]
     public Vector3 rotationSpeed = new Vector3(0, 120, 0);
@@ -28,10 +34,20 @@ public class ScorePickup : MonoBehaviour
 
     void Start()
     {
+        if (string.IsNullOrWhiteSpace(pickupId))
+        {
+            pickupId = gameObject.name;
+        }
+
         startPos = transform.position;
 
         // Desfase aleatorio para que no todas floten igual
         offset = Random.Range(0f, Mathf.PI * 2f);
+
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.RegisterPickup(pickupId, pickupName, zoneId);
+        }
     }
 
     void Update()
@@ -51,6 +67,11 @@ public class ScorePickup : MonoBehaviour
 
         if (Score.Instance != null)
             Score.Instance.AddPoints(pointsToAdd, pickupName);
+
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.MarkPickupCollected(pickupId, pickupName, zoneId);
+        }
 
         Destroy(gameObject);
     }

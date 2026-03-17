@@ -130,6 +130,11 @@ public class GravityController : MonoBehaviour
 
         ApplyVisualRotation(true);
 
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.LogGravityFlip(isPlayer);
+        }
+
         if (lockAfterFirstGravityChange)
             gravityChangeLocked = true;
     }
@@ -159,6 +164,11 @@ public class GravityController : MonoBehaviour
         }
 
         ApplyVisualRotation(true);
+
+        if (GameSessionLogger.Instance != null)
+        {
+            GameSessionLogger.Instance.LogGravityFlip(isPlayer);
+        }
 
         if (lockAfterFirstGravityChange)
             gravityChangeLocked = true;
