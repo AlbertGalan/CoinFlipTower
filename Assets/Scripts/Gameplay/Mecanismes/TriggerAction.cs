@@ -112,6 +112,9 @@ public class TriggerAction : MonoBehaviour
         if (!IsTargetTag(other.tag))
             return;
 
+        if (hasTriggered)
+            hasTriggered = false;
+
         // Aplicar cambios de parámetros al salir
         foreach (AnimatorParameter param in exitAnimatorParameters)
         {
