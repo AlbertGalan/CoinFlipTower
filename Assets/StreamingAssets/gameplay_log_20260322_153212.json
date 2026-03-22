@@ -1,0 +1,18 @@
+{
+    "sessionId": "20260322_153212",
+    "startTime": "2026-03-22T15:32:12.5663201Z",
+    "endTime": "2026-03-22T15:32:26.4435290Z",
+    "totalPlaytime": 8.496383666992188,
+    "totalScore": 992,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 0.5912673473358154,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:32:17.4111738Z"
+        }
+    ],
+    "easterEggs": []
+}

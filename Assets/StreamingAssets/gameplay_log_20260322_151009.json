@@ -1,0 +1,102 @@
+{
+    "sessionId": "20260322_151009",
+    "startTime": "2026-03-22T15:10:09.4995899Z",
+    "endTime": "2026-03-22T15:13:20.4070689Z",
+    "totalPlaytime": 51.31108856201172,
+    "totalScore": 949,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 1.2073183059692383,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:27.9433954Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.6853694915771485,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:30.5622537Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.4671897888183594,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:32.2847836Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 5.558544158935547,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:40.1611491Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.2184829711914063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:41.9472566Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.45509910583496096,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:42.7110820Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.2778491973876953,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:43.4362326Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.3898773193359375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:44.1745361Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.3342132568359375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:44.7151396Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.3602180480957031,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:10:45.3045115Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.4761199951171875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:13:09.5320973Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.5004158020019531,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:13:11.0518846Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.3195037841796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:13:12.2454399Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.5290718078613281,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:13:13.3866918Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.6299362182617188,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:13:15.7324066Z"
+        }
+    ],
+    "easterEggs": []
+}

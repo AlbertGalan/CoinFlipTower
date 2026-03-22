@@ -1,0 +1,78 @@
+{
+    "sessionId": "20260322_132652",
+    "startTime": "2026-03-22T13:26:52.0327870Z",
+    "endTime": "2026-03-22T13:28:01.5238148Z",
+    "totalPlaytime": 57.707984924316409,
+    "totalScore": 942,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "Triangle",
+            "duration": 0.7255973815917969,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:21.0676581Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 1.1491413116455079,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:24.3506258Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.5606250762939453,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:26.4229749Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.4209403991699219,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:27.5570810Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 1.2083511352539063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:30.5963181Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:40.3762244Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.70465087890625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:42.4393560Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.6093101501464844,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:44.2028887Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.5533103942871094,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:45.8983055Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.7083740234375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:48.1089617Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.7765846252441406,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T13:27:50.4696322Z"
+        }
+    ],
+    "easterEggs": []
+}

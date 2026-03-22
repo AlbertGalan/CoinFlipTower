@@ -1,0 +1,50 @@
+{
+    "sessionId": "20260322_160925",
+    "startTime": "2026-03-22T16:09:25.1139977Z",
+    "endTime": "2026-03-22T16:10:00.4693566Z",
+    "totalPlaytime": 32.64110565185547,
+    "totalScore": 967,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 1,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 1.0252909660339356,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T16:09:33.7092115Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 1.6188993453979493,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T16:09:42.6929829Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 1.1380805969238282,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T16:09:44.7739379Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 4.466655731201172,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T16:09:50.2011270Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 2.487764358520508,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T16:09:56.2989496Z"
+        }
+    ],
+    "easterEggs": []
+}

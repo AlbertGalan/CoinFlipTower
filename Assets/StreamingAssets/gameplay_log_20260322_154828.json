@@ -1,0 +1,116 @@
+{
+    "sessionId": "20260322_154828",
+    "startTime": "2026-03-22T15:48:28.7395291Z",
+    "endTime": "2026-03-22T15:54:45.9126837Z",
+    "totalPlaytime": 93.23406982421875,
+    "totalScore": 907,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 0,
+            "objectFlips": 8
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 2.214399814605713,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:48:35.2697794Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.5557293891906738,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:48:37.1529233Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.1347246170043946,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:48:39.8545084Z"
+        },
+        {
+            "objectName": "Shelf_Wall",
+            "duration": 1.978555679321289,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:26.3196180Z"
+        },
+        {
+            "objectName": "Shelf_Wall",
+            "duration": 3.5361709594726564,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:31.7049254Z"
+        },
+        {
+            "objectName": "Shelf_Wall",
+            "duration": 0.8059959411621094,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:33.2545206Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.1397705078125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:37.2298329Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.19923782348632813,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:41.5979563Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.814910888671875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:49:55.5932138Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 3.322418212890625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:50:19.9726435Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.2528457641601563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:50:27.9866659Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.104766845703125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:51:50.2334308Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.839019775390625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:51:51.9438143Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.163238525390625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:52:19.9083487Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 4.98101806640625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:52:25.8908408Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:52:33.7087744Z"
+        }
+    ],
+    "easterEggs": []
+}

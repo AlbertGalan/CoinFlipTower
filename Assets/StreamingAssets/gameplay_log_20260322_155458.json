@@ -1,0 +1,24 @@
+{
+    "sessionId": "20260322_155458",
+    "startTime": "2026-03-22T15:54:58.8175458Z",
+    "endTime": "2026-03-22T15:55:18.3156302Z",
+    "totalPlaytime": 10.914837837219239,
+    "totalScore": 989,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 1.0485632419586182,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:55:04.4569092Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 1.6004619598388672,
+            "zoneId": "NoZone",
+            "timestamp": "2026-03-22T15:55:09.4103285Z"
+        }
+    ],
+    "easterEggs": []
+}
