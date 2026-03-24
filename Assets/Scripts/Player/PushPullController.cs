@@ -118,6 +118,12 @@ public class PushPullController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, grabDistance, grabLayerMask))
         {
+            // If the click is on an interactive lever, let lever logic consume this input.
+            if (hit.collider.GetComponentInParent<RouletteLeverController>() != null)
+            {
+                return;
+            }
+
             Rigidbody targetRb = hit.collider.attachedRigidbody;
             if (targetRb != null && targetRb != playerRb)
             {
