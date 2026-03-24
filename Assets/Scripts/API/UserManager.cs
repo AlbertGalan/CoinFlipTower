@@ -177,7 +177,7 @@ public class UserManager : MonoBehaviour
             GameSessionLogger.Instance.InitializeNewSession();
         }
         
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Cinematica");
     }
 
     /// <summary>
