@@ -1,0 +1,24 @@
+{
+    "sessionId": "20260412_154241",
+    "startTime": "2026-04-12T15:42:41.6083943Z",
+    "endTime": "2026-04-12T15:44:41.7791317Z",
+    "totalPlaytime": 8.252241134643555,
+    "totalScore": 992,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "CubBlau",
+            "duration": 2.2285056114196779,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-12T15:42:49.2249563Z"
+        },
+        {
+            "objectName": "CubVermell",
+            "duration": 1.668290138244629,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-12T15:42:51.7322849Z"
+        }
+    ],
+    "easterEggs": []
+}

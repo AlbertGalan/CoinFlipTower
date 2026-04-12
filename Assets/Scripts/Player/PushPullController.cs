@@ -86,6 +86,13 @@ public class PushPullController : MonoBehaviour
 
     void Update()
     {
+        // Si el objeto agarrado se destruye externamente, soltamos el enlace.
+        if (isGrabbing && grabbedRb == null)
+        {
+            Release();
+            return;
+        }
+
         // Mantenir pitjant el botó d'agafar
         if (Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1))
         {
@@ -120,6 +127,11 @@ public class PushPullController : MonoBehaviour
         {
             // If the click is on an interactive lever, let lever logic consume this input.
             if (hit.collider.GetComponentInParent<RouletteLeverController>() != null)
+            {
+                return;
+            }
+
+            if (hit.collider.GetComponentInParent<BlockSpawnerLeverController>() != null)
             {
                 return;
             }
