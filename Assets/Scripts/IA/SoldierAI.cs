@@ -5,12 +5,12 @@ using System.Collections;
 public class SoldierAI : MonoBehaviour
 {
     public enum State { Idle, Patrolling, Alerted, Chasing, Attacking }
-    // Nueva enumeración para el tipo de patrulla
+    // Nou enum per definir un tipus de patrulla
     public enum PatrolType { Both, OnlyGround, OnlyCeiling }
 
     [Header("Configuración de IA")]
     public State currentState = State.Patrolling;
-    public PatrolType patrolType = PatrolType.Both; // Opción seleccionable en Inspector
+    public PatrolType patrolType = PatrolType.Both; // Triar tipus de patrulla
     public Transform[] groundWaypoints;
     public Transform[] ceilingWaypoints;
     public float detectionRange = 10f;
@@ -88,7 +88,7 @@ public class SoldierAI : MonoBehaviour
 
     void Start()
     {
-        // Forzar estado inicial según el tipo de patrulla elegido
+        // Forçar estat inicial segons el tipus de patrulla
         if (patrolType == PatrolType.OnlyCeiling) isCeilingSoldier = true;
         if (patrolType == PatrolType.OnlyGround) isCeilingSoldier = false;
 
@@ -153,6 +153,7 @@ public class SoldierAI : MonoBehaviour
         return null;
     }
 
+    //Corrutina que controla la seqüència o estat d'alerta
     IEnumerator AlertSequence()
     {
         currentState = State.Alerted;
@@ -178,7 +179,7 @@ public class SoldierAI : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             visitedWaypointCount++;
-            // Solo intentamos cambiar de superficie si el tipo es 'Both'
+            // Només canviar de superfície després d'arribar a un nombre específic de waypoints, i només si el tipus de patrulla ho permet
             switchSurfaceAfterIdle = (patrolType == PatrolType.Both) && ShouldSwitchPatrolSurface();
             
             currentState = State.Idle;
@@ -190,7 +191,6 @@ public class SoldierAI : MonoBehaviour
     {
         Transform[] activeWaypoints = GetActiveWaypoints();
         if (activeWaypoints.Length == 0) return;
-
         agent.isStopped = true;
         Quaternion targetRotation = activeWaypoints[currentWaypointIndex].rotation;
         Quaternion finalRotation = isCeilingSoldier
@@ -237,7 +237,8 @@ public class SoldierAI : MonoBehaviour
         currentWaypointIndex = 0;
         StartCoroutine(HandleSurfaceTransition());
     }
-
+    
+    //Corrutina que controla la transició suau entre superficies
     IEnumerator HandleSurfaceTransition()
     {
         isTransitioningSurface = true;
@@ -285,7 +286,7 @@ public class SoldierAI : MonoBehaviour
     {
         if (currentTargetBlock != null && currentTargetBlock.isPlaced) 
 {
-    ReturnToPatrol(); // El soldado lo ignora porque ya está "protegido" en el slot
+    ReturnToPatrol();
     return;
 }
         if (currentTargetBlock == null) { ReturnToPatrol(); return; }
@@ -300,7 +301,7 @@ public class SoldierAI : MonoBehaviour
     {
         if (currentTargetBlock != null && currentTargetBlock.isPlaced) 
 {
-    ReturnToPatrol(); // El soldado lo ignora porque ya está "protegido" en el slot
+    ReturnToPatrol();
     return;
 }
         if (currentTargetBlock == null) { ReturnToPatrol(); return; }
@@ -341,6 +342,7 @@ public class SoldierAI : MonoBehaviour
         GoToNextWaypoint();
     }
 
+//Corrutina que controla la visualització del làser que parteix de l'arma
     IEnumerator ShowLaserBeam()
     {
         laserLine.enabled = true;

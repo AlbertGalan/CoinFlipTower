@@ -9,7 +9,7 @@ public class DestructibleBlock : MonoBehaviour
     public float health = 100f;
     public BlockColor blockColor = BlockColor.None;
     
-    [HideInInspector] public bool isPlaced = false; // Nueva bandera de seguridad
+    [HideInInspector] public bool isPlaced = false; // Nova bandera de seguretat
 
     private Renderer blockRenderer;
     private Color originalColor;
@@ -22,7 +22,7 @@ public class DestructibleBlock : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        // SI ESTÁ EN EL SLOT, ES INVULNERABLE
+        // SI esta a un slot es invulnerable
         if (isPlaced || health <= 0) return;
 
         health -= amount;
@@ -33,7 +33,6 @@ public class DestructibleBlock : MonoBehaviour
 
     void DestroyBlock()
     {
-        // Aquí podrías instanciar partículas
         Destroy(gameObject);
     }
 
