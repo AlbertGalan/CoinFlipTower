@@ -18,6 +18,12 @@ public class MoveCharacter : MonoBehaviour
     public LayerMask nonPushLayerMask = 0;
     [Tooltip("Radius emprat per la comprovació d'obstacles quan el jugador es mou")]
     public float obstacleCheckRadius = 0.4f;
+
+    [Header("Ice Sliding Settings")]
+    public float slideSpeedMultiplier = 1.35f;
+    [HideInInspector] public bool isSliding = false;
+    private Vector3 slideDirection = Vector3.zero;
+
     [Header("Animation")]
     [Tooltip("Component d'animacions")]
     private Animator animator;
@@ -68,20 +74,62 @@ public class MoveCharacter : MonoBehaviour
         }
 
         Vector3 moveDirection = (transform.forward * inputV + transform.right * inputH).normalized;
-
         float moveDistance = moveSpeed * Time.fixedDeltaTime;
 
-        // If there's an obstacle in the nonPushLayerMask in our movement direction and
-        // the player is NOT currently grabbing (no FixedJoint), block movement to avoid pushing.
+        // --- ICE DETECTION ---
+        bool overIce = false;
+        RaycastHit hitDown;
+        // Lanzamos un rayo hacia abajo aceptando colisiones con Triggers
+        if (Physics.Raycast(rb.position + Vector3.up * 0.5f, Vector3.down, out hitDown, 1.0f, Physics.AllLayers, QueryTriggerInteraction.Collide))
+        {
+            if (hitDown.collider.CompareTag("Ice"))
+            {
+                overIce = true;
+            }
+        }
+
+        if (overIce)
+        {
+            // Entramos en modo resbalón si veníamos moviéndonos
+            if (!isSliding && moveDirection.sqrMagnitude > 0.001f)
+            {
+                isSliding = true;
+                slideDirection = moveDirection.normalized;
+            }
+        }
+        else
+        {
+            isSliding = false; // Salimos del hielo
+        }
+
+        if (isSliding)
+        {
+            moveDirection = slideDirection;
+            moveDistance = (moveSpeed * slideSpeedMultiplier) * Time.fixedDeltaTime;
+        }
+
+        // --- OBSTACLE CHECK ---
         bool canMove = true;
         if (moveDirection.sqrMagnitude > 0.0001f)
         {
-            // skip check if there is a FixedJoint (we are grabbing)
             FixedJoint fj = GetComponent<FixedJoint>();
-            if (fj == null && nonPushLayerMask != (LayerMask)0)
+            Vector3 sphereOrigin = rb.position + Vector3.up * 0.5f; 
+            RaycastHit hit;
+
+            if (isSliding)
             {
-                Vector3 sphereOrigin = rb.position + Vector3.up * 0.5f; // approximate player center
-                RaycastHit hit;
+                // Si estamos resbalando, chocamos contra cualquier cosa sólida que no sea Trigger
+                if (Physics.SphereCast(sphereOrigin, obstacleCheckRadius, moveDirection, out hit, moveDistance + 0.05f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+                {
+                    if (hit.collider != GetComponent<Collider>())
+                    {
+                        canMove = false;
+                        isSliding = false; // Chocamos y nos detenemos
+                    }
+                }
+            }
+            else if (fj == null && nonPushLayerMask != (LayerMask)0)
+            {
                 if (Physics.SphereCast(sphereOrigin, obstacleCheckRadius, moveDirection, out hit, moveDistance + 0.05f, nonPushLayerMask))
                 {
                     // Found an obstacle in the disallowed mask — block movement

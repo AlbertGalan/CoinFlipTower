@@ -57,8 +57,8 @@ public class RouletteWheel : MonoBehaviour
             tiempoPasado += Time.deltaTime;
             float t = tiempoPasado / tiempoGiro;
             
-            // Suavizado (Empieza rápido, frena lento)
-            float suavizado = t * t * (3f - 2f * t);
+            // Suavizado tipo "ease out": gira más rápido al principio y se frena al final.
+            float suavizado = 1f - Mathf.Pow(1f - t, 3f);
 
             float xActual = Mathf.Lerp(rotacionInicialX, destinoTotalX, suavizado);
             

@@ -70,16 +70,50 @@ public class PushPullController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Aplicar fuerza extra al objeto cuando el jugador se mueve mientras lo agarra
-        if (isGrabbing && grabbedRb != null && applyPushForce)
+        if (isGrabbing && grabbedRb != null)
         {
-            Vector3 playerVelocity = playerRb.linearVelocity;
-            Vector3 horizontalVelocity = new Vector3(playerVelocity.x, 0f, playerVelocity.z);
-            
-            if (horizontalVelocity.sqrMagnitude > 0.01f)
+            // Comprobar si el bloque pisó hielo
+            bool blockOnIce = false;
+            RaycastHit hitDown;
+            if (Physics.Raycast(grabbedRb.position + Vector3.up * 0.5f, Vector3.down, out hitDown, 1.5f, Physics.AllLayers, QueryTriggerInteraction.Collide))
             {
-                // Aplicar fuerza en la dirección del movimiento del jugador
-                grabbedRb.AddForce(horizontalVelocity * pushForceMultiplier * grabbedRb.mass, ForceMode.Force);
+                if (hitDown.collider.CompareTag("Ice"))
+                {
+                    blockOnIce = true;
+                }
+            }
+
+            if (blockOnIce)
+            {
+                Rigidbody blockRb = grabbedRb; // Guardamos ref antes del Release()
+
+                // Añadir el handler de deslizamiento si no lo tuviera
+                IceBlockSlider slider = blockRb.GetComponent<IceBlockSlider>();
+                if (slider == null)
+                {
+                    slider = blockRb.gameObject.AddComponent<IceBlockSlider>();
+                }
+                
+                // Lo hacemos patinar en la dirección de empuje (donde mira el jugador)
+                slider.StartSliding(transform.forward);
+                
+                Release();
+                return;
+            }
+
+            // Aplicar fuerza extra al objeto cuando el jugador se mueve mientras lo agarra
+            if (applyPushForce)
+            {
+                // En MoveCharacter usamos rb.MovePosition, que a veces no actualiza linearVelocity 
+                // idealmente si usamos MovePosition. Sin embargo, respetamos la firma original
+                Vector3 playerVelocity = playerRb.linearVelocity;
+                Vector3 horizontalVelocity = new Vector3(playerVelocity.x, 0f, playerVelocity.z);
+                
+                if (horizontalVelocity.sqrMagnitude > 0.01f)
+                {
+                    // Aplicar fuerza en la dirección del movimiento del jugador
+                    grabbedRb.AddForce(horizontalVelocity * pushForceMultiplier * grabbedRb.mass, ForceMode.Force);
+                }
             }
         }
     }

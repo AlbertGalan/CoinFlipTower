@@ -98,7 +98,7 @@ public class GameSessionLogger : MonoBehaviour
     }
 
     /// <summary>
-    /// Reinicia la sesión de logging cuando comienza una nueva partida
+    /// Reinicia la sessió de registre, esborrant totes les dades anteriors i començant una nova amb un nou ID de sessió i hora d'inici. Això és útil per a reiniciar el joc o començar una nova partida sense tancar l'aplicació.
     /// </summary>
     public void InitializeNewSession()
     {
