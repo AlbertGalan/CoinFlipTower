@@ -8,6 +8,8 @@ TagManager:
   - Placa
   - EasterEgg
   - Ice
+  - Soldier
+  - Lava
   layers:
   - Default
   - TransparentFX

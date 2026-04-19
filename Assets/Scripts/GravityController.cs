@@ -34,6 +34,7 @@ public class GravityController : MonoBehaviour
 
     private float lastGravityToggleTime = -999f;
     private bool gravityChangeLocked = false;
+    private bool canChangeGravityByContact = true;
 
     // IsStuck estat (utilitzat quan el jugador s'enganxa al sostre)
     public bool IsStuck { get; private set; } = false;
@@ -109,9 +110,15 @@ public class GravityController : MonoBehaviour
         if (gravityChangeLocked)
             return;
 
+        // Evita spam: cal tornar a tocar terra o sostre abans de poder invertir de nou.
+        if (isPlayer && !canChangeGravityByContact)
+            return;
+
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
+        if (isPlayer)
+            canChangeGravityByContact = false;
 
         // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
         if (isPlayer && rb != null && !IsStuck)
@@ -144,10 +151,15 @@ public class GravityController : MonoBehaviour
         if (gravityChangeLocked)
             return;
 
+        if (isPlayer && !canChangeGravityByContact)
+            return;
+
         if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
+        if (isPlayer)
+            canChangeGravityByContact = false;
         // Crude snap as above
         if (isPlayer && rb != null && !IsStuck)
         {
@@ -265,5 +277,32 @@ public class GravityController : MonoBehaviour
         rb.isKinematic = false;
         IsStuck = false;
         ApplyVisualRotation(false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        MarkGravityContactIfApplicable(collision);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        MarkGravityContactIfApplicable(collision);
+    }
+
+    private void MarkGravityContactIfApplicable(Collision collision)
+    {
+        if (!isPlayer || canChangeGravityByContact || collision == null)
+            return;
+
+        // Considerem "contacte vàlid" només si és una superfície vertical (terra/sostre).
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            Vector3 normal = collision.GetContact(i).normal;
+            if (Mathf.Abs(Vector3.Dot(normal, Vector3.up)) >= 0.5f)
+            {
+                canChangeGravityByContact = true;
+                return;
+            }
+        }
     }
 }

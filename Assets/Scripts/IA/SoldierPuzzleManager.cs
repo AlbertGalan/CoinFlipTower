@@ -9,18 +9,31 @@ public class SoldierPuzzleManager : MonoBehaviour
     public SoldierPuzzleSlot redSlot;
 
     [Header("Acciones al Resolver")]
-    public GameObject mechanismToOpen; // Puerta o escalera
-    public bool destroyAllSoldiersOnSolve = true;
-
     public UnityEvent OnPuzzleSolved;
     private bool isSolved = false;
+
+    [Header("Configuración de Limpieza")]
+    [Tooltip("Si la lista está vacía, se llenará automáticamente con todos los objetos con el Tag 'Soldier' al iniciar.")]
+    public List<GameObject> soldiers;
+
+    private void Awake()
+    {
+        // Optimizamos: Buscamos los soldados UNA SOLA VEZ al cargar la escena
+        // Solo si no los has arrastrado manualmente al Inspector
+        if (soldiers == null || soldiers.Count == 0)
+        {
+            soldiers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Soldier"));
+            Debug.Log($"<color=cyan>SoldierPuzzleManager:</color> Se han encontrado {soldiers.Count} soldados para limpiar.");
+        }
+    }
 
     public void NotifySlotChanged()
     {
         if (isSolved) return;
 
-        bool blueCorrect = CheckSlot(blueSlot, DestructibleBlock.BlockColor.Blue);
-        bool redCorrect = CheckSlot(redSlot, DestructibleBlock.BlockColor.Red);
+        // Comprobamos los slots contra su color configurado en Inspector.
+        bool blueCorrect = CheckSlot(blueSlot);
+        bool redCorrect = CheckSlot(redSlot);
 
         if (blueCorrect && redCorrect)
         {
@@ -28,38 +41,45 @@ public class SoldierPuzzleManager : MonoBehaviour
         }
     }
 
-private bool CheckSlot(SoldierPuzzleSlot slot, DestructibleBlock.BlockColor expected)
-{
-    if (slot.CurrentBlock == null)
+    private bool CheckSlot(SoldierPuzzleSlot slot)
     {
-        slot.ApplyFeedbackColor(SoldierPuzzleSlot.FeedbackState.Neutral);
-        return false;
-    }
+        if (slot == null) return false;
 
-    // Si el bloque es Rojo y esperábamos Azul, match será FALSE
-    bool match = slot.CurrentBlock.blockColor == expected;
-    
-    // ESTA LÍNEA ES LA QUE ACTIVA EL COLOR
-    slot.ApplyFeedbackColor(match ? SoldierPuzzleSlot.FeedbackState.Correct : SoldierPuzzleSlot.FeedbackState.Incorrect);
-    
-    return match;
-}
+        if (slot.CurrentBlock == null)
+        {
+            slot.ApplyFeedbackColor(SoldierPuzzleSlot.FeedbackState.Neutral);
+            return false;
+        }
+
+        bool match = slot.CurrentBlock.blockColor == slot.requiredColor;
+        slot.ApplyFeedbackColor(match ? SoldierPuzzleSlot.FeedbackState.Correct : SoldierPuzzleSlot.FeedbackState.Incorrect);
+        return match;
+    }
 
     private void SolvePuzzle()
     {
         isSolved = true;
-        Debug.Log("<color=green>Puzzle Resuelto!</color>");
+        Debug.Log("<color=green><b>[PUZZLE RESUELTO]</b></color> Destruyendo soldados y ejecutando eventos.");
 
-        // 1. Abrir camino
-        if (mechanismToOpen != null) mechanismToOpen.SetActive(false); // O llamar a una animación
+        DestroyAllSoldiers();
 
-        // 2. Destruir soldados
-        if (destroyAllSoldiersOnSolve)
-        {
-            SoldierAI[] soldiers = Object.FindObjectsByType<SoldierAI>(FindObjectsSortMode.None);
-            foreach (SoldierAI s in soldiers) Destroy(s.gameObject);
-        }
-
-        OnPuzzleSolved.Invoke();
+        // 3. Ejecutar eventos adicionales (abrir puertas, sonidos, etc.)
+        OnPuzzleSolved?.Invoke();
     }
+
+    private void DestroyAllSoldiers()
+    {
+        if (soldiers == null) return;
+
+        foreach (GameObject soldier in soldiers)
+        {
+            if (soldier != null)
+            {
+                Destroy(soldier);
+            }
+        }
+        
+        soldiers.Clear();
+    }
+
 }

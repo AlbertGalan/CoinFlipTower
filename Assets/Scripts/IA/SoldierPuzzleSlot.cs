@@ -19,8 +19,17 @@ public class SoldierPuzzleSlot : MonoBehaviour
 
     private void Awake()
     {
-        // Buscamos al manager en el objeto o en los padres
+        // Intentamos encontrar el manager en jerarquía local y, si no, en la escena.
         manager = GetComponentInParent<SoldierPuzzleManager>();
+        if (manager == null)
+        {
+            manager = FindFirstObjectByType<SoldierPuzzleManager>();
+        }
+
+        if (manager == null)
+        {
+            Debug.LogWarning($"[SoldierPuzzleSlot] No se encontró SoldierPuzzleManager para el slot {gameObject.name}. No podrá notificar cambios.");
+        }
         ApplyFeedbackColor(FeedbackState.Neutral);
     }
 
