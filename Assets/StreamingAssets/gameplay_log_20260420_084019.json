@@ -1,0 +1,158 @@
+{
+    "sessionId": "20260420_084019",
+    "startTime": "2026-04-20T08:40:19.4264287Z",
+    "endTime": "2026-04-20T08:42:13.4796213Z",
+    "totalPlaytime": 110.59363555908203,
+    "totalScore": 889,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 11,
+            "objectFlips": 6
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cor",
+            "duration": 0.6295280456542969,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:40:45.5185203Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 0.2551689147949219,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:40:59.2134990Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 0.5130805969238281,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:01.4396489Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 0.9285697937011719,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:04.3917901Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 1.5176239013671876,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:06.9977114Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 1.2402801513671876,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:09.1583264Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 0.8318748474121094,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:10.9903601Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 1.0807113647460938,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:12.6881204Z"
+        },
+        {
+            "objectName": "Trebol",
+            "duration": 0.6084251403808594,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:14.4548105Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.7441368103027344,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:17.5518010Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 1.4952774047851563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:24.4457120Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.8168106079101563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:27.6151765Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.8729782104492188,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:29.8071720Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.5252532958984375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:31.5727926Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.16844940185546876,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:33.1576350Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 1.0394287109375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:34.2460378Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.4400787353515625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:35.8771303Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 1.7997055053710938,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:41.4943615Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 1.857147216796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:46.8553101Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 1.0091934204101563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:48.8623850Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 2.296783447265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:57.9273271Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.13694000244140626,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:41:59.2069546Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 4.8171539306640629,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-20T08:42:07.9184645Z"
+        }
+    ],
+    "easterEggs": []
+}

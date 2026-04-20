@@ -11,6 +11,11 @@ public class UIMenuGravityManager : MonoBehaviour
     public RectTransform canvasToRotate;
     public string containerChildName = "MenuContent";
     public float rotationSpeed = 5f;
+
+    [Header("Player Sync")]
+    [Tooltip("Sincronizar automáticamente el menú con la gravedad del jugador")]
+    public bool syncWithPlayerGravity = true;
+    public GravityController playerGravityController;
     
     [Header("Restrictions")]
     [Tooltip("Bloquear toggle de gravedad durante pausa")]
@@ -50,12 +55,39 @@ public class UIMenuGravityManager : MonoBehaviour
         pauseManager = FindFirstObjectByType<PauseManager>();
         scoreManager = FindFirstObjectByType<Score>();
         pushPullController = FindFirstObjectByType<PushPullController>();
+
+        if (playerGravityController == null)
+        {
+            playerGravityController = FindPlayerGravityController();
+        }
+
+        if (syncWithPlayerGravity && playerGravityController != null)
+        {
+            SetGravityInverted(playerGravityController.IsGravityInverted());
+        }
     }
 
     private void Update()
     {
+        if (syncWithPlayerGravity)
+        {
+            if (playerGravityController == null)
+            {
+                playerGravityController = FindPlayerGravityController();
+            }
+
+            if (playerGravityController != null)
+            {
+                bool playerInverted = playerGravityController.IsGravityInverted();
+                if (playerInverted != gravityInverted)
+                {
+                    SetGravityInverted(playerInverted);
+                }
+            }
+        }
+
         // Detectar tecla de cambio de gravedad
-        if (Input.GetKeyDown(toggleKey))
+        if (!syncWithPlayerGravity && Input.GetKeyDown(toggleKey))
         {
             // Verificar restricciones
             if (IsGravityToggleBlocked())
@@ -137,5 +169,19 @@ public class UIMenuGravityManager : MonoBehaviour
     public bool IsGravityInverted()
     {
         return gravityInverted;
+    }
+
+    private GravityController FindPlayerGravityController()
+    {
+        GravityController[] controllers = FindObjectsByType<GravityController>(FindObjectsSortMode.None);
+        foreach (GravityController controller in controllers)
+        {
+            if (controller != null && controller.isPlayer)
+            {
+                return controller;
+            }
+        }
+
+        return null;
     }
 }

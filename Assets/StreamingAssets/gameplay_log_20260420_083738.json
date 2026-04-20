@@ -1,0 +1,19 @@
+{
+    "sessionId": "20260420_083738",
+    "startTime": "2026-04-20T08:37:38.9548170Z",
+    "endTime": "2026-04-20T08:37:50.4989146Z",
+    "totalPlaytime": 9.237574577331543,
+    "totalScore": 991,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 3,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": []
+}

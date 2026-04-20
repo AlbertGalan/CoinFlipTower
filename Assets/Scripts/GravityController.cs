@@ -21,6 +21,10 @@ public class GravityController : MonoBehaviour
     [Tooltip("Bloqueja nous canvis de gravetat després del primer canvi")]
     public bool lockAfterFirstGravityChange = false;
 
+    [Header("Anti-Spam")]
+    [Tooltip("Si està activat, el jugador ha de tocar terra o sostre abans de tornar a invertir la gravetat")]
+    public bool requireContactBetweenGravityToggles = true;
+
     [Header("Configuració per a l'stick del jugador")]
     [Tooltip("Màxima distància per cercar un sostre quan s'intenta enganxar")] public float stickMaxDistance = 1.5f;
     [Tooltip("Layermask utilitzada per detectar sostres per enganxar-se")] public LayerMask stickLayerMask = ~0;
@@ -111,13 +115,13 @@ public class GravityController : MonoBehaviour
             return;
 
         // Evita spam: cal tornar a tocar terra o sostre abans de poder invertir de nou.
-        if (isPlayer && !canChangeGravityByContact)
+        if (isPlayer && requireContactBetweenGravityToggles && !canChangeGravityByContact)
             return;
 
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
-        if (isPlayer)
+        if (isPlayer && requireContactBetweenGravityToggles)
             canChangeGravityByContact = false;
 
         // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
@@ -151,14 +155,14 @@ public class GravityController : MonoBehaviour
         if (gravityChangeLocked)
             return;
 
-        if (isPlayer && !canChangeGravityByContact)
+        if (isPlayer && requireContactBetweenGravityToggles && !canChangeGravityByContact)
             return;
 
         if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
-        if (isPlayer)
+        if (isPlayer && requireContactBetweenGravityToggles)
             canChangeGravityByContact = false;
         // Crude snap as above
         if (isPlayer && rb != null && !IsStuck)
@@ -291,7 +295,7 @@ public class GravityController : MonoBehaviour
 
     private void MarkGravityContactIfApplicable(Collision collision)
     {
-        if (!isPlayer || canChangeGravityByContact || collision == null)
+        if (!isPlayer || !requireContactBetweenGravityToggles || canChangeGravityByContact || collision == null)
             return;
 
         // Considerem "contacte vàlid" només si és una superfície vertical (terra/sostre).
@@ -303,6 +307,15 @@ public class GravityController : MonoBehaviour
                 canChangeGravityByContact = true;
                 return;
             }
+        }
+    }
+
+    private void OnValidate()
+    {
+        // Si es desactiva el control anti-spam, no bloqueamos más cambios por contacto.
+        if (!requireContactBetweenGravityToggles)
+        {
+            canChangeGravityByContact = true;
         }
     }
 }
