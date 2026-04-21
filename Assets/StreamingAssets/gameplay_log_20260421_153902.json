@@ -1,0 +1,50 @@
+{
+    "sessionId": "20260421_153902",
+    "startTime": "2026-04-21T15:39:02.0441960Z",
+    "endTime": "2026-04-21T15:40:17.9010610Z",
+    "totalPlaytime": 72.46359252929688,
+    "totalScore": 928,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 1,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 2.0759339332580568,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-21T15:39:14.1313085Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 2.464811325073242,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-21T15:39:18.0622513Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 2.5196685791015627,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-21T15:39:22.7209505Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 1.5436820983886719,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-21T15:39:26.1314702Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 0.4794597625732422,
+            "zoneId": "NoZone",
+            "timestamp": "2026-04-21T15:39:36.4591951Z"
+        }
+    ],
+    "easterEggs": []
+}
