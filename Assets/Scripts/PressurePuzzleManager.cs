@@ -40,8 +40,6 @@ public class PressurePuzzleManager : MonoBehaviour
     private void InitializeBulbs()
     {
         if (bulbContainer == null) return;
-        
-        // Limpiamos la lista por si acaso
         bulbLights.Clear();
 
         foreach (Transform child in bulbContainer)
@@ -53,7 +51,6 @@ public class PressurePuzzleManager : MonoBehaviour
                 l.enabled = false;
             }
         }
-        Debug.Log("Bombillas inicializadas: " + bulbLights.Count);
     }
 
     public void AddPressure(int amount)
@@ -65,18 +62,18 @@ public class PressurePuzzleManager : MonoBehaviour
 
     private void UpdateVisualBar()
     {
+        // 1. Resetear bombillas a color normal y estado según presión
         for (int i = 0; i < bulbLights.Count; i++)
         {
-            // Si la presión es 5, se encienden los índices 0,1,2,3,4
             bulbLights[i].enabled = (i < currentPressure);
             bulbLights[i].color = colorNormal; 
         }
 
+        // 2. Resetear TEXTO (Esto es lo que faltaba)
         if (counterText != null)
         {
             counterText.text = currentPressure.ToString();
-            // Pista visual: si al restar 1 llegamos al objetivo, se pone Cyan
-            counterText.color = (currentPressure - 1 == targetPressure) ? Color.cyan : Color.white;
+            counterText.color = colorNormal; // <--- VOLVER A BLANCO SIEMPRE
         }
     }
 
@@ -89,22 +86,22 @@ public class PressurePuzzleManager : MonoBehaviour
     {
         isChecking = true;
         int initialValue = currentPressure;
-        
-        // Si tenemos 5 bombillas (índices 0 a 4), la que se resta es la 4.
         int bulbToSubtractIndex = currentPressure - 1; 
         int resultPressure = currentPressure - 1;
 
-        // 1. EFECTO DE RESTA: Solo la última bombilla cambia a colorResta (Rojo)
+        // 1. EFECTO DE RESTA
         if (bulbToSubtractIndex >= 0 && bulbToSubtractIndex < bulbLights.Count)
         {
             bulbLights[bulbToSubtractIndex].color = colorResta;
-            // Actualizamos el texto para mostrar el valor "resultante" durante la espera
-            if (counterText != null) counterText.text = resultPressure.ToString();
+            if (counterText != null) 
+            {
+                counterText.text = resultPressure.ToString();
+                counterText.color = colorResta; // Ponemos el número en rojo/amarillo mientras resta
+            }
         }
 
         yield return new WaitForSeconds(0.6f);
 
-        // Apagamos físicamente esa bombilla
         if (bulbToSubtractIndex >= 0 && bulbToSubtractIndex < bulbLights.Count)
             bulbLights[bulbToSubtractIndex].enabled = false;
 
@@ -113,31 +110,29 @@ public class PressurePuzzleManager : MonoBehaviour
         // 2. COMPROBACIÓN
         if (resultPressure == targetPressure)
         {
-            // ÉXITO: Todas las bombillas que quedan encendidas se ponen verdes
-            SetAllActiveBulbsColor(colorCorrecto, resultPressure);
             if (counterText != null) counterText.color = colorCorrecto;
+            SetAllActiveBulbsColor(colorCorrecto, resultPressure);
             Solve();
         }
         else
         {
-            // ERROR: Todas las que quedan encendidas se ponen rojas
-            SetAllActiveBulbsColor(colorError, resultPressure);
             if (counterText != null) counterText.color = colorError;
+            SetAllActiveBulbsColor(colorError, resultPressure);
             
             OnWrongAttempt?.Invoke();
 
             yield return new WaitForSeconds(1.2f);
 
-            // Restaurar estado anterior (vuelven a color normal y se re-enciende la restada)
+            // 3. RESTAURACIÓN
             currentPressure = initialValue;
-            UpdateVisualBar();
+            // Al llamar a UpdateVisualBar, el código que añadimos arriba pondrá el texto en Blanco
+            UpdateVisualBar(); 
             isChecking = false;
         }
     }
 
     private void SetAllActiveBulbsColor(Color targetColor, int count)
     {
-        // 'count' es la cantidad de bombillas que deben estar encendidas
         for (int i = 0; i < bulbLights.Count; i++)
         {
             if (i < count)
