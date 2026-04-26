@@ -10,6 +10,8 @@ TagManager:
   - Ice
   - Soldier
   - Lava
+  - Ball
+  - Meta
   layers:
   - Default
   - TransparentFX
