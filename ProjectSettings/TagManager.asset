@@ -12,6 +12,7 @@ TagManager:
   - Lava
   - Ball
   - Meta
+  - Ground
   layers:
   - Default
   - TransparentFX

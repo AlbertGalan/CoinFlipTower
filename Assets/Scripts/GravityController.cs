@@ -21,9 +21,10 @@ public class GravityController : MonoBehaviour
     [Tooltip("Bloqueja nous canvis de gravetat després del primer canvi")]
     public bool lockAfterFirstGravityChange = false;
 
-    [Header("Anti-Spam")]
-    [Tooltip("Si està activat, el jugador ha de tocar terra o sostre abans de tornar a invertir la gravetat")]
+    [Header("Anti-Spam (Player Only)")]
+    [Tooltip("Si està actiu, el jugador ha de tocar una superfície per tornar a invertir la gravetat.")]
     public bool requireContactBetweenGravityToggles = true;
+    private bool canChangeGravityByContact = true;
 
     [Header("Configuració per a l'stick del jugador")]
     [Tooltip("Màxima distància per cercar un sostre quan s'intenta enganxar")] public float stickMaxDistance = 1.5f;
@@ -38,7 +39,6 @@ public class GravityController : MonoBehaviour
 
     private float lastGravityToggleTime = -999f;
     private bool gravityChangeLocked = false;
-    private bool canChangeGravityByContact = true;
 
     // IsStuck estat (utilitzat quan el jugador s'enganxa al sostre)
     public bool IsStuck { get; private set; } = false;
@@ -73,6 +73,12 @@ public class GravityController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // --- ANTI-SPAM CHECK ---
+            if (requireContactBetweenGravityToggles && !canChangeGravityByContact)
+            {
+                return;
+            }
+
             // If the player is currently grabbing an object, ignore gravity toggle
             if (pushPull != null && pushPull.IsGrabbing)
             {
@@ -114,15 +120,19 @@ public class GravityController : MonoBehaviour
         if (gravityChangeLocked)
             return;
 
-        // Evita spam: cal tornar a tocar terra o sostre abans de poder invertir de nou.
+        // Anti-spam check per a crides externes si és jugador
         if (isPlayer && requireContactBetweenGravityToggles && !canChangeGravityByContact)
             return;
 
         gravityInverted = !gravityInverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
+
+        // Bloquegem el canvi fins que hi hagi nou contacte
         if (isPlayer && requireContactBetweenGravityToggles)
+        {
             canChangeGravityByContact = false;
+        }
 
         // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
         if (isPlayer && rb != null && !IsStuck)
@@ -150,20 +160,58 @@ public class GravityController : MonoBehaviour
             gravityChangeLocked = true;
     }
 
+    // --- DETECCIÓ DE CONTACTE (SUELO/TECHO) ---
+  // --- DETECCIÓ DE CONTACTE FILTRADA (SOLO SUELO/TECHO) ---
+private void OnCollisionEnter(Collision collision)
+{
+    if (!isPlayer || !requireContactBetweenGravityToggles) return;
+
+    // Analizamos los puntos de contacto para ver si hemos chocado con algo horizontal
+    foreach (ContactPoint contact in collision.contacts)
+    {
+        // La "Normal" es la dirección hacia donde apunta la cara de la superficie
+        // Si el valor absoluto de Y es cercano a 1, es una superficie horizontal
+        if (Mathf.Abs(contact.normal.y) > 0.7f) 
+        {
+            canChangeGravityByContact = true;
+            break; 
+        }
+    }
+}
+
+// Si usas triggers para suelos (como los tubos), puedes filtrar por Tag o Capa
+private void OnTriggerEnter(Collider other)
+{
+    if (!isPlayer || !requireContactBetweenGravityToggles) return;
+
+    // Aquí lo más seguro es usar Tags para evitar que paredes-trigger lo activen
+    // Puedes crear un Tag llamado "Ground" y asignarlo a suelos y techos
+    if (other.CompareTag("Ground")) // Ajusta según tus tags
+    {
+        canChangeGravityByContact = true;
+    }
+}
+
     public void SetGravityInverted(bool inverted)
     {
         if (gravityChangeLocked)
             return;
 
+        if (gravityInverted == inverted) return;
+
+        // Anti-spam check per a crides externes
         if (isPlayer && requireContactBetweenGravityToggles && !canChangeGravityByContact)
             return;
 
-        if (gravityInverted == inverted) return;
         gravityInverted = inverted;
         UpdateGravityDirection();
         lastGravityToggleTime = Time.time;
+
         if (isPlayer && requireContactBetweenGravityToggles)
+        {
             canChangeGravityByContact = false;
+        }
+
         // Crude snap as above
         if (isPlayer && rb != null && !IsStuck)
         {
@@ -281,41 +329,5 @@ public class GravityController : MonoBehaviour
         rb.isKinematic = false;
         IsStuck = false;
         ApplyVisualRotation(false);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        MarkGravityContactIfApplicable(collision);
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        MarkGravityContactIfApplicable(collision);
-    }
-
-    private void MarkGravityContactIfApplicable(Collision collision)
-    {
-        if (!isPlayer || !requireContactBetweenGravityToggles || canChangeGravityByContact || collision == null)
-            return;
-
-        // Considerem "contacte vàlid" només si és una superfície vertical (terra/sostre).
-        for (int i = 0; i < collision.contactCount; i++)
-        {
-            Vector3 normal = collision.GetContact(i).normal;
-            if (Mathf.Abs(Vector3.Dot(normal, Vector3.up)) >= 0.5f)
-            {
-                canChangeGravityByContact = true;
-                return;
-            }
-        }
-    }
-
-    private void OnValidate()
-    {
-        // Si es desactiva el control anti-spam, no bloqueamos más cambios por contacto.
-        if (!requireContactBetweenGravityToggles)
-        {
-            canChangeGravityByContact = true;
-        }
     }
 }

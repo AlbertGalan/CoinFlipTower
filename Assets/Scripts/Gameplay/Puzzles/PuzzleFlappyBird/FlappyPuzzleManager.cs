@@ -22,7 +22,6 @@ public class FlappyPuzzleManager : MonoBehaviour
     private bool isPlayerNearby = false;
     private bool isPlaying = false;
     private bool puzzleSolved = false;
-    private bool isAtGoal = false; // Nueva variable de estado
     void Start()
     {
         ballObject.SetActive(false);
