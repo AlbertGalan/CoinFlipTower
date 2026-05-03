@@ -87,5 +87,26 @@ namespace BitWave_Labs.AnimatedTextReveal
                 index++;
             }
         }
+        // Añade esto dentro de la clase AnimateText
+public IEnumerator PlaySpecificLines(List<string> newLines)
+{
+    // Limpiamos el texto previo
+    animatedTextReveal.TextMesh.text = "";
+    
+    // Usamos la lógica que ya tienes pero con la lista recibida
+    foreach (string line in newLines)
+    {
+        animatedTextReveal.TextMesh.text = line;
+        animatedTextReveal.SetAllCharactersAlpha(0);
+
+        yield return StartCoroutine(animatedTextReveal.FadeText(true));
+
+        yield return new WaitForSeconds(delayBeforeFadeOut);
+        
+        yield return StartCoroutine(animatedTextReveal.FadeText(false));
+        
+        yield return new WaitForSeconds(delayBeforeFadeIn);
+    }
+}
     }
 }

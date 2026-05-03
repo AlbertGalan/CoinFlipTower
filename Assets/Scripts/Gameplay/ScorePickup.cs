@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -29,8 +30,12 @@ public class ScorePickup : MonoBehaviour
     [Tooltip("Velocitat de la flotació")]
     public float floatSpeed = 1.5f;
 
+    [Header("Narrativa")]
+    public List<string> narratorLines;
     private Vector3 startPos;
     private float offset;
+
+    
 
     void Start()
     {
@@ -72,7 +77,13 @@ public class ScorePickup : MonoBehaviour
         {
             GameSessionLogger.Instance.MarkPickupCollected(pickupId, pickupName, zoneId);
         }
+        if (narratorLines.Count > 0 && NarratorUI.Instance != null)
+{
+    NarratorUI.Instance.TriggerDialogue(narratorLines);
+}
 
         Destroy(gameObject);
     }
+
+    
 }
