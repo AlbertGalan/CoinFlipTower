@@ -10,15 +10,11 @@ public class OutlineController : MonoBehaviour
     [SerializeField] private string raycastLayerName = "Raycast";
     [SerializeField] private string outlineLayerName = "Outline";
 
-   // [Header("Input")]
-   // [SerializeField] private KeyCode outlineKey = KeyCode.Mouse1;
-
     [Header("Beam Settings")]
-    [SerializeField] private Color hitColor = Color.green;
-    [SerializeField] private Color missColor = Color.cyan;
-    [SerializeField] [Range(0f, 1f)] private float beamOpacity = 1f; // Posar a 1 temporalment
-    [SerializeField] private float beamThickness = 0.3f; // Grosor del beam (escala X y Z)
-    [SerializeField] private float beamLengthMultiplier = 6f; // Multiplicador de longitud del beam
+    [SerializeField] private Material hitMaterial;  // Material para cuando detecta algo
+    [SerializeField] private Material missMaterial; // Material para cuando falla
+    [SerializeField] private float beamThickness = 0.3f; 
+    [SerializeField] private float beamLengthMultiplier = 6f; 
     
     [Header("References")]
     [SerializeField] private Camera playerCamera;
@@ -29,7 +25,7 @@ public class OutlineController : MonoBehaviour
     
     private GameObject currentOutlinedObject;
     private int originalLayer;
-    private Material beamMaterial;
+    private Renderer beamRenderer; // Referencia al renderer del cilindro
     private Vector3 originalBeamScale;
     private bool lastHitState = false;
     private bool wandsVisible = false;
@@ -47,37 +43,17 @@ public class OutlineController : MonoBehaviour
         if (beamVisual != null)
         {
             originalBeamScale = beamVisual.transform.localScale;
+            beamRenderer = beamVisual.GetComponent<Renderer>();
             
-            Renderer beamRenderer = beamVisual.GetComponent<Renderer>();
-            if (beamRenderer != null)
-            {
-                beamMaterial = new Material(beamRenderer.material);
-                beamRenderer.material = beamMaterial;
-                SetupMaterialForBeam();
-            }
-            
-            // Configurar layer para que siempre sea visible
-            beamVisual.layer = LayerMask.NameToLayer("UI"); // O una layer que siempre se vea
+            // Configurar layer para que siempre sea visible (opcional, según tu setup)
+            beamVisual.layer = LayerMask.NameToLayer("UI"); 
             
             beamVisual.SetActive(false);
-            
-            Debug.Log("Beam configurado. Escala original: " + originalBeamScale);
         }
         else
         {
             Debug.LogError("Beam Visual no asignado!");
         }
-    }
-
-    private void SetupMaterialForBeam()
-    {
-        // Usar un shader simple siempre visible
-        beamMaterial.shader = Shader.Find("Unlit/Color");
-        beamMaterial.color = new Color(hitColor.r, hitColor.g, hitColor.b, beamOpacity);
-        
-        // Configurar para que ignore iluminación y sombras
-        beamMaterial.SetFloat("_Glossiness", 0f);
-        beamMaterial.SetFloat("_Metallic", 0f);
     }
 
     void Update()
@@ -87,9 +63,8 @@ public class OutlineController : MonoBehaviour
 
     private void HandleOutlineAndInteraction()
     {
-        bool shouldShowBeam = Input.GetKey(KeyCode.Mouse1); // Click dret per mostrar el beam
+        bool shouldShowBeam = Input.GetKey(KeyCode.Mouse1); 
         
-        // Mostrar/ocultar beam y varitas
         if (beamVisual.activeSelf != shouldShowBeam)
         {
             beamVisual.SetActive(shouldShowBeam);
@@ -106,7 +81,6 @@ public class OutlineController : MonoBehaviour
 
         UpdateBeamPosition();
 
-        // Interacció si es pitja click esquerre
         if (Input.GetKeyDown(KeyCode.Mouse0) && currentOutlinedObject != null)
         {
             InteractWithCurrentObject();
@@ -115,10 +89,7 @@ public class OutlineController : MonoBehaviour
 
     private void UpdateBeamPosition()
     {
-        // Origen del rayo desde la punta de la varita
         Vector3 rayOrigin = beamOrigin != null ? beamOrigin.position : playerCamera.transform.position;
-        
-        // Punto focal en el centro de la cámara (donde apunta el jugador)
         Vector3 cameraCenter = playerCamera.transform.position + playerCamera.transform.forward * rayCastDistance;
         Vector3 rayDirection = (cameraCenter - rayOrigin).normalized;
 
@@ -130,13 +101,9 @@ public class OutlineController : MonoBehaviour
         bool hasHit = Physics.Raycast(rayOrigin, rayDirection, out hit, rayCastDistance, combinedMask);
         float distance = hasHit ? hit.distance : rayCastDistance;
 
-        // Posicionar el beam
         PositionBeam(rayOrigin, rayDirection, distance);
-
-        // Cambiar varita según si hay hit o no
         UpdateWandVisuals(hasHit);
 
-        // Manejar outline
         if (hasHit)
         {
             GameObject hitObject = hit.collider.gameObject;
@@ -145,47 +112,44 @@ public class OutlineController : MonoBehaviour
                 DisableCurrentOutline();
                 EnableOutline(hitObject);
             }
-            SetBeamColor(hitColor);
+            SetBeamMaterial(hitMaterial); // Cambiar a material de impacto
         }
         else
         {
             DisableCurrentOutline();
-            SetBeamColor(missColor);
+            SetBeamMaterial(missMaterial); // Cambiar a material de fallo
         }
     }
 
     private void PositionBeam(Vector3 start, Vector3 direction, float distance)
     {
-        // Posicionar el beam para que parta desde BeamOrigin y llegue hasta rayCastDistance
-        // El cilindro se posiciona en su centro, así que lo movemos la mitad de la distancia
         Vector3 beamPosition = start + direction * (distance * 0.5f);
 
         beamVisual.transform.position = beamPosition;
         beamVisual.transform.rotation = Quaternion.LookRotation(direction);
-        beamVisual.transform.Rotate(90f, 0f, 0f); // Rotar cilindre perque roti correctament
+        beamVisual.transform.Rotate(90f, 0f, 0f); 
 
-        // Escalar cilindro: Y = longitud exacta del raycast, X y Z = grosor
         Vector3 newScale = originalBeamScale;
-        newScale.y = (distance / 2f) * originalBeamScale.y * beamLengthMultiplier; // Longitud
-        newScale.x = originalBeamScale.x * beamThickness; // Grosor
-        newScale.z = originalBeamScale.z * beamThickness; // Grosor
+        newScale.y = (distance / 2f) * originalBeamScale.y * beamLengthMultiplier; 
+        newScale.x = originalBeamScale.x * beamThickness; 
+        newScale.z = originalBeamScale.z * beamThickness; 
         beamVisual.transform.localScale = newScale;
-
-        Debug.Log($"Beam desde BeamOrigin hasta rayCastDistance. Distancia: {distance}, Escala: {newScale}");
     }
 
-    private void SetBeamColor(Color baseColor)
+    // Nueva función para cambiar el material
+    private void SetBeamMaterial(Material newMat)
     {
-        Color finalColor = new Color(baseColor.r, baseColor.g, baseColor.b, beamOpacity);
-        if (beamMaterial != null)
+        if (beamRenderer != null && newMat != null)
         {
-            beamMaterial.color = finalColor;
+            if (beamRenderer.sharedMaterial != newMat)
+            {
+                beamRenderer.material = newMat;
+            }
         }
     }
 
     private void UpdateWandVisuals(bool hasHit)
     {
-        // Forzar actualización si las varitas estaban ocultas o si el estado cambió
         if (wandsVisible && hasHit == lastHitState)
             return;
 
@@ -194,17 +158,13 @@ public class OutlineController : MonoBehaviour
 
         if (hasHit)
         {
-            //Mostrar varita verde (hit)
             if (greenWand != null) greenWand.SetActive(true);
             if (blueWand != null) blueWand.SetActive(false);
-            Debug.Log("Varita verde activada (HIT)");
         }
         else
         {
-            //Mostrar varita azul (miss)
             if (blueWand != null) blueWand.SetActive(true);
             if (greenWand != null) greenWand.SetActive(false);
-            Debug.Log("Varita azul activada (MISS)");
         }
     }
 
@@ -212,7 +172,7 @@ public class OutlineController : MonoBehaviour
     {
         if (blueWand != null) blueWand.SetActive(false);
         if (greenWand != null) greenWand.SetActive(false);
-        wandsVisible = false; // Marcar que las varitas no están visibles
+        wandsVisible = false; 
     }
 
     private void EnableOutline(GameObject targetObject)
@@ -220,7 +180,6 @@ public class OutlineController : MonoBehaviour
         currentOutlinedObject = targetObject;
         originalLayer = targetObject.layer;
         targetObject.layer = LayerMask.NameToLayer(outlineLayerName);
-        Debug.Log($"Outline activado en: {targetObject.name}");
     }
 
     private void DisableCurrentOutline()
@@ -231,25 +190,27 @@ public class OutlineController : MonoBehaviour
             currentOutlinedObject = null;
         }
     }
-    ///Interactua amb l'objecte actual al qual esta apuntant el raycast
-    private void InteractWithCurrentObject()
-    {
-        if (currentOutlinedObject != null)
-        {
-            GravityController gravityObj = currentOutlinedObject.GetComponent<GravityController>();
-            if (gravityObj != null)
-            {
-                gravityObj.ToggleGravity();
-                Debug.Log($"Gravetat canviada en: {currentOutlinedObject.name}. Invertida: {gravityObj.IsGravityInverted()}");
-            }
-        }
-    }
 
-    private void OnDestroy()
+private void InteractWithCurrentObject()
+{
+    if (currentOutlinedObject != null)
     {
-        if (beamMaterial != null)
+        // 1. Verificar si es una casilla del Stroop
+        StroopChoice stroop = currentOutlinedObject.GetComponent<StroopChoice>();
+        if (stroop != null)
         {
-            Destroy(beamMaterial);
+            // Buscamos el manager en la escena y le enviamos la elección
+            FindFirstObjectByType<StroopPuzzleManager>().OnPlayerClick(stroop);
+            return; 
+        }
+
+        // 2. Tu lógica original de gravedad
+        GravityController gravityObj = currentOutlinedObject.GetComponent<GravityController>();
+        if (gravityObj != null)
+        {
+            gravityObj.ToggleGravity();
         }
     }
+}
+    
 }
