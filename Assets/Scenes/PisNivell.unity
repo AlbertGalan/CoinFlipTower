@@ -138048,11 +138048,11 @@ RectTransform:
   - {fileID: 280860495}
   m_Father: {fileID: 996896594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1394, y: 304}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 177, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &629874756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138105,10 +138105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::NarratorUI
   sidePanel: {fileID: 629874755}
   textAnimator: {fileID: 873991048}
-  hiddenLeft: 1394
-  hiddenRight: -1394
-  visibleLeft: 668
-  visibleRight: -668
+  xHidden: 950
+  xVisible: 177
   slideSpeed: 8
 --- !u!1001 &630002809
 PrefabInstance:
@@ -211268,7 +211266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: tonka
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6375ac0646c3595459f5a1f1e968d589, type: 2}
   m_sharedMaterial: {fileID: 5522069960316146997, guid: 6375ac0646c3595459f5a1f1e968d589, type: 2}
@@ -211359,9 +211357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bb39439de54284e96355ba90cd0e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Bitwave_Labs::BitWave_Labs.AnimatedTextReveal.AnimateText
-  animatedTextReveal: {fileID: 0}
+  animatedTextReveal: {fileID: 873991049}
   lines: []
-  fadeMode: 0
+  fadeMode: 1
   fadeLastLine: 0
   delayBeforeFadeOut: 1
   delayBeforeFadeIn: 1
@@ -211374,15 +211372,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 873991044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bb39439de54284e96355ba90cd0e2b, type: 3}
+  m_Script: {fileID: 11500000, guid: fd4709bed90a639409b4656aba94c1c4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Bitwave_Labs::BitWave_Labs.AnimatedTextReveal.AnimateText
-  animatedTextReveal: {fileID: 0}
-  lines: []
-  fadeMode: 0
-  fadeLastLine: 0
-  delayBeforeFadeOut: 1
-  delayBeforeFadeIn: 1
+  m_EditorClassIdentifier: Bitwave_Labs::BitWave_Labs.AnimatedTextReveal.AnimatedTextReveal
+  textMesh: {fileID: 873991046}
+  fadeSpeed: 40
+  characterSpread: 10
+  useUnscaledTime: 0
 --- !u!1 &876307817
 GameObject:
   m_ObjectHideFlags: 0
