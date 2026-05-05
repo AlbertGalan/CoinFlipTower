@@ -4334,6 +4334,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -9577,6 +9578,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -9738,6 +9740,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -13507,6 +13510,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -23444,6 +23448,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -35414,6 +35419,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -38541,6 +38547,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -48348,6 +48355,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2
@@ -48652,6 +48660,7 @@ MonoBehaviour:
   rotateOnInvert: 0
   grabBlockDuration: 0.75
   lockAfterFirstGravityChange: 0
+  requireContactBetweenGravityToggles: 1
   stickMaxDistance: 1.5
   stickLayerMask:
     serializedVersion: 2

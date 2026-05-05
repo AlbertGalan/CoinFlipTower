@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7a29962a7df334ca633e0f4387f147, type: 3}
   m_Name: APIConfig
   m_EditorClassIdentifier: Scripts::APIConfig
-  enableAPI: 0
+  enableAPI: 1
   showDevLogs: 1
   simulatedNetworkDelay: 0
