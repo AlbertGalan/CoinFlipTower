@@ -1,0 +1,116 @@
+{
+    "sessionId": "20260506_154519",
+    "startTime": "2026-05-06T15:45:19.5076782Z",
+    "endTime": "2026-05-06T15:46:59.7446151Z",
+    "totalPlaytime": 103.95329284667969,
+    "totalScore": 896,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 7,
+            "objectFlips": 7
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube",
+            "duration": 0.0009794235229492188,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:33.7302288Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.1771106719970703,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:39.1093166Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.20598983764648438,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:39.6813743Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.003025054931640625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:46.5873630Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.01268768310546875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:50.9420298Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.012996673583984375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:45:57.3436006Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.0180816650390625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:04.0614818Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.0100250244140625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:04.7987521Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.00592803955078125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:05.3984121Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.002147674560546875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:06.2216972Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.01889801025390625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:07.3208464Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.0006103515625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:08.1427829Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 1.7315559387207032,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:18.2499550Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.009647369384765625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:24.7640941Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.24640655517578126,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:39.3631013Z"
+        },
+        {
+            "objectName": "Cube",
+            "duration": 0.01421356201171875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T15:46:47.4020982Z"
+        }
+    ],
+    "easterEggs": []
+}

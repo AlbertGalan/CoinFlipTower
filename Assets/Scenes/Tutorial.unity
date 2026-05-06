@@ -42619,7 +42619,7 @@ GameObject:
   - component: {fileID: 2052133920}
   - component: {fileID: 2052133919}
   - component: {fileID: 2052133918}
-  - component: {fileID: 2052133923}
+  - component: {fileID: 2052133924}
   m_Layer: 0
   m_Name: PortalFinal
   m_TagString: Untagged
@@ -47580,7 +47580,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052133916}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2052133923
+--- !u!114 &2052133924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47589,13 +47589,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052133916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c58fc02607d0bf4e93d34fc6a505157, type: 3}
+  m_Script: {fileID: 11500000, guid: aa3dec8195df61c46978e0babfb379c0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialEndTrigger
-  menuSceneName: MenuPrincipal
-  ratingSceneName: Valoracio
+  m_EditorClassIdentifier: Scripts::TutorialToLevelTrigger
+  nextSceneName: PisNivell
   playerTag: Player
-  showDebugMessages: 1
 --- !u!4 &2053839400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5733f9122e42eac43a5c2fe88ce50d79, type: 3}

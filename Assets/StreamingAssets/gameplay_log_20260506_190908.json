@@ -1,0 +1,96 @@
+{
+    "sessionId": "20260506_190908",
+    "startTime": "2026-05-06T19:09:08.0780261Z",
+    "endTime": "2026-05-06T19:09:57.0583687Z",
+    "totalPlaytime": 53.38312911987305,
+    "totalScore": 947,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.5240020751953125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:18.3249473Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.8919467926025391,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:20.0517391Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.5598201751708984,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:21.2257142Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.41022777557373049,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:22.5776283Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.3284683227539063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:28.0791546Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.316965103149414,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:32.0667559Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6584110260009766,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:33.6009046Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6338844299316406,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:34.6745795Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.9549732208251953,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:41.4754596Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.9096641540527344,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:44.6253715Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.3312301635742188,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:47.2455766Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.1044807434082032,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:51.6476147Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6835098266601563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:53.6180112Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6195869445800781,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:09:54.9742131Z"
+        }
+    ],
+    "easterEggs": []
+}

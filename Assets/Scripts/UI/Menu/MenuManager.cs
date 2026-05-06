@@ -18,12 +18,12 @@ public class MenuManager : MonoBehaviour
     public GameObject classificationPanel;
     public GameObject credentialsPanel;
     
-    [Header("Last Score Display")]
-    [Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
-    public TextMeshProUGUI lastScoreText;
+    //[Header("Last Score Display")]
+    //[Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
+    //public TextMeshProUGUI lastScoreText;
     
-    [Tooltip("TextMeshProUGUI per mostrar el darrer temps")]
-    public TextMeshProUGUI lastTimeText;
+    //[Tooltip("TextMeshProUGUI per mostrar el darrer temps")]
+    //public TextMeshProUGUI lastTimeText;
 
     void Start()
     {
@@ -45,10 +45,10 @@ public class MenuManager : MonoBehaviour
             classificationButton.onClick.AddListener(OnClassificationClicked);
         
         // Mostrar darrera puntuació si existeix
-        UpdateLastScoreDisplay();
+        //UpdateLastScoreDisplay();
     }
     
-    void UpdateLastScoreDisplay()
+    /*void UpdateLastScoreDisplay()
     {
         float lastScore = Score.GetLastScore();
         string lastTime = Score.GetLastTimeFormatted();
@@ -76,7 +76,7 @@ public class MenuManager : MonoBehaviour
                 lastTimeText.text = "Temps: --:--:---";
             }
         }
-    }
+    }*/
 
     void OnPlayClicked()
     {

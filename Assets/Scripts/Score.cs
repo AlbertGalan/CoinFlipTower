@@ -1,24 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Añadido para detectar la escena actual
 
 public class Score : MonoBehaviour
 {
     public static Score Instance { get; private set; }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-
-    //Variable puntuació
+    [Header("Variables de Estado")]
     public float score;
-    //Timer en minuts, segons i mil·lesimes de segon, Formatar!! (JA ESTA FORMATAT)
     public float timer;
 
-
+    [Header("Configuración")]
     public float pointsPerSecond = 1f;
     public float gravityChangePenalty = 5f;
 
     private bool isGameplayFrozen = false;
 
-    //Referenciam scripts de gravetat per poder detectar quan un objecte o quan el jugador canvia de gravetat i restar-li puntuació en funció.
     private void Awake()
     {
         if (Instance == null)
@@ -30,16 +26,32 @@ public class Score : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     void Start()
     {
+        // Detectamos en qué escena estamos
+        string currentScene = SceneManager.GetActiveScene().name;
 
-        score = 1000f;
-        timer = 0f;
-
+        // Si estamos en el nivel principal, intentamos recuperar la puntuación del tutorial
+        if (currentScene == "PisNivell")
+        {
+            // Cargamos los datos guardados en el trigger del tutorial. 
+            // Si no existen (por si acaso), usamos los valores base de 1000 y 0.
+            score = PlayerPrefs.GetFloat("SavedScore", 1000f);
+            timer = PlayerPrefs.GetFloat("SavedTime", 0f);
+            
+            Debug.Log($"<color=cyan>Score Inicializado en PisNivell:</color> Continuando con Score: {score:F0} y Tiempo: {timer:F2}");
+        }
+        else
+        {
+            // Si es el tutorial o cualquier otra escena, empezamos desde los valores base
+            score = 1000f;
+            timer = 0f;
+            
+            Debug.Log("<color=green>Score Inicializado:</color> Valores de Tutorial cargados (1000 pts / 0s)");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         // No actualizar si el gameplay está congelado por tutoriales
@@ -47,15 +59,11 @@ public class Score : MonoBehaviour
             return;
 
         timer += Time.deltaTime;
-
         score -= pointsPerSecond * Time.deltaTime;
-
-       // Debug.Log("Temps:" + " " + timer + " " + "Puntuació:" + score);
-
-
     }
 
-    // Congelar/descongelar la actualización de tiempo y puntuación (para tutoriales)
+    // --- Métodos de Control ---
+
     public void FreezeGameplay()
     {
         isGameplayFrozen = true;
@@ -67,6 +75,8 @@ public class Score : MonoBehaviour
     }
 
     public bool IsGameplayFrozen => isGameplayFrozen;
+
+    // --- Métodos de Obtención de Datos ---
 
     public string GetFormattedTime()
     {
@@ -80,13 +90,12 @@ public class Score : MonoBehaviour
     {
         return Mathf.RoundToInt(score);
     }
-    
+
     public float GetTimer()
     {
         return timer;
     }
-    
-    // Mètode per sumar punts des de zones o altres sistemes
+
     public void AddPoints(float points, string source = "")
     {
         score += points;
@@ -95,9 +104,11 @@ public class Score : MonoBehaviour
             Debug.Log($"Punts afegits: +{points} ({source}). Puntuació total: {score:F0}");
         }
     }
-    
+
+    // --- Métodos de Persistencia ---
+
     /// <summary>
-    /// Guarda la puntuació i temps finals a PlayerPrefs
+    /// Guarda la puntuación y tiempo finales a PlayerPrefs para la escena de Resultados
     /// </summary>
     public void SaveLastScore()
     {
@@ -107,20 +118,24 @@ public class Score : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log($"Puntuació final guardada: {score:F0} - Temps: {GetFormattedTime()}");
     }
-    
-    /// <summary>
-    /// Obté la darrera puntuació guardada
-    /// </summary>
+
     public static float GetLastScore()
     {
         return PlayerPrefs.GetFloat("LastScore", 0f);
     }
-    
-    /// <summary>
-    /// Obté el darrer temps guardat (formatat)
-    /// </summary>
+
     public static string GetLastTimeFormatted()
     {
         return PlayerPrefs.GetString("LastTimeFormatted", "00:00.000");
+    }
+    
+    /// <summary>
+    /// Limpia las claves temporales (útil al volver al menú principal)
+    /// </summary>
+    public static void ClearTransitionData()
+    {
+        PlayerPrefs.DeleteKey("SavedScore");
+        PlayerPrefs.DeleteKey("SavedTime");
+        PlayerPrefs.Save();
     }
 }

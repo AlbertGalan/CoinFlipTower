@@ -1,0 +1,36 @@
+{
+    "sessionId": "20260505_172900",
+    "startTime": "2026-05-05T17:29:00.2269768Z",
+    "endTime": "2026-05-05T17:31:25.6919822Z",
+    "totalPlaytime": 40.15581130981445,
+    "totalScore": 960,
+    "zoneVisits": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T17:29:13.0573701Z",
+            "exitedAt": "2026-05-05T17:29:41.1746664Z",
+            "duration": 8.6199951171875,
+            "playerFlips": 1,
+            "objectFlips": 0
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "timeSpent": 8.6199951171875,
+            "entries": 1,
+            "playerFlips": 1,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 3,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": []
+}

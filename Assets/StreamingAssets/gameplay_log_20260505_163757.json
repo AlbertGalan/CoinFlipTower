@@ -1,0 +1,214 @@
+{
+    "sessionId": "20260505_163757",
+    "startTime": "2026-05-05T16:37:57.2136349Z",
+    "endTime": "2026-05-05T16:40:16.7242689Z",
+    "totalPlaytime": 92.22102355957031,
+    "totalScore": 1033,
+    "zoneVisits": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T16:38:09.9054147Z",
+            "exitedAt": "2026-05-05T16:38:24.0076162Z",
+            "duration": 14.099994659423829,
+            "playerFlips": 0,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "TutorialRoom_02",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T16:38:24.0076162Z",
+            "exitedAt": "2026-05-05T16:38:35.7056177Z",
+            "duration": 11.699996948242188,
+            "playerFlips": 0,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "TutorialRoom_03",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T16:38:35.7056177Z",
+            "exitedAt": "2026-05-05T16:38:55.9432073Z",
+            "duration": 20.239990234375,
+            "playerFlips": 0,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "TutorialRoom_04",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T16:38:55.9432073Z",
+            "exitedAt": "2026-05-05T16:39:21.8206513Z",
+            "duration": 25.879989624023439,
+            "playerFlips": 0,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_05",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-05T16:39:21.8206513Z",
+            "exitedAt": "2026-05-05T16:39:32.7631083Z",
+            "duration": 10.939994812011719,
+            "playerFlips": 0,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "TutorialRoom_04",
+            "visitIndexForZone": 2,
+            "enteredAt": "2026-05-05T16:39:32.7631083Z",
+            "exitedAt": "2026-05-05T16:39:37.5615585Z",
+            "duration": 4.8000030517578129,
+            "playerFlips": 0,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_03",
+            "visitIndexForZone": 2,
+            "enteredAt": "2026-05-05T16:39:37.5615585Z",
+            "exitedAt": "2026-05-05T16:40:02.6250202Z",
+            "duration": 25.05999755859375,
+            "playerFlips": 4,
+            "objectFlips": 2
+        },
+        {
+            "zoneId": "TutorialRoom_02",
+            "visitIndexForZone": 2,
+            "enteredAt": "2026-05-05T16:40:02.6250202Z",
+            "exitedAt": "2026-05-05T16:40:06.2278693Z",
+            "duration": 3.5999908447265627,
+            "playerFlips": 0,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 2,
+            "enteredAt": "2026-05-05T16:40:06.2278693Z",
+            "exitedAt": "2026-05-05T16:40:16.5707776Z",
+            "duration": 10.319992065429688,
+            "playerFlips": 3,
+            "objectFlips": 0
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "timeSpent": 24.419986724853517,
+            "entries": 2,
+            "playerFlips": 3,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "TutorialRoom_02",
+            "timeSpent": 15.29998779296875,
+            "entries": 2,
+            "playerFlips": 0,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_03",
+            "timeSpent": 45.29998779296875,
+            "entries": 2,
+            "playerFlips": 4,
+            "objectFlips": 2
+        },
+        {
+            "zoneId": "TutorialRoom_04",
+            "timeSpent": 30.67999267578125,
+            "entries": 2,
+            "playerFlips": 0,
+            "objectFlips": 2
+        },
+        {
+            "zoneId": "TutorialRoom_05",
+            "timeSpent": 10.939994812011719,
+            "entries": 1,
+            "playerFlips": 0,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "PortaDreta1",
+            "duration": 1.2098655700683594,
+            "zoneId": "TutorialRoom_02",
+            "timestamp": "2026-05-05T16:38:24.6714638Z"
+        },
+        {
+            "objectName": "Shelf",
+            "duration": 2.16412353515625,
+            "zoneId": "TutorialRoom_02",
+            "timestamp": "2026-05-05T16:38:33.2543600Z"
+        },
+        {
+            "objectName": "BarrilCH1",
+            "duration": 0.41828155517578127,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:38:47.7752389Z"
+        },
+        {
+            "objectName": "BarrilCH1",
+            "duration": 1.5056533813476563,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:38:50.3247918Z"
+        },
+        {
+            "objectName": "BarrilCH1",
+            "duration": 0.593231201171875,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:38:51.6503582Z"
+        },
+        {
+            "objectName": "BarrilCH1",
+            "duration": 1.2605361938476563,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:38:53.4246049Z"
+        },
+        {
+            "objectName": "BarrilSalaVareta",
+            "duration": 0.3436279296875,
+            "zoneId": "TutorialRoom_04",
+            "timestamp": "2026-05-05T16:39:06.3390967Z"
+        },
+        {
+            "objectName": "BarrilSalaVareta",
+            "duration": 2.0416412353515627,
+            "zoneId": "TutorialRoom_04",
+            "timestamp": "2026-05-05T16:39:12.1353725Z"
+        },
+        {
+            "objectName": "BarrilSalaVareta",
+            "duration": 0.6029434204101563,
+            "zoneId": "TutorialRoom_04",
+            "timestamp": "2026-05-05T16:39:13.6630228Z"
+        },
+        {
+            "objectName": "BarrilSalaVareta",
+            "duration": 2.2315216064453127,
+            "zoneId": "TutorialRoom_04",
+            "timestamp": "2026-05-05T16:39:17.4707331Z"
+        },
+        {
+            "objectName": "Barrel_Open (3)",
+            "duration": 1.8581390380859376,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:39:48.5916370Z"
+        },
+        {
+            "objectName": "Barrel_Open (3)",
+            "duration": 0.7645721435546875,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:39:52.5438927Z"
+        },
+        {
+            "objectName": "Barrel_Open (3)",
+            "duration": 0.4904022216796875,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:39:53.2470512Z"
+        },
+        {
+            "objectName": "Barrel_Open (3)",
+            "duration": 5.6614990234375,
+            "zoneId": "TutorialRoom_03",
+            "timestamp": "2026-05-05T16:39:59.5966790Z"
+        }
+    ],
+    "easterEggs": []
+}

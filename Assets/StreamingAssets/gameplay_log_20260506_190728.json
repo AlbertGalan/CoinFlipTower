@@ -1,0 +1,68 @@
+{
+    "sessionId": "20260506_190728",
+    "startTime": "2026-05-06T19:07:28.6126500Z",
+    "endTime": "2026-05-06T19:08:09.1914320Z",
+    "totalPlaytime": 43.92353820800781,
+    "totalScore": 956,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.5302648544311523,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:07:44.7622970Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6758232116699219,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:07:46.2294663Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.28879547119140627,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:07:53.8778833Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.2643775939941406,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:07:54.6110318Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.189422607421875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:07:56.2640512Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 1.6642169952392579,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:08:01.0376788Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.3740272521972656,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:08:02.5656966Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.9296684265136719,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-06T19:08:03.9917502Z"
+        }
+    ],
+    "easterEggs": []
+}
