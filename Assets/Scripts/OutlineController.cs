@@ -195,6 +195,13 @@ private void InteractWithCurrentObject()
 {
     if (currentOutlinedObject != null)
     {
+        // --- NUEVA LÓGICA EASTER EGG ---
+        EasterEggBox eggBox = currentOutlinedObject.GetComponent<EasterEggBox>();
+        if (eggBox != null)
+        {
+            eggBox.ActivateEasterEgg();
+            return;
+        }
         // 1. Verificar si es una casilla del Stroop
         StroopChoice stroop = currentOutlinedObject.GetComponent<StroopChoice>();
         if (stroop != null)

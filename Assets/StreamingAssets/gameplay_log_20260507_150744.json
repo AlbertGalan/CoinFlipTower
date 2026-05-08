@@ -1,0 +1,128 @@
+{
+    "sessionId": "20260507_150744",
+    "startTime": "2026-05-07T15:07:44.5551913Z",
+    "endTime": "2026-05-07T15:14:50.5193597Z",
+    "totalPlaytime": 59.98652648925781,
+    "totalScore": 940,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 3,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel",
+            "duration": 1.0455608367919922,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:00.6352269Z"
+        },
+        {
+            "objectName": "CubGel",
+            "duration": 0.22221946716308595,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:01.3276032Z"
+        },
+        {
+            "objectName": "CubGel",
+            "duration": 0.3515510559082031,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:06.3577075Z"
+        },
+        {
+            "objectName": "CubGel",
+            "duration": 0.0858917236328125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:06.5234614Z"
+        },
+        {
+            "objectName": "CubGel",
+            "duration": 0.1554737091064453,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:10.1785318Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.001468658447265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:14.8409992Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.008270263671875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:23.3809947Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.019832611083984376,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:24.1396347Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.010013580322265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:24.9385710Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.019466400146484376,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:25.8007606Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.010517120361328125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:27.0784996Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.0029754638671875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:27.4981861Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01952362060546875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:27.7814192Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.018466949462890626,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:28.0042057Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.009235382080078125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:28.1806381Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.13713455200195313,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:31.2438532Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00394439697265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:31.6222046Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.003414154052734375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:08:37.6196351Z"
+        }
+    ],
+    "easterEggs": []
+}

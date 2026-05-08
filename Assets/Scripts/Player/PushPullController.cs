@@ -72,10 +72,19 @@ public class PushPullController : MonoBehaviour
     {
         if (isGrabbing && grabbedRb != null)
         {
+            // Determinar la gravedad del bloque para lanzar el raycast en la dirección correcta.
+            GravityController blockGravity = grabbedRb.GetComponent<GravityController>();
+            Vector3 gravityDir = (blockGravity != null && blockGravity.IsGravityInverted())
+                ? Vector3.up
+                : Vector3.down;
+
             // Comprobar si el bloque pisó hielo
             bool blockOnIce = false;
             RaycastHit hitDown;
-            if (Physics.Raycast(grabbedRb.position + Vector3.up * 0.5f, Vector3.down, out hitDown, 1.5f, Physics.AllLayers, QueryTriggerInteraction.Collide))
+
+            Vector3 rayOrigin = grabbedRb.position - gravityDir * 0.25f;
+
+            if (Physics.Raycast(rayOrigin, gravityDir, out hitDown, 1.5f, Physics.AllLayers, QueryTriggerInteraction.Collide))
             {
                 if (hitDown.collider.CompareTag("Ice"))
                 {

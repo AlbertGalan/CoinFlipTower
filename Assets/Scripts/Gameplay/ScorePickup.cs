@@ -3,39 +3,31 @@ using UnityEngine;
 
 /// <summary>
 /// Objecte recollectable que suma punts al jugador quan hi entra en contacte i es destrueix.
-/// Requereix un Collider amb "Is Trigger" activat.
 /// </summary>
 public class ScorePickup : MonoBehaviour
 {
     [Header("Score")]
-    [Tooltip("Punts que s'afegiran al jugador en recollir l'objecte.")]
     public float pointsToAdd = 100f;
-
-    [Tooltip("Nom identificador que apareixerà al log de puntuació.")]
     public string pickupName = "Pickup";
-
-    [Tooltip("Id unic del pickup per al log. Si queda buit s'utilitza el nom de l'objecte.")]
     public string pickupId = "";
-
-    [Tooltip("Id de zona del pickup (opcional). Si queda buit es resol amb la zona activa en recollir.")]
     public string zoneId = "";
 
+    [Header("Audio")]
+    [Tooltip("Clip de so opcional que es reproduirà en recollir l'objecte.")]
+    public AudioClip pickupSound;
+    [Range(0f, 1f)]
+    public float volume = 0.7f;
+
     [Header("Animation")]
-    [Tooltip("Velocitat de rotació")]
     public Vector3 rotationSpeed = new Vector3(0, 120, 0);
-
-    [Tooltip("Altura de la flotació")]
     public float floatAmplitude = 0.25f;
-
-    [Tooltip("Velocitat de la flotació")]
     public float floatSpeed = 1.5f;
 
     [Header("Narrativa")]
     public List<string> narratorLines;
+
     private Vector3 startPos;
     private float offset;
-
-    
 
     void Start()
     {
@@ -45,8 +37,6 @@ public class ScorePickup : MonoBehaviour
         }
 
         startPos = transform.position;
-
-        // Desfase aleatorio para que no todas floten igual
         offset = Random.Range(0f, Mathf.PI * 2f);
 
         if (GameSessionLogger.Instance != null)
@@ -70,6 +60,14 @@ public class ScorePickup : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+        // --- LÓGICA DE AUDIO ---
+        if (pickupSound != null)
+        {
+            // Reproduce el sonido en la posición actual antes de destruir el objeto
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position, volume);
+        }
+
+        // --- PUNTOS Y LOGS ---
         if (Score.Instance != null)
             Score.Instance.AddPoints(pointsToAdd, pickupName);
 
@@ -77,13 +75,13 @@ public class ScorePickup : MonoBehaviour
         {
             GameSessionLogger.Instance.MarkPickupCollected(pickupId, pickupName, zoneId);
         }
+
+        // --- NARRATIVA ---
         if (narratorLines.Count > 0 && NarratorUI.Instance != null)
-{
-    NarratorUI.Instance.TriggerDialogue(narratorLines);
-}
+        {
+            NarratorUI.Instance.TriggerDialogue(narratorLines);
+        }
 
         Destroy(gameObject);
     }
-
-    
 }

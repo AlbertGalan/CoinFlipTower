@@ -1,0 +1,19 @@
+{
+    "sessionId": "20260507_232829",
+    "startTime": "2026-05-07T23:28:29.0601874Z",
+    "endTime": "2026-05-07T23:28:43.6080634Z",
+    "totalPlaytime": 18.866724014282228,
+    "totalScore": 1081,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "Ration",
+            "pickupName": "Ration",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-07T23:28:36.6796937Z"
+        }
+    ]
+}

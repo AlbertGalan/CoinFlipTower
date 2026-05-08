@@ -17,6 +17,10 @@ public class PuzzleTile : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         manager = GetComponentInParent<TilePuzzleManager>();
+        
+        // Failsafe por si el manager no está en el padre directo
+        if (manager == null) manager = FindFirstObjectByType<TilePuzzleManager>();
+        
         SetState(TileState.Off);
     }
 
@@ -37,21 +41,22 @@ public class PuzzleTile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // 1. Si el puzzle ya terminó, no hacemos nada más
-            if (manager.IsComplete) return;
+            // 1. Si el puzzle ya terminó, las baldosas son seguras
+            if (manager != null && manager.IsComplete) return;
 
-            // 2. Si la baldosa está apagada, la encendemos
+            // 2. Si la baldosa está apagada, la activamos
             if (currentState == TileState.Off)
             {
                 SetState(TileState.On);
                 manager.OnTileActivated();
             }
-            // 3. Si ya estaba encendida, solo fallamos SI NO es la última que faltaba
-            // (Esta comprobación la hace el manager internamente ahora)
+            // 3. Si ya estaba encendida, el jugador ha pisado donde no debía
             else if (currentState == TileState.On)
             {
-                // Solo activamos lava si el manager confirma que no hemos ganado
+                // Cambiamos visualmente a lava para dar feedback del error
                 SetState(TileState.Lava);
+                
+                // Avisamos al manager para que reinicie el puzzle y haga el respawn
                 manager.TriggerFailure(other.gameObject);
             }
         }

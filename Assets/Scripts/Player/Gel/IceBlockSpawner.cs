@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class IceBlockSpawner : MonoBehaviour
 {
@@ -6,53 +7,82 @@ public class IceBlockSpawner : MonoBehaviour
     public GameObject prefabBloqueHielo;
     public Transform puntoSpawn;
 
-    [Header("Ajustes de Disparo")]
-    public float fuerzaDisparo = 15f; 
-    public float intervaloSpawn = 2f;
+    [Header("Ajustes de Tiempo")]
+    public float intervaloSpawn = 3f;
+    public float retardoEmpuje = 1.0f; // El segundo de cortesía
 
     private float timer;
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         timer += Time.deltaTime;
         if (timer >= intervaloSpawn)
         {
-            DispararBloque();
+            SpawnearBloque();
             timer = 0;
         }
     }
 
-    void DispararBloque()
+    void SpawnearBloque()
     {
-        // 1. Instanciamos el bloque
+        // 1. Instanciar
         GameObject nuevoBloque = Instantiate(prefabBloqueHielo, puntoSpawn.position, puntoSpawn.rotation);
         
         Rigidbody rb = nuevoBloque.GetComponent<Rigidbody>();
         IceBlockSlider slider = nuevoBloque.GetComponent<IceBlockSlider>();
 
-        if (rb != null)
+        if (rb != null && slider != null)
         {
-            // Nos aseguramos de que no sea cinemático para que la fuerza le afecte
+            // 2. Configuración física inicial
             rb.isKinematic = false;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
 
-            // 2. Aplicamos la fuerza en el eje Z local del Spawner
-            // ForceMode.Impulse es ideal para disparos instantáneos
-            Vector3 direccionZ = transform.forward; 
-            rb.AddForce(direccionZ * fuerzaDisparo, ForceMode.Impulse);
-            
-            // 3. Iniciamos el sistema de deslizamiento
-            // Le pasamos la dirección para que el script sepa hacia dónde "resbalar"
-            if (slider != null)
-            {
-                slider.StartSliding(direccionZ);
-            }
+            // 3. Iniciamos la cuenta atrás para el empuje desde aquí mismo
+            StartCoroutine(EsperarYEmpujar(slider, rb));
+        }
+        else
+        {
+            Debug.LogWarning("[Spawner] El prefab no tiene Rigidbody o IceBlockSlider.");
         }
     }
 
-    // Para ver en el editor hacia dónde disparará (flecha azul)
+    private IEnumerator EsperarYEmpujar(IceBlockSlider slider, Rigidbody rb)
+    {
+        // Esperamos a que el bloque se asiente en el suelo
+        yield return new WaitForSeconds(retardoEmpuje);
+
+        if (slider != null && rb != null)
+        {
+            // Usamos el forward del PUNTO DE SPAWN como dirección
+            Vector3 direccionEmpuje = puntoSpawn.forward;
+
+            // Replicamos la acción exacta del jugador
+            rb.isKinematic = false;
+            rb.linearVelocity = Vector3.zero;
+
+            // Llamada al slider (con el speed -1 que ya sabemos que funciona)
+            slider.StartSliding(direccionEmpuje, -1f); 
+
+            // El impulso inicial para romper la inercia
+            rb.AddForce(direccionEmpuje * 5f, ForceMode.Impulse);
+
+            //Debug.Log($"<color=green>[Spawner]</color> Bloque {rb.name} empujado con éxito.");
+        }
+    }
+
     void OnDrawGizmos()
     {
+        if (puntoSpawn == null) return;
+        
+        // Esfera de spawn
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(puntoSpawn.position, 0.3f);
+        
+        // Flecha de dirección de empuje (Z azul)
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(puntoSpawn != null ? puntoSpawn.position : transform.position, transform.forward * 3f);
+        Gizmos.DrawRay(puntoSpawn.position, puntoSpawn.forward * 2f);
     }
 }

@@ -1,0 +1,140 @@
+{
+    "sessionId": "20260507_144740",
+    "startTime": "2026-05-07T14:47:40.7898702Z",
+    "endTime": "2026-05-07T14:49:20.8288089Z",
+    "totalPlaytime": 103.26860809326172,
+    "totalScore": 897,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 10,
+            "objectFlips": 4
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.6413288116455078,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:02.3441369Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.010732650756835938,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:05.1967135Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.0082855224609375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:20.1339664Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.13251876831054688,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:22.9934652Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00818634033203125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:32.4756195Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.4972953796386719,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:33.5020175Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01715087890625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:46.9597914Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.13852691650390626,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:48.4277048Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.23812103271484376,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:49.0134165Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00304412841796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:56.2537910Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00685882568359375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:48:56.8732500Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.0079193115234375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:04.8926943Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00539398193359375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:05.0747898Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.007080078125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:05.2729894Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00653839111328125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:05.4946716Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.017822265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:05.6521263Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00609588623046875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:05.8333991Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.00255584716796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:06.0333516Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01922607421875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:06.2337140Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01493072509765625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T14:49:06.4117824Z"
+        }
+    ],
+    "easterEggs": []
+}

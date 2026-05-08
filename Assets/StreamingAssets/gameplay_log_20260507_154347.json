@@ -1,0 +1,24 @@
+{
+    "sessionId": "20260507_154347",
+    "startTime": "2026-05-07T15:43:47.8147102Z",
+    "endTime": "2026-05-07T15:43:59.7961185Z",
+    "totalPlaytime": 16.22374725341797,
+    "totalScore": 984,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel",
+            "duration": 0.13431739807128907,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:43:55.1015719Z"
+        },
+        {
+            "objectName": "CubGel",
+            "duration": 0.46452951431274416,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:43:56.6795367Z"
+        }
+    ],
+    "easterEggs": []
+}

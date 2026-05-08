@@ -1,0 +1,26 @@
+{
+    "sessionId": "20260507_180947",
+    "startTime": "2026-05-07T18:09:47.1337507Z",
+    "endTime": "2026-05-07T18:13:05.4420925Z",
+    "totalPlaytime": 158.215576171875,
+    "totalScore": 842,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 28,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "StoneSmall_004",
+            "duration": 5.386768341064453,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T18:10:21.0333011Z"
+        }
+    ],
+    "easterEggs": []
+}

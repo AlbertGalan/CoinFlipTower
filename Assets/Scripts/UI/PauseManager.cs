@@ -48,6 +48,15 @@ public class PauseManager : MonoBehaviour
         if (pausePanel != null)
         {
             pausePanel.SetActive(true);
+
+            // --- AQUÍ VA LA MEJORA ---
+            // Buscamos el componente PlayerRouteData para actualizar la imagen de la ruta
+            PlayerRouteData routeData = Object.FindFirstObjectByType<PlayerRouteData>();
+            if (routeData != null)
+            {
+                routeData.ActualizarImagenRutaUI();
+            }
+            // -------------------------
         }
 
         Cursor.visible = true;
@@ -79,7 +88,7 @@ public class PauseManager : MonoBehaviour
 
     public void ExitMainMenuScene()
     {
-        Time.timeScale = 1f; // Ensure time scale is reset
+        Time.timeScale = 1f; 
         AudioListener.pause = false;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuPrincipal");
     }

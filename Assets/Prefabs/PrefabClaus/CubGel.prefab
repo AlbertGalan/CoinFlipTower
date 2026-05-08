@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 769892205522459084}
   - component: {fileID: 6474725664368583916}
   - component: {fileID: 1851064557132147691}
+  - component: {fileID: 1022773278776861116}
   m_Layer: 7
   m_Name: CubGel
   m_TagString: IceBlock
@@ -163,3 +164,18 @@ MonoBehaviour:
   stickLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1022773278776861116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4929152212672456745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3259e0542d907409197d3900803687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::IceBlockSlider
+  slideSpeedMultiplier: 1.35
+  obstacleCheckRadius: 0.4
+  airMomentumPreservation: 0.99

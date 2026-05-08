@@ -1,0 +1,38 @@
+{
+    "sessionId": "20260507_152421",
+    "startTime": "2026-05-07T15:24:21.9187930Z",
+    "endTime": "2026-05-07T15:25:31.8962214Z",
+    "totalPlaytime": 74.97824096679688,
+    "totalScore": 925,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 10,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.0044422149658203129,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:24:41.2159058Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01287841796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:24:41.3901105Z"
+        },
+        {
+            "objectName": "CubGel(Clone)",
+            "duration": 0.01922607421875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-07T15:24:47.5502696Z"
+        }
+    ],
+    "easterEggs": []
+}

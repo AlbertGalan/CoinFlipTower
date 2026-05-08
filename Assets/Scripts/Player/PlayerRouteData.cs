@@ -6,6 +6,12 @@ public class PlayerRouteData : MonoBehaviour
     public RouletteWheel.TipoElemento rutaAsignada;
     public bool tieneRutaAsignada = false;
 
+    [Header("Referencias UI de Rutas (Imágenes)")]
+    [Tooltip("Arrastra aquí los GameObjects del panel de pausa correspondientes a cada ruta")]
+    public GameObject imatgeRutaFoc;
+    public GameObject imatgeRutaGel;
+    public GameObject imatgeRutaTerra;
+
     [Header("Inventario de Objetos")]
     public bool tieneObjetoFisico = false;
     public RouletteWheel.TipoElemento tipoObjetoRecogido;
@@ -16,10 +22,36 @@ public class PlayerRouteData : MonoBehaviour
         {
             rutaAsignada = nuevaRuta;
             tieneRutaAsignada = true;
+            Debug.Log("<color=green>Ruta Asignada:</color> " + nuevaRuta);
         }
     }
 
-    // Nuevo método para cuando recogemos el objeto del cofre
+    // Método para activar la imagen correcta en el panel de pausa
+    public void ActualizarImagenRutaUI()
+    {
+        // 1. Limpieza: Desactivamos las tres imágenes primero
+        if (imatgeRutaFoc) imatgeRutaFoc.SetActive(false);
+        if (imatgeRutaGel) imatgeRutaGel.SetActive(false);
+        if (imatgeRutaTerra) imatgeRutaTerra.SetActive(false);
+
+        // Si aún no hay ruta, no activamos nada
+        if (!tieneRutaAsignada) return;
+
+        // 2. Activamos la imagen que toca según el Enum
+        switch (rutaAsignada)
+        {
+            case RouletteWheel.TipoElemento.Foc:
+                if (imatgeRutaFoc) imatgeRutaFoc.SetActive(true);
+                break;
+            case RouletteWheel.TipoElemento.Gel:
+                if (imatgeRutaGel) imatgeRutaGel.SetActive(true);
+                break;
+            case RouletteWheel.TipoElemento.Terra:
+                if (imatgeRutaTerra) imatgeRutaTerra.SetActive(true);
+                break;
+        }
+    }
+
     public void RecogerObjeto(RouletteWheel.TipoElemento tipo)
     {
         tieneObjetoFisico = true;
