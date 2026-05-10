@@ -4905,6 +4905,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8edbe243e7e74474385e3ffe374f9345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Score
+--- !u!114 &330298467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330298446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bb32a461aa44e42abc154387941bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::PlayerRouteData
+  rutaAsignada: 0
+  tieneRutaAsignada: 0
+  onRutaAsignada:
+    m_PersistentCalls:
+      m_Calls: []
+  imatgeRutaFoc: {fileID: 0}
+  imatgeRutaGel: {fileID: 0}
+  imatgeRutaTerra: {fileID: 0}
+  tieneObjetoFisico: 0
+  tipoObjetoRecogido: 0
 --- !u!1 &337614524
 GameObject:
   m_ObjectHideFlags: 0
@@ -9646,7 +9668,8 @@ MonoBehaviour:
   OnTriggerExited:
     m_PersistentCalls:
       m_Calls: []
-  enterAudioSource: {fileID: 0}
+  enterAudioClip: {fileID: 0}
+  audioVolume: 1
   destroyOnEnter: 0
   destroyDelayEnter: 0
   destroyOnExit: 1
@@ -12173,7 +12196,8 @@ MonoBehaviour:
   OnTriggerExited:
     m_PersistentCalls:
       m_Calls: []
-  enterAudioSource: {fileID: 0}
+  enterAudioClip: {fileID: 0}
+  audioVolume: 1
   destroyOnEnter: 0
   destroyDelayEnter: 0
   destroyOnExit: 0
@@ -13889,7 +13913,8 @@ MonoBehaviour:
   OnTriggerExited:
     m_PersistentCalls:
       m_Calls: []
-  enterAudioSource: {fileID: 0}
+  enterAudioClip: {fileID: 0}
+  audioVolume: 1
   destroyOnEnter: 1
   destroyDelayEnter: 0
   destroyOnExit: 0
@@ -35771,6 +35796,10 @@ PrefabInstance:
       value: 0.21960784
       objectReference: {fileID: 0}
     - target: {fileID: 2012888741080391903, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      propertyPath: hitMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 22fc72fa23265bf4dbd04ffe272d9d75, type: 2}
+    - target: {fileID: 2012888741080391903, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: missColor.b
       value: 0.7411765
       objectReference: {fileID: 0}
@@ -35782,6 +35811,14 @@ PrefabInstance:
       propertyPath: missColor.r
       value: 0.043137256
       objectReference: {fileID: 0}
+    - target: {fileID: 2012888741080391903, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      propertyPath: missMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a08c37bedca4a2439fa14b1e3463295, type: 2}
+    - target: {fileID: 2012888741080391903, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 2099112180}
     - target: {fileID: 2012888741080391903, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       propertyPath: beamThickness
       value: 3
@@ -36325,6 +36362,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6444736323172482476, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
       insertIndex: -1
       addedObject: {fileID: 330298463}
+    - targetCorrespondingSourceObject: {fileID: 6444736323172482476, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330298467}
   m_SourcePrefab: {fileID: 100100000, guid: 502d364f755cc4349b93afbef32a8b12, type: 3}
 --- !u!4 &1582188500 stripped
 Transform:
@@ -42620,7 +42660,7 @@ GameObject:
   - component: {fileID: 2052133919}
   - component: {fileID: 2052133918}
   - component: {fileID: 2052133924}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PortalFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48103,6 +48143,7 @@ MonoBehaviour:
   pausePanel: {fileID: 1796944847}
   allowPauseWithEsc: 1
   lockCursorOnResume: 1
+  isPaused: 0
 --- !u!4 &2099112181
 Transform:
   m_ObjectHideFlags: 0

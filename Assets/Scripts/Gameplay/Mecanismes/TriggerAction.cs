@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class TriggerAction : MonoBehaviour
 {
@@ -28,23 +27,18 @@ public class TriggerAction : MonoBehaviour
     }
 
     [Header("Trigger Detection")]
-    [Tooltip("Tags que activarán el trigger")]
     public List<string> targetTags = new List<string> { "Player", "Pushable" };
 
     [Header("Animator Parameters on Enter")]
-    [Tooltip("Parámetros del animator a cambiar al entrar")]
     public List<AnimatorParameter> enterAnimatorParameters = new List<AnimatorParameter>();
 
     [Header("Animator Parameters on Exit")]
-    [Tooltip("Parámetros del animator a cambiar al salir")]
     public List<AnimatorParameter> exitAnimatorParameters = new List<AnimatorParameter>();
 
     [Header("Component Toggles on Enter")]
-    [Tooltip("Components a activar/desactivar en l'objecte que entra")]
     public List<ComponentToggle> enterComponentToggles = new List<ComponentToggle>();
 
     [Header("Component Toggles on Exit")]
-    [Tooltip("Components a activar/desactivar en l'objecte que surt")]
     public List<ComponentToggle> exitComponentToggles = new List<ComponentToggle>();
 
     [Header("Events")]
@@ -52,18 +46,15 @@ public class TriggerAction : MonoBehaviour
     public UnityEvent OnTriggerExited;
 
     [Header("Audio on Enter")]
-    [Tooltip("AudioSource a reproducir al entrar en el trigger")]
-    public AudioSource enterAudioSource;
+    [Tooltip("Clip de so a reproduir al entrar")]
+    public AudioClip enterAudioClip;
+    [Range(0f, 1f)]
+    public float audioVolume = 1f;
 
     [Header("Destruction")]
-    [Tooltip("¿Destruir el trigger al entrar o al salir?")]
-
     public bool destroyOnEnter = false;
-    [Tooltip("Delay en segundos antes de destruir al entrar")]
     public float destroyDelayEnter = 0f;
-
     public bool destroyOnExit = false;
-    [Tooltip("Delay en segundos antes de destruir")]
     public float destroyDelay = 0f;
 
     private bool hasTriggered = false;
@@ -78,26 +69,24 @@ public class TriggerAction : MonoBehaviour
 
         hasTriggered = true;
 
-        // Aplicar cambios de parámetros al entrar
+        // Cambios de parámetros al entrar
         foreach (AnimatorParameter param in enterAnimatorParameters)
         {
-            if (param.animator != null)
-            {
-                SetAnimatorParameter(param.animator, param);
-            }
+            if (param.animator != null) SetAnimatorParameter(param.animator, param);
         }
 
-        // Activar/desactivar components de l'objecte que entra
         ApplyComponentToggles(other.gameObject, enterComponentToggles);
 
-        // Reproducir audio al entrar
-        if (enterAudioSource != null)
+        // --- REPRODUCCIÓN DE AUDIO (MODIFICADO) ---
+        if (enterAudioClip != null)
         {
-            enterAudioSource.Play();
+            // PlayClipAtPoint permite que el audio siga sonando si el trigger se destruye
+            AudioSource.PlayClipAtPoint(enterAudioClip, transform.position, audioVolume);
         }
 
         OnTriggerEntered.Invoke();
         Debug.Log($"Trigger entered: {gameObject.name}");
+
         if (destroyOnEnter)
         {
             if (destroyDelayEnter > 0f)
@@ -112,25 +101,20 @@ public class TriggerAction : MonoBehaviour
         if (!IsTargetTag(other.tag))
             return;
 
-        if (hasTriggered)
+        // Resetear el flag solo si no se destruye al entrar
+        if (hasTriggered && !destroyOnEnter)
             hasTriggered = false;
 
-        // Aplicar cambios de parámetros al salir
         foreach (AnimatorParameter param in exitAnimatorParameters)
         {
-            if (param.animator != null)
-            {
-                SetAnimatorParameter(param.animator, param);
-            }
+            if (param.animator != null) SetAnimatorParameter(param.animator, param);
         }
 
-        // Activar/desactivar components de l'objecte que surt
         ApplyComponentToggles(other.gameObject, exitComponentToggles);
 
         OnTriggerExited.Invoke();
         Debug.Log($"Trigger exited: {gameObject.name}");
 
-        // Destruir el trigger si está configurado
         if (destroyOnExit)
         {
             if (destroyDelay > 0f)
@@ -151,19 +135,15 @@ public class TriggerAction : MonoBehaviour
         {
             case AnimatorControllerParameterType.Bool:
                 animator.SetBool(param.parameterName, param.boolValue);
-                Debug.Log($"Set Bool '{param.parameterName}' to {param.boolValue} on {animator.gameObject.name}");
                 break;
             case AnimatorControllerParameterType.Int:
                 animator.SetInteger(param.parameterName, param.intValue);
-                Debug.Log($"Set Int '{param.parameterName}' to {param.intValue} on {animator.gameObject.name}");
                 break;
             case AnimatorControllerParameterType.Float:
                 animator.SetFloat(param.parameterName, param.floatValue);
-                Debug.Log($"Set Float '{param.parameterName}' to {param.floatValue} on {animator.gameObject.name}");
                 break;
             case AnimatorControllerParameterType.Trigger:
                 animator.SetTrigger(param.parameterName);
-                Debug.Log($"Triggered '{param.parameterName}' on {animator.gameObject.name}");
                 break;
         }
     }
@@ -172,16 +152,10 @@ public class TriggerAction : MonoBehaviour
     {
         foreach (ComponentToggle toggle in toggles)
         {
-            if (string.IsNullOrEmpty(toggle.componentName))
-                continue;
+            if (string.IsNullOrEmpty(toggle.componentName)) continue;
 
-            // Buscar el component per nom (en l'objecte o en fills segons configuració)
             System.Type componentType = System.Type.GetType(toggle.componentName);
-            if (componentType == null)
-            {
-                Debug.LogWarning($"Component type '{toggle.componentName}' not found");
-                continue;
-            }
+            if (componentType == null) continue;
 
             Component component = toggle.searchInChildren 
                 ? target.GetComponentInChildren(componentType)
@@ -190,21 +164,10 @@ public class TriggerAction : MonoBehaviour
             if (component != null && component is Behaviour)
             {
                 ((Behaviour)component).enabled = toggle.enableComponent;
-                Debug.Log($"Component '{toggle.componentName}' set to {toggle.enableComponent} on {component.gameObject.name}");
-            }
-            else if (component != null)
-            {
-                Debug.LogWarning($"Component '{toggle.componentName}' on {target.name} is not a Behaviour and cannot be enabled/disabled.");
-            }
-            else
-            {
-                string searchScope = toggle.searchInChildren ? "or children" : "";
-                Debug.LogWarning($"Component '{toggle.componentName}' not found on {target.name} {searchScope}");
             }
         }
     }
 
-    // Métodos públicos para resetear si es necesario
     public void ResetTrigger()
     {
         hasTriggered = false;

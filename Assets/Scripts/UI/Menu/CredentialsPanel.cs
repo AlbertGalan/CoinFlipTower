@@ -9,86 +9,60 @@ public class CredentialsPanel : MonoBehaviour
     [SerializeField] private Button acceptButton;
     [SerializeField] private Button cancelButton;
 
+    [Header("Siguiente Paso")]
+    [SerializeField] private GameObject selectionPanel; // El panel con los 2 botones nuevos
+
     private void Start()
     {
-        if (nameInputField != null)
-            nameInputField.onValueChanged.AddListener(OnInputValueChanged);
-
-        if (emailInputField != null)
-            emailInputField.onValueChanged.AddListener(OnInputValueChanged);
-
-        if (acceptButton != null)
-            acceptButton.onClick.AddListener(OnAcceptClicked);
-
-        if (cancelButton != null)
-            cancelButton.onClick.AddListener(OnCancelClicked);
+        if (nameInputField != null) nameInputField.onValueChanged.AddListener(OnInputValueChanged);
+        if (emailInputField != null) emailInputField.onValueChanged.AddListener(OnInputValueChanged);
+        
+        acceptButton.onClick.AddListener(OnAcceptClicked);
+        cancelButton.onClick.AddListener(() => gameObject.SetActive(false));
 
         UpdateAcceptButtonState();
     }
 
-    private void OnEnable()
+private void OnAcceptClicked()
+{
+    string name = nameInputField.text;
+    string email = emailInputField.text;
+    acceptButton.interactable = false;
+
+    UserManager.Instance.VerifyAndStartGame(name, email, (success) =>
     {
-        UpdateAcceptButtonState();
-    }
-
-    private void OnAcceptClicked()
-    {
-        string name = nameInputField != null ? nameInputField.text : "";
-        string email = emailInputField != null ? emailInputField.text : "";
-
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+        if (success)
         {
-            Debug.LogWarning("Per favor, ompleix les credencials abans de continuar.");
-            return;
-        }
-
-        Debug.Log($"Credencials ingresades - Nom: {name}, Email: {email}");
-
-        // Llamar al UserManager para verificar y iniciar la partida
-        if (UserManager.Instance == null)
-        {
-            Debug.LogError("UserManager.Instance no está disponible");
-            return;
-        }
-
-        // Deshabilitar el botón mientras se procesa
-        if (acceptButton != null)
-            acceptButton.interactable = false;
-
-        // Llamar con callback - solo cerrar si hay error
-        UserManager.Instance.VerifyAndStartGame(name, email, (success) =>
-        {
-            if (!success)
+            // 1. Si la referencia por Inspector se borró, la buscamos manualmente
+            if (selectionPanel == null)
             {
-                // Si falla, cerrar el panel y rehabilitar botón
-                if (acceptButton != null)
-                    acceptButton.interactable = true;
-                    
+                Debug.LogWarning("La referencia se perdió, buscándola por nombre...");
+                // Asegúrate de que el objeto en la jerarquía se llame exactamente "Experiencia"
+                selectionPanel = GameObject.Find("Experiencia"); 
+            }
+
+            // 2. Intentamos activar
+            if (selectionPanel != null)
+            {
+                selectionPanel.SetActive(true);
                 gameObject.SetActive(false);
             }
-            // Si tiene éxito, la escena cambiará automáticamente (no cerrar el panel)
-        });
-    }
-
-    private void OnInputValueChanged(string _)
-    {
-        UpdateAcceptButtonState();
-    }
+            else
+            {
+                Debug.LogError("No se pudo encontrar el panel 'Experiencia' en la escena.");
+            }
+        }
+        else
+        {
+            acceptButton.interactable = true;
+        }
+    });
+}
+    private void OnInputValueChanged(string _) => UpdateAcceptButtonState();
 
     private void UpdateAcceptButtonState()
     {
-        if (acceptButton == null)
-            return;
-
-        string name = nameInputField != null ? nameInputField.text : "";
-        string email = emailInputField != null ? emailInputField.text : "";
-
-        acceptButton.interactable = !string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(email);
-    }
-
-    private void OnCancelClicked()
-    {
-        Debug.Log("Credencials cancelades");
-        gameObject.SetActive(false);
+        acceptButton.interactable = !string.IsNullOrWhiteSpace(nameInputField.text) && 
+                                    !string.IsNullOrWhiteSpace(emailInputField.text);
     }
 }

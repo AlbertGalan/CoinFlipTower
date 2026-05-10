@@ -8,6 +8,7 @@ public class Score : MonoBehaviour
     [Header("Variables de Estado")]
     public float score;
     public float timer;
+    public bool tutorialComplete = false; // Nueva variable
 
     [Header("Configuración")]
     public float pointsPerSecond = 1f;
@@ -20,6 +21,8 @@ public class Score : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // Opcional: Si quieres que el objeto Score no se destruya nunca:
+            // DontDestroyOnLoad(gameObject); 
         }
         else if (Instance != this)
         {
@@ -29,37 +32,39 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        // Detectamos en qué escena estamos
+        // --- CARGAR ESTADO DEL TUTORIAL ---
+        // Usamos 0 para false y 1 para true
+        tutorialComplete = PlayerPrefs.GetInt("TutorialComplete", 0) == 1;
+
         string currentScene = SceneManager.GetActiveScene().name;
 
-        // Si estamos en el nivel principal, intentamos recuperar la puntuación del tutorial
         if (currentScene == "PisNivell")
         {
-            // Cargamos los datos guardados en el trigger del tutorial. 
-            // Si no existen (por si acaso), usamos los valores base de 1000 y 0.
             score = PlayerPrefs.GetFloat("SavedScore", 1000f);
             timer = PlayerPrefs.GetFloat("SavedTime", 0f);
-            
-            Debug.Log($"<color=cyan>Score Inicializado en PisNivell:</color> Continuando con Score: {score:F0} y Tiempo: {timer:F2}");
+            Debug.Log($"<color=cyan>Score Inicializado:</color> Tutorial completado: {tutorialComplete}");
         }
         else
         {
-            // Si es el tutorial o cualquier otra escena, empezamos desde los valores base
             score = 1000f;
             timer = 0f;
-            
-            Debug.Log("<color=green>Score Inicializado:</color> Valores de Tutorial cargados (1000 pts / 0s)");
         }
     }
 
     void Update()
     {
-        // No actualizar si el gameplay está congelado por tutoriales
-        if (isGameplayFrozen)
-            return;
-
+        if (isGameplayFrozen) return;
         timer += Time.deltaTime;
         score -= pointsPerSecond * Time.deltaTime;
+    }
+
+    // --- NUEVO MÉTODO PARA MARCAR COMPLETADO ---
+    public void SetTutorialAsComplete()
+    {
+        tutorialComplete = true;
+        PlayerPrefs.SetInt("TutorialComplete", 1);
+        PlayerPrefs.Save();
+        Debug.Log("<color=yellow>Progreso Guardado:</color> Tutorial marcado como COMPLETADO.");
     }
 
     // --- Métodos de Control ---
@@ -132,10 +137,13 @@ public class Score : MonoBehaviour
     /// <summary>
     /// Limpia las claves temporales (útil al volver al menú principal)
     /// </summary>
-    public static void ClearTransitionData()
-    {
-        PlayerPrefs.DeleteKey("SavedScore");
-        PlayerPrefs.DeleteKey("SavedTime");
-        PlayerPrefs.Save();
-    }
+ public static void ClearTransitionData()
+{
+    PlayerPrefs.DeleteKey("SavedScore");
+    PlayerPrefs.DeleteKey("SavedTime");
+    // Añadimos estas:
+    PlayerPrefs.DeleteKey("SavedHasRoute");
+    PlayerPrefs.DeleteKey("SavedRouteType");
+    PlayerPrefs.Save();
+}
 }

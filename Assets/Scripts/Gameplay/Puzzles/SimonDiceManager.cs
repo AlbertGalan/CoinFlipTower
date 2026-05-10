@@ -25,6 +25,9 @@ public class SimonDiceManager : MonoBehaviour
     public List<ColorData> listaColores;
     public Material materialGris; 
 
+    [Header("Audio de Fallo")]
+    [SerializeField] private AudioClip sonidoError; // <--- NUEVA VARIABLE
+
     [Header("Indicador Único")]
     public MeshRenderer indicadorUnico; 
 
@@ -72,13 +75,11 @@ public class SimonDiceManager : MonoBehaviour
             SimonColor colorActual = datosRonda.secuenciaDeEstaRonda[i];
             ColorData data = listaColores.Find(x => x.color == colorActual);
 
-            // 1. ENCENDER (Color + Sonido)
             if (indicadorUnico != null) indicadorUnico.material = data.material;
             if (data.sonido != null) audioSource.PlayOneShot(data.sonido);
             
             yield return new WaitForSeconds(tiempoEncendido); 
 
-            // 2. APAGAR (Gris / Pausa entre colores)
             if (indicadorUnico != null) indicadorUnico.material = materialGris;
             yield return new WaitForSeconds(tiempoApagado);
         }
@@ -95,10 +96,10 @@ public class SimonDiceManager : MonoBehaviour
         SimonRound datosRonda = rondasConfiguradas[rondaActual];
         ColorData data = listaColores.Find(x => x.color == colorPisado);
         
-        if (data.sonido != null) audioSource.PlayOneShot(data.sonido);
-
+        // Solo reproducimos el sonido del color si NO ha fallado todavía
         if (colorPisado == datosRonda.secuenciaDeEstaRonda[indiceJugador])
         {
+            if (data.sonido != null) audioSource.PlayOneShot(data.sonido);
             indiceJugador++;
 
             if (indiceJugador >= datosRonda.secuenciaDeEstaRonda.Count)
@@ -124,6 +125,13 @@ public class SimonDiceManager : MonoBehaviour
     {
         esperandoJugador = false;
         if (indicadorUnico != null) indicadorUnico.material = materialGris;
+
+        // --- LÓGICA DE AUDIO PARA FALLO ---
+        if (sonidoError != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(sonidoError);
+        }
+
         OnWrongStep?.Invoke();
         Debug.Log("Simon Dice: Fallo");
     }

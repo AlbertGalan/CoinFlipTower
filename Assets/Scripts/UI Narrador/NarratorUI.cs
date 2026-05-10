@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; // Necesario para el componente Image
 using System.Collections;
 using System.Collections.Generic;
 using BitWave_Labs.AnimatedTextReveal;
@@ -7,14 +8,16 @@ public class NarratorUI : MonoBehaviour
 {
     public static NarratorUI Instance;
 
-    [Header("Referencias")]
+    [Header("Referencias UI")]
     public RectTransform sidePanel;
     public AnimateText textAnimator;
+    public Image narratorPortrait; // Arrastra aquí el objeto Image del panel
+
+    [Header("Sprites")]
+    public Sprite defaultNarratorSprite; // El sprite que se usa siempre por defecto
 
     [Header("Configuración de Movimiento")]
-    [Tooltip("Posición X cuando el panel no se ve (fuera de pantalla)")]
     public float xHidden = 950f; 
-    [Tooltip("Posición X cuando el panel está a la vista")]
     public float xVisible = -177f; 
     public float slideSpeed = 10f;
 
@@ -23,30 +26,44 @@ public class NarratorUI : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        // Colocamos el panel en su sitio inicial (oculto)
         Vector2 pos = sidePanel.anchoredPosition;
         pos.x = xHidden;
         sidePanel.anchoredPosition = pos;
+
+        // Establecer el sprite inicial
+        if (narratorPortrait != null && defaultNarratorSprite != null)
+            narratorPortrait.sprite = defaultNarratorSprite;
     }
 
-    public void TriggerDialogue(List<string> lines)
+    // Sobrecarga del método: Si no pasan sprite, usa null (que luego trataremos como el default)
+    public void TriggerDialogue(List<string> lines, Sprite customSprite = null)
     {
         if (isShowing) return;
-        StartCoroutine(ShowSequence(lines));
+        StartCoroutine(ShowSequence(lines, customSprite));
     }
 
-    private IEnumerator ShowSequence(List<string> lines)
+    private IEnumerator ShowSequence(List<string> lines, Sprite customSprite)
     {
         isShowing = true;
 
-        // 1. Entrar (Derecha -> Izquierda)
+        // 0. Cambiar el sprite: si customSprite es null, usa el default
+        if (narratorPortrait != null)
+        {
+            narratorPortrait.sprite = (customSprite != null) ? customSprite : defaultNarratorSprite;
+        }
+
+        // 1. Entrar
         yield return StartCoroutine(MoveToX(xVisible));
 
         // 2. Escribir texto
         yield return StartCoroutine(textAnimator.PlaySpecificLines(lines));
 
-        // 3. Salir (Izquierda -> Derecha)
+        // 3. Salir
         yield return StartCoroutine(MoveToX(xHidden));
+
+        // 4. Volver al sprite por defecto para la próxima vez
+        if (narratorPortrait != null)
+            narratorPortrait.sprite = defaultNarratorSprite;
 
         isShowing = false;
     }

@@ -70,30 +70,71 @@ public class StroopPuzzleManager : MonoBehaviour
         StartCoroutine(NextRound());
     }
 
-    IEnumerator NextRound()
+IEnumerator NextRound()
+{
+    if (currentRound < totalRounds)
     {
-        if (currentRound < totalRounds)
-        {
-            currentRound++;
-            UpdateRoundUI();
-            SetupChallenge();
-            
-            currentTime = roundTime;
-            while (currentTime > 0)
-            {
-                currentTime -= Time.deltaTime;
-                timerText.text = currentTime.ToString("F1") + "s";
-                yield return null;
-            }
+        currentRound++;
+        UpdateRoundUI();
 
-            ProcessAnswer(""); 
+        // --- NUEVA LÓGICA DE DIFICULTAD ---
+        if (currentRound <= 5)
+        {
+            // Rondas 1 a 5: Orden original siempre
+            InitializeChoices();
         }
         else
         {
-            EndPuzzle();
+            // Ronda 6 en adelante: Cambiar nombres de sitio cada vez
+            ShuffleChoices();
         }
+        // ----------------------------------
+
+        SetupChallenge();
+        
+        currentTime = roundTime;
+        while (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            timerText.text = currentTime.ToString("F1") + "s";
+            yield return null;
+        }
+
+        ProcessAnswer(""); 
+    }
+    else
+    {
+        EndPuzzle();
+    }
+}
+private void ShuffleChoices()
+{
+    // Creamos una lista temporal con los datos del pool de colores
+    List<StroopData> shuffledPool = new List<StroopData>(colorPool);
+
+    // Algoritmo de barajado Fisher-Yates
+    for (int i = 0; i < shuffledPool.Count; i++)
+    {
+        StroopData temp = shuffledPool[i];
+        int randomIndex = Random.Range(i, shuffledPool.Count);
+        shuffledPool[i] = shuffledPool[randomIndex];
+        shuffledPool[randomIndex] = temp;
     }
 
+    // Asignamos los nuevos nombres a las casillas
+    for (int i = 0; i < choices.Count; i++)
+    {
+        if (i < shuffledPool.Count)
+        {
+            choices[i].colorName = shuffledPool[i].name;
+            if (choices[i].textUI != null)
+            {
+                choices[i].textUI.text = shuffledPool[i].name;
+            }
+        }
+    }
+    Debug.Log("<color=orange>Casillas barajadas!</color>");
+}
 void SetupChallenge()
 {
     // 1. Elegir palabra e índice de color aleatorios
@@ -165,32 +206,39 @@ void SetupChallenge()
     }
 
 void EndPuzzle()
-    {
-        isGameActive = false;
-        timerText.text = "0.0s";
-        indicatorCanvas.localEulerAngles = Vector3.zero;
-        mainIndicatorText.enableVertexGradient = false;
+{
+    isGameActive = false;
+    timerText.text = "0.0s";
+    indicatorCanvas.localEulerAngles = Vector3.zero;
+    mainIndicatorText.enableVertexGradient = false;
 
-        if (correctAnswers >= 5)
-        {
-            mainIndicatorText.text = "¡COMPLETADO!";
-            mainIndicatorText.color = Color.green; // Color verde de éxito
-            onPuzzleComplete.Invoke();
-            AddFinalPoints();
-        }
-        else
-        {
-            mainIndicatorText.text = "REINTENTAR";
-            mainIndicatorText.color = Color.red; // Color rojo de fallo
-        }
+    if (correctAnswers >= 5)
+    {
+        // Determinamos el título según los aciertos
+        if (correctAnswers == 10) 
+            mainIndicatorText.text = "MESTRE DEL STROOP";
+        else if (correctAnswers >= 7) 
+            mainIndicatorText.text = "EXPERT DEL STROOP";
+        else 
+            mainIndicatorText.text = "APRENENT DEL STROOP";
+
+        mainIndicatorText.color = Color.green; 
+        onPuzzleComplete.Invoke();
+        AddFinalPoints();
     }
+    else
+    {
+        mainIndicatorText.text = "REINTENTAR";
+        mainIndicatorText.color = Color.red; 
+    }
+}
 
     void AddFinalPoints()
     {
         if (Score.Instance == null) return;
-        if (correctAnswers == 10) Score.Instance.AddPoints(150f, "Stroop Maestro");
-        else if (correctAnswers >= 7) Score.Instance.AddPoints(100f, "Stroop Experto");
-        else if (correctAnswers >= 5) Score.Instance.AddPoints(50f, "Stroop Aprobado");
+        if (correctAnswers == 10) Score.Instance.AddPoints(150f, "Mestre del Stroop");
+        else if (correctAnswers >= 7) Score.Instance.AddPoints(100f, "Expert del Stroop");
+        else if (correctAnswers >= 5) Score.Instance.AddPoints(50f, "Aprenent del Stroop");
     }
 
     void UpdateRoundUI()

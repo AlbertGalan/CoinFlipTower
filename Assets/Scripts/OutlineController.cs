@@ -22,6 +22,7 @@ public class OutlineController : MonoBehaviour
     [SerializeField] private Transform beamOrigin;
     [SerializeField] private GameObject blueWand;
     [SerializeField] private GameObject greenWand;
+    [SerializeField] private PauseManager pauseManager;
     
     private GameObject currentOutlinedObject;
     private int originalLayer;
@@ -56,10 +57,23 @@ public class OutlineController : MonoBehaviour
         }
     }
 
-    void Update()
+ void Update()
+{
+    // Si el PauseManager existe y el juego está pausado, abortamos todo
+    if (pauseManager != null && pauseManager.IsPaused)
     {
-        HandleOutlineAndInteraction();
+        // Importante: Si pausamos mientras el rayo estaba activo, lo apagamos
+        if (beamVisual.activeSelf)
+        {
+            beamVisual.SetActive(false);
+            DisableCurrentOutline();
+            HideAllWands();
+        }
+        return; 
     }
+
+    HandleOutlineAndInteraction();
+}
 
     private void HandleOutlineAndInteraction()
     {
@@ -195,6 +209,13 @@ private void InteractWithCurrentObject()
 {
     if (currentOutlinedObject != null)
     {
+        // --- NUEVA LÓGICA EasterDS ---
+        EasterDS eds = currentOutlinedObject.GetComponent<EasterDS>();
+        if (eds != null)
+        {
+            eds.ActivateEasterDS();
+            return; 
+        }
         // --- NUEVA LÓGICA EASTER EGG ---
         EasterEggBox eggBox = currentOutlinedObject.GetComponent<EasterEggBox>();
         if (eggBox != null)

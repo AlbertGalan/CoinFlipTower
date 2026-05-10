@@ -8,16 +8,17 @@ public class LevelToResultsTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Solo actuamos si es el jugador y no se ha disparado ya
         if (hasTriggered || !other.CompareTag("Player")) return;
         hasTriggered = true;
 
-        // Guardem dades definitives per a la pantalla de resultats
+        // 1. Guardamos datos definitivos para la pantalla de resultados
         if (Score.Instance != null)
         {
-            Score.Instance.SaveLastScore(); // Això fa servir el teu mètode original que guarda LastScore i LastTime
+            Score.Instance.SaveLastScore(); 
         }
 
-        // Guardem la ruta del jugador
+        // 2. Guardamos la ruta del jugador para mostrarla en resultados
         PlayerRouteData routeData = other.GetComponent<PlayerRouteData>();
         if (routeData != null && routeData.tieneRutaAsignada)
         {
@@ -28,7 +29,20 @@ public class LevelToResultsTrigger : MonoBehaviour
             PlayerPrefs.SetString("FinalRoute", "Cap");
         }
 
+        // 3. Forzamos el guardado de PlayerPrefs en disco
         PlayerPrefs.Save();
-        SceneManager.LoadScene(resultsSceneName);
+
+        // 4. CAMBIO CLAVE: Usamos el LoadingManager para la transición
+        if (LoadingManager.Instance != null)
+        {
+            Debug.Log("<color=green>Cargando resultados mediante LoadingManager...</color>");
+            LoadingManager.Instance.LoadScene(resultsSceneName);
+        }
+        else
+        {
+            // Fallback por si el LoadingManager no existe en la escena
+            Debug.LogWarning("LoadingManager no encontrado. Cargando de forma brusca.");
+            SceneManager.LoadScene(resultsSceneName);
+        }
     }
 }

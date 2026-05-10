@@ -92,7 +92,7 @@ public class UserManager : MonoBehaviour
         {
             onComplete?.Invoke(true);
             yield return new WaitForSeconds(networkDelay);
-            StartGame();
+            //StartGame();
             yield break;
         }
 
@@ -150,7 +150,7 @@ public class UserManager : MonoBehaviour
 
                     // Iniciar la partida
                     onComplete?.Invoke(true);
-                    StartGame();
+                    //StartGame();
                 }
                 else
                 {
@@ -167,19 +167,30 @@ public class UserManager : MonoBehaviour
         }
     }
 
-    private void StartGame()
+// Modifica tu método en UserManager para que sea así:
+public void StartGame(string sceneName = "Cinematica")
+{
+    Debug.Log("Iniciando partida...");
+    
+    // 1. Lógica interna de sesión
+    if (GameSessionLogger.Instance != null)
     {
-        Debug.Log("Iniciando partida...");
-        
-        // Reiniciar el logger de sesión para una nueva partida
-        if (GameSessionLogger.Instance != null)
-        {
-            GameSessionLogger.Instance.InitializeNewSession();
-        }
-        
-        SceneManager.LoadScene("Cinematica");
+        GameSessionLogger.Instance.InitializeNewSession();
     }
 
+    // 2. DISPARAR LA PANTALLA DE CARGA
+    if (LoadingManager.Instance != null)
+    {
+        // Esto activará el Canvas y hará el LoadSceneAsync
+        LoadingManager.Instance.LoadScene(sceneName);
+    }
+    else
+    {
+        // Fallback por si acaso el manager no está en la escena
+        Debug.LogWarning("LoadingManager no encontrado, cargando escena de forma brusca.");
+        SceneManager.LoadScene(sceneName);
+    }
+}
     /// <summary>
     /// Publica la puntuació a la classificació i carrega la següent escena segons si l'usuari ha valorat o no
     /// </summary>

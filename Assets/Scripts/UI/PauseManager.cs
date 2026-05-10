@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
     public bool allowPauseWithEsc = true;
     public bool lockCursorOnResume = true;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     public bool IsPaused => isPaused;
 

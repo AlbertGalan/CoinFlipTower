@@ -51,6 +51,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PantallaPrincipal
+    uniqueID: 388766355
+    locked: 0
+  - name: Loading
+    uniqueID: 3182564257
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

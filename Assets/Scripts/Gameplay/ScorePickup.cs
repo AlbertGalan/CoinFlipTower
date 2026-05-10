@@ -13,7 +13,9 @@ public class ScorePickup : MonoBehaviour
     public string zoneId = "";
 
     [Header("Audio")]
-    [Tooltip("Clip de so opcional que es reproduirà en recollir l'objecte.")]
+    [Tooltip("Clip de so que sonarà quan l'objecte aparegui/s'activi.")]
+    public AudioClip spawnSound;
+    [Tooltip("Clip de so que sonarà en recollir l'objecte.")]
     public AudioClip pickupSound;
     [Range(0f, 1f)]
     public float volume = 0.7f;
@@ -25,9 +27,19 @@ public class ScorePickup : MonoBehaviour
 
     [Header("Narrativa")]
     public List<string> narratorLines;
+    public Sprite customNarratorSprite; // Nueva referencia para el sprite específico
 
     private Vector3 startPos;
     private float offset;
+
+    // Se ejecuta cada vez que el objeto pasa de estar desactivado a activado
+    private void OnEnable()
+    {
+        if (spawnSound != null)
+        {
+            AudioSource.PlayClipAtPoint(spawnSound, transform.position, volume);
+        }
+    }
 
     void Start()
     {
@@ -60,10 +72,9 @@ public class ScorePickup : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        // --- LÓGICA DE AUDIO ---
+        // --- LÓGICA DE AUDIO (RECOGIDA) ---
         if (pickupSound != null)
         {
-            // Reproduce el sonido en la posición actual antes de destruir el objeto
             AudioSource.PlayClipAtPoint(pickupSound, transform.position, volume);
         }
 
@@ -79,8 +90,8 @@ public class ScorePickup : MonoBehaviour
         // --- NARRATIVA ---
         if (narratorLines.Count > 0 && NarratorUI.Instance != null)
         {
-            NarratorUI.Instance.TriggerDialogue(narratorLines);
-        }
+            NarratorUI.Instance.TriggerDialogue(narratorLines, customNarratorSprite);        
+}
 
         Destroy(gameObject);
     }

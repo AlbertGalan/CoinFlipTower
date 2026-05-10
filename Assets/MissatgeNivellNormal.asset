@@ -15,10 +15,10 @@ MonoBehaviour:
   messageId: 
   lines:
   - characterName: "Guardi\xE0"
-    text: Bones Edgar, has aconseguit escapar la primera prova, enhorabona.
+    text: Bones Edgar,<br> has aconseguit escapar la primera prova, enhorabona.
     guardianAnimationTrigger: Talk
-    overrideGuardianPosition: 1
-    guardianPosition: {x: 9.127, y: 0.436, z: 11.807}
+    overrideGuardianPosition: 0
+    guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "Guardi\xE0"
@@ -37,15 +37,15 @@ MonoBehaviour:
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  pausaArtificial: 1
+  pausaArtificial: 0
   playerControlledAdvance: 1
   lineDisplayTime: 2
   timeBetweenLines: 0.5
   advanceKey: 101
   canSkip: 1
   skipKey: 112
-  showGuardian: 1
-  guardianPosition: {x: 9.127, y: 0.436, z: 11.807}
+  showGuardian: 0
+  guardianPosition: {x: 0, y: 0, z: 0}
   guardianRotation: {x: 0, y: 0, z: 0}
   guardianScale: {x: 1, y: 1, z: 1}
   guardianRelativeToCamera: 0
