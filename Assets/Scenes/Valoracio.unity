@@ -1836,9 +1836,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8575533967695760789, guid: c49bf6c389e2b704aae5ef5a5b139726, type: 3}
       insertIndex: -1
       addedObject: {fileID: 874345727}
-    - targetCorrespondingSourceObject: {fileID: 8575533967695760789, guid: c49bf6c389e2b704aae5ef5a5b139726, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 874345730}
   m_SourcePrefab: {fileID: 100100000, guid: c49bf6c389e2b704aae5ef5a5b139726, type: 3}
 --- !u!23 &874345724 stripped
 MeshRenderer:
@@ -1937,23 +1934,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &874345730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874345725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450f1dc733bd5af439fa0bb38a22ff52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ScorePickup
-  pointsToAdd: 100
-  pickupName: Pickup
-  rotationSpeed: {x: 0, y: 120, z: 0}
-  floatAmplitude: 0.25
-  floatSpeed: 1
 --- !u!1001 &883288701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2534,6 +2514,8 @@ MonoBehaviour:
   canvasToRotate: {fileID: 963152790}
   containerChildName: MenuContent
   rotationSpeed: 5
+  syncWithPlayerGravity: 1
+  playerGravityController: {fileID: 0}
   blockDuringPause: 1
   blockDuringArtificialPause: 1
   blockWhileGrabbing: 1
@@ -3079,9 +3061,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::ScorePickup
   pointsToAdd: 100
   pickupName: Pickup
+  pickupId: 
+  zoneId: 
+  spawnSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  volume: 0.7
   rotationSpeed: {x: 0, y: 120, z: 0}
   floatAmplitude: 0.25
   floatSpeed: 1
+  narratorLines: []
+  customNarratorSprite: {fileID: 0}
 --- !u!1001 &1063235046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3274,9 +3263,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::ScorePickup
   pointsToAdd: 100
   pickupName: Pickup
+  pickupId: 
+  zoneId: 
+  spawnSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  volume: 0.7
   rotationSpeed: {x: 0, y: 120, z: 0}
   floatAmplitude: 0.25
   floatSpeed: 1
+  narratorLines: []
+  customNarratorSprite: {fileID: 0}
 --- !u!1001 &1070024033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3644,9 +3640,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::ScorePickup
   pointsToAdd: 100
   pickupName: Pickup
+  pickupId: 
+  zoneId: 
+  spawnSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  volume: 0.7
   rotationSpeed: {x: 0, y: 120, z: 0}
   floatAmplitude: 0.25
   floatSpeed: 1
+  narratorLines: []
+  customNarratorSprite: {fileID: 0}
 --- !u!1 &1117609047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3781,8 +3784,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Fer  m\xE9s tard"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3917,8 +3920,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'General:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4228,8 +4231,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Dificultat:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4614,8 +4617,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Gr\xE0fics:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4925,8 +4928,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enviar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5236,8 +5239,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Jugabilitat:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5639,8 +5642,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Fes la teva valoraci\xF3:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6306,8 +6309,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Concord\xE0ncia:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
+  m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6750,9 +6753,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::ScorePickup
   pointsToAdd: 100
   pickupName: Pickup
+  pickupId: 
+  zoneId: 
+  spawnSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  volume: 0.7
   rotationSpeed: {x: 0, y: 120, z: 0}
   floatAmplitude: 0.25
   floatSpeed: 1
+  narratorLines: []
+  customNarratorSprite: {fileID: 0}
 --- !u!1 &2036474677
 GameObject:
   m_ObjectHideFlags: 0

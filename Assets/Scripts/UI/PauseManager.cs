@@ -7,6 +7,8 @@ public class PauseManager : MonoBehaviour
     public bool allowPauseWithEsc = true;
     public bool lockCursorOnResume = true;
 
+    public GameObject optionsPanel; // Referencia al panel de opciones para actualizar la imagen de la ruta
+
     public bool isPaused = false;
 
     public bool IsPaused => isPaused;
@@ -32,6 +34,7 @@ public class PauseManager : MonoBehaviour
         if (isPaused)
         {
             ResumeGame();
+            optionsPanel.SetActive(false); // Asegúrate de que el panel de opciones se cierre al reanudar
         }
         else
         {

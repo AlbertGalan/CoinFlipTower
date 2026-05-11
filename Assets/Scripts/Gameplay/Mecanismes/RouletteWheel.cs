@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events; // Necesario para UnityEvent
 
 public class RouletteWheel : MonoBehaviour
 {
@@ -7,13 +8,19 @@ public class RouletteWheel : MonoBehaviour
     public float tiempoGiro = 3.5f;
     public int vueltasMinimas = 4;
     
+    [Header("Eventos")]
+    [Tooltip("Evento que se ejecutará SOLO la primera vez que la ruleta dé un resultado")]
+    public UnityEvent onFirstResult;
+
     private bool estaGirando = false;
     private const float constanteY = -90f;
     private const float constanteZ = 90f;
 
     public enum TipoElemento { Terra, Gel, Foc }
-
     private PlayerRouteData playerLog;
+
+    // Clave para guardar en memoria si ya se activó el primer resultado
+    private const string FirstSpinKey = "RouletteFirstSpinDone";
 
     private void Start()
     {
@@ -24,7 +31,6 @@ public class RouletteWheel : MonoBehaviour
     {
         if (estaGirando) return;
 
-        // La ruleta SIEMPRE es aleatoria, no importa si es el giro 1 o el 100
         int suerte = Random.Range(0, 3); 
         TipoElemento resultado = (TipoElemento)suerte;
 
@@ -63,13 +69,40 @@ public class RouletteWheel : MonoBehaviour
         transform.eulerAngles = new Vector3(anguloFinalX, constanteY, constanteZ);
         estaGirando = false;
 
-        // Intentamos enviar el resultado al jugador
         if (playerLog != null)
         {
-            // El script del jugador se encarga de ignorarlo si ya tiene una ruta
             playerLog.SetRuta(resultado);
         }
 
+        // --- LÓGICA DEL PRIMER RESULTADO ---
+        CheckFirstTimeEvent();
+
         Debug.Log("<color=yellow>Ruleta Aturada!</color> Resultado visual: **" + resultado + "**");
+    }
+
+    private void CheckFirstTimeEvent()
+    {
+        // Comprobamos si ya se ha disparado antes (usando PlayerPrefs para que sea persistente)
+        if (PlayerPrefs.GetInt(FirstSpinKey, 0) == 0)
+        {
+            Debug.Log("<color=cyan>Ruleta:</color> ¡Primer resultado detectado! Disparando evento...");
+            
+            // Disparamos el evento de Unity
+            if (onFirstResult != null)
+            {
+                onFirstResult.Invoke();
+            }
+
+            // Marcamos como hecho para que no vuelva a ocurrir
+            PlayerPrefs.SetInt(FirstSpinKey, 1);
+            PlayerPrefs.Save();
+        }
+    }
+    
+    // Método extra por si necesitas resetear esta lógica desde otro script o botón de debug
+    public void ResetFirstSpinStatus()
+    {
+        PlayerPrefs.SetInt(FirstSpinKey, 0);
+        PlayerPrefs.Save();
     }
 }

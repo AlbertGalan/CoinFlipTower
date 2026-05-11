@@ -43,6 +43,8 @@ public class GravityController : MonoBehaviour
     // IsStuck estat (utilitzat quan el jugador s'enganxa al sostre)
     public bool IsStuck { get; private set; } = false;
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -133,6 +135,10 @@ public class GravityController : MonoBehaviour
         {
             canChangeGravityByContact = false;
         }
+        if (SoundGravityManager.Instance != null)
+    {
+        SoundGravityManager.Instance.PlayGravitySound(gravityInverted, transform.position);
+    }
 
         // Crude snap: when player flips gravity, adjust Y by +/-2 to avoid clipping
         if (isPlayer && rb != null && !IsStuck)
@@ -212,6 +218,10 @@ private void OnTriggerEnter(Collider other)
             canChangeGravityByContact = false;
         }
 
+if (SoundGravityManager.Instance != null)
+    {
+        SoundGravityManager.Instance.PlayGravitySound(gravityInverted, transform.position);
+    }
         // Crude snap as above
         if (isPlayer && rb != null && !IsStuck)
         {

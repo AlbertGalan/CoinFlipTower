@@ -10,37 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d03fddb06cad0684baa0f4d22349b759, type: 3}
-  m_Name: MissatgeNivellNormal
+  m_Name: MissatgeRutaImportant
   m_EditorClassIdentifier: Scripts::TutorialMessage
   messageId: 
   lines:
   - characterName: "Guardi\xE0"
-    text: Bones Edgar,<br> has aconseguit escapar la primera prova, enhorabona.
-    guardianAnimationTrigger: Talk
+    text: Perfecte, ara es molt important <br>que segueixis la ruta que se t'ha assignat.
+    guardianAnimationTrigger: 
+    overrideGuardianPosition: 0
+    guardianPosition: {x: 0, y: 0, z: 0}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  - characterName: Edgar
+    text: D'acord.
+    guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "Guardi\xE0"
-    text: "Ara el teu dest\xED es decidir\xE0, <br> haur\xE0s de completar 1 de les
-      3 rutes per poder escapar, <br> aconseguir un artefacte i posar-ho al seu respectiu
-      altar."
-    guardianAnimationTrigger: Talk
+    text: Es molt important, entesos?
+    guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
-    text: Ara, estira de la palanca per saber quina ruta et toca.
-    guardianAnimationTrigger: Talk
-    overrideGuardianPosition: 0
-    guardianPosition: {x: 0, y: 0, z: 0}
-    overrideGuardianRotation: 0
-    guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
-    text: "Per estirar-la, prem el click dret<br> sobre la bolla vermella<br> i arrossega
-      el ratol\xED d'adalt a abaix"
-    guardianAnimationTrigger: Talk
+  - characterName: Edgar
+    text: Que si, que si...
+    guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0

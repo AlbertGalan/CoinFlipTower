@@ -13,10 +13,16 @@ public class MenuManager : MonoBehaviour
     public Button settingsButton;
     public Button quitButton;
     public Button classificationButton;
+
+    [Header("Audio")]
+    public AudioSource menuAudioSource; // El componente que emitirá el sonido
+    public AudioClip menuMusicClip;     // El archivo de música .mp3 o .wav
     
     [Header("UI Panels")]
     public GameObject classificationPanel;
     public GameObject credentialsPanel;
+
+    public GameObject settingsPanel;
     
     //[Header("Last Score Display")]
     //[Tooltip("TextMeshProUGUI per mostrar la darrera puntuació")]
@@ -27,6 +33,14 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+
+        // --- LÓGICA DE MÚSICA ---
+        if (menuAudioSource != null && menuMusicClip != null)
+        {
+            menuAudioSource.clip = menuMusicClip;
+            menuAudioSource.loop = true; // Queremos que la música no pare
+            menuAudioSource.Play();
+        }
         // Mostrar cursor en el menú
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -92,7 +106,14 @@ public class MenuManager : MonoBehaviour
 
     void OnSettingsClicked()
     {
-        Debug.Log("pulsado settings");
+        if(settingsPanel != null)
+        {
+            settingsPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("settingsPanel no está asignado en el Inspector");
+        }
     }
 
     void OnQuitClicked()

@@ -27,21 +27,23 @@ private void OnAcceptClicked()
 {
     string name = nameInputField.text;
     string email = emailInputField.text;
+
+    // --- GUARDAR EL NOMBRE ---
+    PlayerPrefs.SetString("PlayerName", name);
+    PlayerPrefs.Save(); // Asegura que se escriba en el disco
+    // -------------------------
+
     acceptButton.interactable = false;
 
     UserManager.Instance.VerifyAndStartGame(name, email, (success) =>
     {
         if (success)
         {
-            // 1. Si la referencia por Inspector se borró, la buscamos manualmente
             if (selectionPanel == null)
             {
-                Debug.LogWarning("La referencia se perdió, buscándola por nombre...");
-                // Asegúrate de que el objeto en la jerarquía se llame exactamente "Experiencia"
                 selectionPanel = GameObject.Find("Experiencia"); 
             }
 
-            // 2. Intentamos activar
             if (selectionPanel != null)
             {
                 selectionPanel.SetActive(true);
@@ -65,4 +67,6 @@ private void OnAcceptClicked()
         acceptButton.interactable = !string.IsNullOrWhiteSpace(nameInputField.text) && 
                                     !string.IsNullOrWhiteSpace(emailInputField.text);
     }
+
+    
 }
