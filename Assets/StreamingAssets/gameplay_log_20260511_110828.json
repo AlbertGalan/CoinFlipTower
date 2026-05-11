@@ -1,0 +1,56 @@
+{
+    "sessionId": "20260511_110828",
+    "startTime": "2026-05-11T11:08:28.2103697Z",
+    "endTime": "2026-05-11T11:09:12.9848377Z",
+    "totalPlaytime": 42.28691101074219,
+    "totalScore": 958,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 3
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cadira",
+            "duration": 0.9415607452392578,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:08:46.6835448Z"
+        },
+        {
+            "objectName": "Cadira",
+            "duration": 0.7447166442871094,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:08:55.4367436Z"
+        },
+        {
+            "objectName": "Cadira",
+            "duration": 1.5842666625976563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:08:57.6666119Z"
+        },
+        {
+            "objectName": "Chair",
+            "duration": 3.810565948486328,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:09:04.4046179Z"
+        },
+        {
+            "objectName": "Chair",
+            "duration": 1.0420799255371094,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:09:07.6929788Z"
+        },
+        {
+            "objectName": "Chair",
+            "duration": 1.2456398010253907,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:09:09.4747912Z"
+        }
+    ],
+    "easterEggs": []
+}

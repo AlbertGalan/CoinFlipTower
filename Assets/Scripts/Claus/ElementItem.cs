@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ElementItem : MonoBehaviour
 {
     public RouletteWheel.TipoElemento tipo;
     public GameObject portalToActivate;
+    public UnityEvent onCollected;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +18,8 @@ public class ElementItem : MonoBehaviour
             {
                 data.RecogerObjeto(tipo); // Le damos el objeto al jugador
             }
+
+            onCollected?.Invoke();
 
             if (portalToActivate != null) portalToActivate.SetActive(true);
             

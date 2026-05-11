@@ -1,0 +1,32 @@
+{
+    "sessionId": "20260511_110700",
+    "startTime": "2026-05-11T11:07:00.1340614Z",
+    "endTime": "2026-05-11T11:07:16.8607914Z",
+    "totalPlaytime": 13.926980972290039,
+    "totalScore": 986,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cadira",
+            "duration": 1.585902214050293,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:07:13.6624097Z"
+        },
+        {
+            "objectName": "Cadira",
+            "duration": 0.5205354690551758,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:07:15.0356142Z"
+        }
+    ],
+    "easterEggs": []
+}

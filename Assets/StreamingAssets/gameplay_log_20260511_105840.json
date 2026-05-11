@@ -1,0 +1,26 @@
+{
+    "sessionId": "20260511_105840",
+    "startTime": "2026-05-11T10:58:40.8254314Z",
+    "endTime": "2026-05-11T10:59:07.0362260Z",
+    "totalPlaytime": 23.727373123168947,
+    "totalScore": 976,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 3,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Shelf",
+            "duration": 5.450981140136719,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T10:59:04.4250187Z"
+        }
+    ],
+    "easterEggs": []
+}

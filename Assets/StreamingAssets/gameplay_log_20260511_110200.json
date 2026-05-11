@@ -1,0 +1,26 @@
+{
+    "sessionId": "20260511_110200",
+    "startTime": "2026-05-11T11:02:00.3683957Z",
+    "endTime": "2026-05-11T11:02:15.9203064Z",
+    "totalPlaytime": 13.30229377746582,
+    "totalScore": 987,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 0,
+            "objectFlips": 2
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Stool_round",
+            "duration": 3.1708788871765138,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-11T11:02:09.2525868Z"
+        }
+    ],
+    "easterEggs": []
+}

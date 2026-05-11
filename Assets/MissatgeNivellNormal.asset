@@ -22,15 +22,23 @@ MonoBehaviour:
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "Guardi\xE0"
-    text: "Ara el teu dest\xED es triar\xE0, <br>haur\xE0s de estirar de la palanca
-      que veus aqui."
+    text: "Ara el teu dest\xED es decidir\xE0, <br> haur\xE0s de completar 1 de les
+      3 rutes per poder escapar, <br> agafar l'artefacte del cofre i posar-ho al
+      seu respectiu altar."
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "Guardi\xE0"
-    text: "Per estirar-la, prem el click dret<br> sobre la bolla vermella<br> y arrossega
+    text: Ara, estira de la palanca per saber quina ruta et toca.
+    guardianAnimationTrigger: Talk
+    overrideGuardianPosition: 0
+    guardianPosition: {x: 0, y: 0, z: 0}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  - characterName: "Guardi\xE0"
+    text: "Per estirar-la, prem el click dret<br> sobre la bolla vermella<br> i arrossega
       el ratol\xED d'adalt a abaix"
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
