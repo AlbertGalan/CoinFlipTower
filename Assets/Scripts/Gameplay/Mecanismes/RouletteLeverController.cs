@@ -135,6 +135,7 @@ public class RouletteLeverController : MonoBehaviour
         }
     }
 
+
     private void ReturnToRest()
     {
         if (Mathf.Abs(currentAngleX - restAngleX) < 0.001f)

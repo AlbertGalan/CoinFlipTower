@@ -2050,7 +2050,7 @@ MonoBehaviour:
   quitButton: {fileID: 9403380}
   classificationButton: {fileID: 269810238}
   menuAudioSource: {fileID: 298890493}
-  menuMusicClip: {fileID: 8300000, guid: ade2fd5ebfbbbe9429fea170f9a569d8, type: 3}
+  menuMusicClip: {fileID: 8300000, guid: 881f683c49e70044b93fcb66c6355c7c, type: 3}
   classificationPanel: {fileID: 908927389}
   credentialsPanel: {fileID: 2086040530}
   settingsPanel: {fileID: 1741688029}

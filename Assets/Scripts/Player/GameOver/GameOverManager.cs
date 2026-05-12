@@ -9,8 +9,17 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameDisplayText;
     [SerializeField] private Button menuPrincipalButton;
 
+    public AudioSource gameoverAudioSource; // El componente que emitirá el sonido
+    public AudioClip gameoverMusicClip;     // El archivo de música .mp3 o .wav
+
 private void Start()
 {
+    if(gameoverAudioSource != null && gameoverMusicClip != null)
+    {
+        gameoverAudioSource.clip = gameoverMusicClip;
+        gameoverAudioSource.loop = false; // Queremos que la música se reproduzca solo una vez
+        gameoverAudioSource.Play();
+    }
     // --- RECUPERAR EL CURSOR ---
     Cursor.visible = true;
     Cursor.lockState = CursorLockMode.None; 

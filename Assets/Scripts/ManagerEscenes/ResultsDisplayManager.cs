@@ -27,8 +27,21 @@ public class ResultsDisplayManager : MonoBehaviour
     private int finalScore;
     private float finalTime;
 
+    [Header("Audio")]
+    public AudioSource resultsAudioSource; // El componente que emitirá el sonido
+    public AudioClip resultsMusicClip;     // El archivo de música .mp3 o .wav
+
+    [SerializeField] private TextMeshProUGUI nameDisplayText;
+
+
     void Start()
     {
+        if(resultsAudioSource != null && resultsMusicClip != null)
+        {
+            resultsAudioSource.clip = resultsMusicClip;
+            resultsAudioSource.loop = true; // Queremos que la música no pare
+            resultsAudioSource.Play();
+        }
         // 1. Recuperar datos de PlayerPrefs
         finalScore = Mathf.RoundToInt(PlayerPrefs.GetFloat("LastScore", 0));
         finalTime = PlayerPrefs.GetFloat("LastTime", 0);
@@ -52,6 +65,9 @@ public class ResultsDisplayManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        string savedName = PlayerPrefs.GetString("PlayerName", "Jugador");
+        if (nameDisplayText != null) nameDisplayText.text = savedName;
     }
 
     private void ActivarEscenarioRuta(string ruta)

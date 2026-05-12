@@ -1,0 +1,57 @@
+{
+    "sessionId": "20260512_082416",
+    "startTime": "2026-05-12T08:24:16.4927390Z",
+    "endTime": "2026-05-12T08:26:21.6023451Z",
+    "totalPlaytime": 31.467754364013673,
+    "totalScore": 969,
+    "zoneVisits": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-12T08:24:36.7278840Z",
+            "exitedAt": "2026-05-12T08:25:06.6772703Z",
+            "duration": 5.799995422363281,
+            "playerFlips": 1,
+            "objectFlips": 0
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "timeSpent": 5.799995422363281,
+            "entries": 1,
+            "playerFlips": 1,
+            "objectFlips": 0
+        },
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 2.2928848266601564,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:25:34.9185721Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 4.9298095703125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:25:43.7144810Z"
+        }
+    ],
+    "easterEggs": [
+        {
+            "pickupId": "hitem3d",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        }
+    ]
+}
