@@ -35,14 +35,14 @@ MonoBehaviour:
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: Edgar
+  - characterName: <color=orange>Edgar</color>
     text: Que si, que si...
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  pausaArtificial: 0
+  pausaArtificial: 1
   playerControlledAdvance: 1
   lineDisplayTime: 2
   timeBetweenLines: 0.5

@@ -15,31 +15,40 @@ MonoBehaviour:
   messageId: 
   lines:
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: Bones Edgar,<br> has aconseguit escapar la primera prova, enhorabona.
+    text: "Bones Edgar, veig que has aconseguit escapar \nde la primera prova, enhorabona."
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: "Ara el teu dest\xED es decidir\xE0, <br> haur\xE0s de completar 1 de les
-      3 rutes per poder escapar, <br> aconseguir un artefacte i posar-ho al seu respectiu
-      altar."
+    text: "Ara el teu dest\xED es decidir\xE0,\nhaur\xE0s de completar 1 de les 3
+      rutes\nper poder escapar. "
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: Ara, estira de la palanca per saber quina ruta et toca.
+    text: 'Aconseguir l''artefacte al final
+
+      de la ruta i posar-ho al seu respectiu
+      altar.'
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: "Per estirar-la, prem el click dret<br> sobre la bolla vermella<br> i arrossega
-      el ratol\xED d'adalt a abaix"
+    text: "Ara, estira de la palanca \nper saber quina ruta et toca."
+    guardianAnimationTrigger: Talk
+    overrideGuardianPosition: 0
+    guardianPosition: {x: 0, y: 0, z: 0}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Per estirar-la, prem el click esquerre<br> sobre la bolla vermella\ni
+      arrossega el ratol\xED d'adalt cap abaix."
     guardianAnimationTrigger: Talk
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}

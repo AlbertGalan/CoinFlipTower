@@ -12,6 +12,7 @@ public class SoldierPuzzleSlot : MonoBehaviour
 
     public UnityEvent OnBlockPlaced;
     public UnityEvent OnBlockRemoved;
+    
 
     private SoldierPuzzleManager manager;
     private DestructibleBlock currentBlock;

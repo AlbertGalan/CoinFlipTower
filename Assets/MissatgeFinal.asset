@@ -15,8 +15,8 @@ MonoBehaviour:
   messageId: 
   lines:
   - characterName: "<color=red>El Guardi\xE0</color>"
-    text: "Molt b\xE9 Edgar,<br>  ara ja pots posar l'artefacte de la teva ruta<br>
-      al altar\nprement <E>"
+    text: "Molt b\xE9 Edgar,  ara ja pots posar l'artefacte\nde la teva ruta al altar
+      prement <E>"
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}

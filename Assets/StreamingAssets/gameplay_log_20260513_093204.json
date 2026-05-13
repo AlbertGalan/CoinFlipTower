@@ -1,0 +1,37 @@
+{
+    "sessionId": "20260513_093204",
+    "startTime": "2026-05-13T09:32:04.9294089Z",
+    "endTime": "2026-05-13T09:32:25.3027371Z",
+    "totalPlaytime": 1.5685886144638062,
+    "totalScore": 1198,
+    "zoneVisits": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-13T09:32:14.9497359Z",
+            "exitedAt": "2026-05-13T09:32:25.3027371Z",
+            "duration": 9.192660331726075,
+            "playerFlips": 0,
+            "objectFlips": 0
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "timeSpent": 9.192660331726075,
+            "entries": 1,
+            "playerFlips": 0,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "GameBoy model",
+            "pickupName": "GameBoy",
+            "collected": true,
+            "zoneId": "TutorialRoom_01",
+            "collectedAt": "2026-05-13T09:32:18.1820840Z"
+        }
+    ]
+}

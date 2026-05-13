@@ -1,0 +1,56 @@
+{
+    "sessionId": "20260513_075841",
+    "startTime": "2026-05-13T07:58:41.5030331Z",
+    "endTime": "2026-05-13T08:00:46.9419159Z",
+    "totalPlaytime": 63.182350158691409,
+    "totalScore": 937,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 0,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 5.168134689331055,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T07:59:54.5608670Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.2748908996582031,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T07:59:57.6828897Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 0.62152099609375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:00:04.8356271Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.0328140258789064,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:00:09.6040805Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.6832847595214844,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:00:12.8145185Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.748992919921875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:00:18.9414275Z"
+        }
+    ],
+    "easterEggs": []
+}

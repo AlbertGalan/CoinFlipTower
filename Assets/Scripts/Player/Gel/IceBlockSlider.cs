@@ -16,6 +16,8 @@ public class IceBlockSlider : MonoBehaviour
     private GravityController gravityCtrl;
     private Vector3 lateralMomentum = Vector3.zero;
 
+    public bool IsSliding => isSliding;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -1,0 +1,68 @@
+{
+    "sessionId": "20260513_090333",
+    "startTime": "2026-05-13T09:03:33.1639083Z",
+    "endTime": "2026-05-13T09:04:24.7166081Z",
+    "totalPlaytime": 49.97789764404297,
+    "totalScore": 950,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 3
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.5024747848510742,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:03:47.7114053Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.009042739868164063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:03.9041773Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.018863677978515626,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:06.9956348Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.0099334716796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:08.6254620Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.10845184326171875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:10.3989350Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.08337783813476563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:11.3307693Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.2228240966796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:12.1260067Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.685546875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T09:04:18.9373229Z"
+        }
+    ],
+    "easterEggs": []
+}

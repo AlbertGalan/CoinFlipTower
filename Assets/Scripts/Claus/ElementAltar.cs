@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ElementAltar : MonoBehaviour
 {
@@ -7,8 +8,8 @@ public class ElementAltar : MonoBehaviour
     
     [Header("Referencias a Desbloquear")]
     public GameObject objectBehindDoor; 
-    public Animator doorAnimator;      
-    public string boolName = "isOpened"; 
+    [Tooltip("Se dispara cuando el altar se activa para que gestiones la puerta desde el Inspector.")]
+    public UnityEvent onAltarActivated;
 
     [Header("Visual del Objeto en Altar")]
     [Tooltip("El objeto que ya está posicionado sobre el altar.")]
@@ -95,6 +96,6 @@ public class ElementAltar : MonoBehaviour
         }
 
         if (objectBehindDoor != null) objectBehindDoor.SetActive(true);
-        if (doorAnimator != null) doorAnimator.SetBool(boolName, true);
+        if (onAltarActivated != null) onAltarActivated.Invoke();
     }
 }

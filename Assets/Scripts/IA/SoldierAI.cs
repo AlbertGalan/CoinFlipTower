@@ -43,6 +43,12 @@ public class SoldierAI : MonoBehaviour
     private float nextFireTime = 0f;
     private DestructibleBlock currentTargetBlock;
 
+    [Header("Configuració d'Àudio")]
+    public AudioClip chasingSound;
+    public AudioClip attackingSound;
+
+    public AudioSource audioSource;
+
     [Header("Configuració de Superficie")]
     public bool isCeilingSoldier = false;
 
@@ -61,6 +67,7 @@ public class SoldierAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         detectionRangeSqr = detectionRange * detectionRange;
         attackRangeSqr = attackRange * attackRange;
         laserWait = new WaitForSeconds(laserDuration);
@@ -166,6 +173,7 @@ public class SoldierAI : MonoBehaviour
         {
             if (viewLight != null) viewLight.color = colorCombat;
             currentState = State.Chasing;
+            PlayChasingSound();
             agent.isStopped = false;
         }
         else
@@ -292,7 +300,7 @@ public class SoldierAI : MonoBehaviour
         if (currentTargetBlock == null) { ReturnToPatrol(); return; }
         float sqrDist = (currentTargetBlock.transform.position - transform.position).sqrMagnitude;
         if (sqrDist > detectionRangeSqr) { ReturnToPatrol(); return; }
-        if (sqrDist <= attackRangeSqr) { currentState = State.Attacking; agent.isStopped = true; return; }
+        if (sqrDist <= attackRangeSqr) { currentState = State.Attacking; PlayAttackingSound(); agent.isStopped = true; return; }
         agent.isStopped = false;
         agent.SetDestination(currentTargetBlock.transform.position);
     }
@@ -301,21 +309,23 @@ public class SoldierAI : MonoBehaviour
     {
         if (currentTargetBlock != null && currentTargetBlock.isPlaced) 
 {
+    StopAttackingSound();
     ReturnToPatrol();
     return;
 }
-        if (currentTargetBlock == null) { ReturnToPatrol(); return; }
+        if (currentTargetBlock == null) { StopAttackingSound(); ReturnToPatrol(); return; }
         float sqrDist = (currentTargetBlock.transform.position - transform.position).sqrMagnitude;
         Vector3 dir = (currentTargetBlock.transform.position - transform.position).normalized;
 
         if (Physics.Raycast(transform.position + transform.up * 0.5f, dir, Vector3.Distance(transform.position, currentTargetBlock.transform.position), obstructionMask))
         {
+            StopAttackingSound();
             currentState = State.Chasing;
             agent.isStopped = false;
             return;
         }
 
-        if (sqrDist > attackRangeSqr) { currentState = State.Chasing; agent.isStopped = false; return; }
+        if (sqrDist > attackRangeSqr) { StopAttackingSound(); currentState = State.Chasing; agent.isStopped = false; return; }
 
         agent.isStopped = true;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir, transform.up), Time.deltaTime * 5f);
@@ -340,6 +350,32 @@ public class SoldierAI : MonoBehaviour
         currentState = State.Patrolling;
         agent.isStopped = false;
         GoToNextWaypoint();
+    }
+
+    void PlayChasingSound()
+    {
+        if (audioSource != null && chasingSound != null)
+        {
+            audioSource.clip = chasingSound;
+            audioSource.Play();
+        }
+    }
+
+    void PlayAttackingSound()
+    {
+        if (audioSource != null && attackingSound != null)
+        {
+            audioSource.clip = attackingSound;
+            audioSource.Play();
+        }
+    }
+
+    void StopAttackingSound()
+    {
+        if (audioSource != null && audioSource.isPlaying && audioSource.clip == attackingSound)
+        {
+            audioSource.Stop();
+        }
     }
 
 //Corrutina que controla la visualització del làser que parteix de l'arma

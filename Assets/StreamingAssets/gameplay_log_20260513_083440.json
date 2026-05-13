@@ -1,0 +1,27 @@
+{
+    "sessionId": "20260513_083440",
+    "startTime": "2026-05-13T08:34:40.3585214Z",
+    "endTime": "2026-05-13T08:35:06.1029514Z",
+    "totalPlaytime": 20.82975196838379,
+    "totalScore": 979,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "foc_",
+            "pickupName": "foc_",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-13T08:34:46.9410315Z"
+        }
+    ]
+}

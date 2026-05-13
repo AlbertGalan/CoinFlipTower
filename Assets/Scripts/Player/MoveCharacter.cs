@@ -21,8 +21,10 @@ public class MoveCharacter : MonoBehaviour
 
     [Header("Ice Sliding Settings")]
     public float slideSpeedMultiplier = 1.35f;
-    [HideInInspector] public bool isSliding = false;
+    public bool isSliding = false;
     private Vector3 slideDirection = Vector3.zero;
+
+    public bool IsSliding => isSliding;
 
     [Header("Animation")]
     [Tooltip("Component d'animacions")]

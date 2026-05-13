@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events; // Necesario para UnityEvent
+using UnityEngine.Events;
 
 public class RouletteWheel : MonoBehaviour
 {
@@ -8,6 +8,12 @@ public class RouletteWheel : MonoBehaviour
     public float tiempoGiro = 3.5f;
     public int vueltasMinimas = 4;
     
+    [Header("Audio")]
+    [Tooltip("Fuente de audio que reproducirá el sonido de giro")]
+    public AudioSource audioSource;
+    [Tooltip("Clip de sonido de la ruleta girando (clic-clic-clic)")]
+    public AudioClip spinClip;
+
     [Header("Eventos")]
     [Tooltip("Evento que se ejecutará SOLO la primera vez que la ruleta dé un resultado")]
     public UnityEvent onFirstResult;
@@ -18,13 +24,23 @@ public class RouletteWheel : MonoBehaviour
 
     public enum TipoElemento { Terra, Gel, Foc }
     private PlayerRouteData playerLog;
-
-    // Clave para guardar en memoria si ya se activó el primer resultado
-    private const string FirstSpinKey = "RouletteFirstSpinDone";
+    private bool primerResultadoDisparado = false;
 
     private void Start()
     {
         playerLog = FindFirstObjectByType<PlayerRouteData>();
+        primerResultadoDisparado = false;
+
+        // Intentar auto-asignar el AudioSource si no está en el inspector
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+        
+        // Configuración inicial del audio para que no falle
+        if (audioSource != null && spinClip != null)
+        {
+            audioSource.clip = spinClip;
+            audioSource.loop = true; // Queremos que el sonido se repita mientras gira
+            audioSource.playOnAwake = false;
+        }
     }
 
     public void Spin()
@@ -52,6 +68,13 @@ public class RouletteWheel : MonoBehaviour
     private IEnumerator AnimarGiro(float anguloFinalX, TipoElemento resultado)
     {
         estaGirando = true;
+        
+        // --- INICIO DEL SONIDO ---
+        if (audioSource != null && spinClip != null)
+        {
+            audioSource.Play();
+        }
+
         float tiempoPasado = 0;
         float rotacionInicialX = transform.eulerAngles.x;
         float destinoTotalX = anguloFinalX - (vueltasMinimas * 360f);
@@ -69,40 +92,37 @@ public class RouletteWheel : MonoBehaviour
         transform.eulerAngles = new Vector3(anguloFinalX, constanteY, constanteZ);
         estaGirando = false;
 
+        // --- FIN DEL SONIDO ---
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
+        CheckFirstTimeEvent();
+
         if (playerLog != null)
         {
             playerLog.SetRuta(resultado);
         }
-
-        // --- LÓGICA DEL PRIMER RESULTADO ---
-        CheckFirstTimeEvent();
 
         Debug.Log("<color=yellow>Ruleta Aturada!</color> Resultado visual: **" + resultado + "**");
     }
 
     private void CheckFirstTimeEvent()
     {
-        // Comprobamos si ya se ha disparado antes (usando PlayerPrefs para que sea persistente)
-        if (PlayerPrefs.GetInt(FirstSpinKey, 0) == 0)
+        if (!primerResultadoDisparado)
         {
-            Debug.Log("<color=cyan>Ruleta:</color> ¡Primer resultado detectado! Disparando evento...");
-            
-            // Disparamos el evento de Unity
             if (onFirstResult != null)
             {
                 onFirstResult.Invoke();
             }
 
-            // Marcamos como hecho para que no vuelva a ocurrir
-            PlayerPrefs.SetInt(FirstSpinKey, 1);
-            PlayerPrefs.Save();
+            primerResultadoDisparado = true;
         }
     }
     
-    // Método extra por si necesitas resetear esta lógica desde otro script o botón de debug
     public void ResetFirstSpinStatus()
     {
-        PlayerPrefs.SetInt(FirstSpinKey, 0);
-        PlayerPrefs.Save();
+        primerResultadoDisparado = false;
     }
 }

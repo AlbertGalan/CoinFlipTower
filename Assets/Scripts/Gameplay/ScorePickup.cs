@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Objecte recollectable que suma punts al jugador quan hi entra en contacte i es destrueix.
@@ -28,6 +29,10 @@ public class ScorePickup : MonoBehaviour
     [Header("Narrativa")]
     public List<string> narratorLines;
     public Sprite customNarratorSprite; // Nueva referencia para el sprite específico
+
+    [Header("Eventos")]
+    [Tooltip("Se ejecuta cuando el jugador recoge el objeto.")]
+    public UnityEvent onPickupCollected;
 
     private Vector3 startPos;
     private float offset;
@@ -91,7 +96,13 @@ public class ScorePickup : MonoBehaviour
         if (narratorLines.Count > 0 && NarratorUI.Instance != null)
         {
             NarratorUI.Instance.TriggerDialogue(narratorLines, customNarratorSprite);        
-}
+        }
+
+        // --- EVENTO OPCIONAL ---
+        if (onPickupCollected != null)
+        {
+            onPickupCollected.Invoke();
+        }
 
         Destroy(gameObject);
     }
