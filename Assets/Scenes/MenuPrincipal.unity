@@ -5027,7 +5027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6388,14 +6388,14 @@ RectTransform:
   m_GameObject: {fileID: 1144670029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 908927390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.20001, y: -50}
+  m_AnchoredPosition: {x: 463.37, y: 3.900024}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144670031
@@ -9070,6 +9070,9 @@ MonoBehaviour:
   floatSpeed: 1.5
   narratorLines: []
   customNarratorSprite: {fileID: 0}
+  onPickupCollected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1595580056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8955893953853200175, guid: c49bf6c389e2b704aae5ef5a5b139726, type: 3}

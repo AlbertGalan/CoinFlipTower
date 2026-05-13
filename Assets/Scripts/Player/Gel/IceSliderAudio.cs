@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(IceBlockSlider))]
 public class IceSliderAudio : MonoBehaviour
 {
@@ -17,6 +16,13 @@ public class IceSliderAudio : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        
+        // Si no existe AudioSource, lo creamos
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
         sliderScript = GetComponent<IceBlockSlider>();
 
         // Configuración automática del AudioSource
@@ -28,6 +34,8 @@ public class IceSliderAudio : MonoBehaviour
 
     void Update()
     {
+        if (audioSource == null) return;
+        
         bool isSliding = IsObjectSliding();
 
         if (isSliding)

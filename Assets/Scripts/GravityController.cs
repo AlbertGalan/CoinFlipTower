@@ -228,11 +228,11 @@ if (SoundGravityManager.Instance != null)
             Vector3 pos = rb.position;
             if (gravityInverted)
             {
-                pos.y += 2f;
+                pos.y += 3f;
             }
             else
             {
-                pos.y -= 2f;
+                pos.y -= 3f;
             }
             rb.MovePosition(pos);
         }

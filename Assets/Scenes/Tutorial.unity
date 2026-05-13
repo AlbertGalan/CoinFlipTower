@@ -4052,7 +4052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558975445304798700, guid: da389f98d36554042874cf88abbff5ef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35987,7 +35987,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36687,9 +36687,9 @@ MonoBehaviour:
   - Player
   zoneId: CH1.5
   isEntryTrigger: 0
-  goldTime: 10
-  silverTime: 15
-  bronzeTime: 20
+  goldTime: 15
+  silverTime: 30
+  bronzeTime: 40
   goldPoints: 100
   silverPoints: 50
   bronzePoints: 25
@@ -43112,9 +43112,9 @@ MonoBehaviour:
   - Player
   zoneId: CH1.5
   isEntryTrigger: 1
-  goldTime: 10
-  silverTime: 15
-  bronzeTime: 20
+  goldTime: 15
+  silverTime: 30
+  bronzeTime: 40
   goldPoints: 100
   silverPoints: 50
   bronzePoints: 25
