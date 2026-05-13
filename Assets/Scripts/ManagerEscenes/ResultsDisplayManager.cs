@@ -112,7 +112,7 @@ public class ResultsDisplayManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(menuSceneName);
+            LoadingManager.Instance.LoadScene(ratingSceneName);
         }
     }
 }

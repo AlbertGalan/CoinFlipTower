@@ -1,0 +1,77 @@
+{
+    "sessionId": "20260512_182155",
+    "startTime": "2026-05-12T18:21:55.2995121Z",
+    "endTime": "2026-05-12T18:23:59.4153123Z",
+    "totalPlaytime": 78.7862777709961,
+    "totalScore": 1021,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 4.962043762207031,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:08.8730280Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.4649200439453125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:12.0161525Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 0.3730926513671875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:22.9290155Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 1.35467529296875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:30.2288275Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 0.574951171875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:36.4318872Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 0.140594482421875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:38.6815909Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 1.6189727783203126,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:23:40.9303418Z"
+        }
+    ],
+    "easterEggs": [
+        {
+            "pickupId": "hitem3d",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        },
+        {
+            "pickupId": "Assassin",
+            "pickupName": "Assassin",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-12T18:22:58.1211335Z"
+        }
+    ]
+}

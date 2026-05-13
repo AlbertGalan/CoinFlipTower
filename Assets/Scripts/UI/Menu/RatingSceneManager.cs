@@ -32,6 +32,11 @@ public class RatingSceneManager : MonoBehaviour
     private bool isSubmitting = false;
     private CanvasGroup loadingCanvasGroup;
 
+
+    [Header("Audio")]
+    public AudioSource ratingAudioSource; // El componente que emitirá el sonido
+    public AudioClip ratingMusicClip;     // El archivo de música .mp3 o .wav
+
     private void Awake()
     {
         EnsureEventSystem();
@@ -40,6 +45,12 @@ public class RatingSceneManager : MonoBehaviour
 
     void Start()
     {
+        if( ratingAudioSource != null && ratingMusicClip != null)
+        {
+            ratingAudioSource.clip = ratingMusicClip;
+            ratingAudioSource.loop = true;
+            ratingAudioSource.Play();
+        }
         // Mostrar cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -288,7 +299,7 @@ public class RatingSceneManager : MonoBehaviour
     private void LoadMainMenu()
     {
         Debug.Log($"Cargando escena: {mainMenuSceneName}");
-        SceneManager.LoadScene(mainMenuSceneName);
+        LoadingManager.Instance.LoadScene(mainMenuSceneName);
     }
 
     private void BindButtons()

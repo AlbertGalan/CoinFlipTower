@@ -29,6 +29,11 @@ public class StroopPuzzleManager : MonoBehaviour
     public float roundTime = 5f;
     public UnityEvent onPuzzleComplete;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip correctClip;
+    public AudioClip incorrectClip;
+
     private int currentRound = 0;
     private int correctAnswers = 0;
     private float currentTime;
@@ -42,6 +47,8 @@ public class StroopPuzzleManager : MonoBehaviour
     {
         // Al iniciar, ponemos los nombres correspondientes en las casillas
         InitializeChoices();
+
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
     private void InitializeChoices()
@@ -191,6 +198,8 @@ void SetupChallenge()
         bool correct = (answer == targetColorName);
         if (correct) correctAnswers++;
 
+        PlaySound(correct ? correctClip : incorrectClip);
+
         foreach (var c in choices) 
         {
             c.SetVisualFeedback(correct);
@@ -230,8 +239,17 @@ void EndPuzzle()
     {
         mainIndicatorText.text = "REINTENTAR";
         mainIndicatorText.color = Color.red; 
+        PlaySound(incorrectClip);
     }
 }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
 
     void AddFinalPoints()
     {

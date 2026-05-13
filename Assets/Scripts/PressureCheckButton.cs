@@ -19,6 +19,11 @@ public class PressureCheckButton : MonoBehaviour
 
     private bool isProcessing = false;
 
+    
+      [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+
     void Start()
     {
         // Si no asignaste cámara en el inspector, buscamos la MainCamera
@@ -72,8 +77,11 @@ public class PressureCheckButton : MonoBehaviour
 
     private IEnumerator ProcessActivation()
     {
+
         isProcessing = true;
 
+   // 1. Sonido y Feedback Visual
+        if (audioSource != null && clickSound != null) audioSource.PlayOneShot(clickSound);
         // 1. Animación física
         Vector3 originalPos = buttonMesh != null ? buttonMesh.localPosition : Vector3.zero;
         if (buttonMesh != null) buttonMesh.localPosition += pressedOffset;

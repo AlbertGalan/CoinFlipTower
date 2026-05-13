@@ -14,28 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::TutorialMessage
   messageId: 
   lines:
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: T'estava posant a prova i m'has decebut.
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: Edgar
+  - characterName: <color=orange>Edgar</color>
     text: Com?!
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: Havies de fer la ruta assignada.
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: Aquest es el teu final.
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 0

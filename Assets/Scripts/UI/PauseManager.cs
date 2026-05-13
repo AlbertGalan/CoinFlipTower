@@ -42,29 +42,32 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+ public void PauseGame()
+{
+    isPaused = true;
+    Time.timeScale = 0f;
+    AudioListener.pause = true;
+
+    // --- SEGURIDAD: SOLTAR OBJETO AL PAUSAR ---
+    PushPullController pushController = Object.FindFirstObjectByType<PushPullController>();
+    if (pushController != null && pushController.IsGrabbing)
     {
-        isPaused = true;
-        Time.timeScale = 0f;
-        AudioListener.pause = true;
-
-        if (pausePanel != null)
-        {
-            pausePanel.SetActive(true);
-
-            // --- AQUÍ VA LA MEJORA ---
-            // Buscamos el componente PlayerRouteData para actualizar la imagen de la ruta
-            PlayerRouteData routeData = Object.FindFirstObjectByType<PlayerRouteData>();
-            if (routeData != null)
-            {
-                routeData.ActualizarImagenRutaUI();
-            }
-            // -------------------------
-        }
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        // Necesitas que el método Release() en PushPullController sea público
+        // o crear una función que fuerce el soltado.
+        pushController.SendMessage("Release", SendMessageOptions.DontRequireReceiver);
     }
+    // ------------------------------------------
+
+    if (pausePanel != null)
+    {
+        pausePanel.SetActive(true);
+        PlayerRouteData routeData = Object.FindFirstObjectByType<PlayerRouteData>();
+        if (routeData != null) routeData.ActualizarImagenRutaUI();
+    }
+
+    Cursor.visible = true;
+    Cursor.lockState = CursorLockMode.None;
+}
 
     public void ResumeGame()
     {

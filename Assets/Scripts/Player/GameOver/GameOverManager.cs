@@ -12,6 +12,8 @@ public class GameOverManager : MonoBehaviour
     public AudioSource gameoverAudioSource; // El componente que emitirá el sonido
     public AudioClip gameoverMusicClip;     // El archivo de música .mp3 o .wav
 
+    private string mainMenuSceneName = "MenuPrincipal";
+
 private void Start()
 {
     if(gameoverAudioSource != null && gameoverMusicClip != null)
@@ -35,5 +37,7 @@ private void Start()
     {
         // Asegúrate de que el nombre de la escena sea exacto
         SceneManager.LoadScene("MenuPrincipal");
+        LoadingManager.Instance.LoadScene(mainMenuSceneName);
+
     }
 }

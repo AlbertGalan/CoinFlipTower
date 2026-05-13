@@ -209,6 +209,13 @@ private void InteractWithCurrentObject()
 {
     if (currentOutlinedObject != null)
     {
+
+        ChestController chest = currentOutlinedObject.GetComponent<ChestController>();
+        if (chest != null)
+        {
+            chest.OpenChest();
+            return; // Salimos para que no intente activar otros efectos a la vez
+        }
         // --- NUEVA LÓGICA EasterDS ---
         EasterDS eds = currentOutlinedObject.GetComponent<EasterDS>();
         if (eds != null)
@@ -216,6 +223,8 @@ private void InteractWithCurrentObject()
             eds.ActivateEasterDS();
             return; 
         }
+
+        
         // --- NUEVA LÓGICA EASTER EGG ---
         EasterEggBox eggBox = currentOutlinedObject.GetComponent<EasterEggBox>();
         if (eggBox != null)

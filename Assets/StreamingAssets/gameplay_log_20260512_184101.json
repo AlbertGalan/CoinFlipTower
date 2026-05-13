@@ -1,0 +1,70 @@
+{
+    "sessionId": "20260512_184101",
+    "startTime": "2026-05-12T18:41:01.9011875Z",
+    "endTime": "2026-05-12T18:42:54.4207648Z",
+    "totalPlaytime": 66.6882553100586,
+    "totalScore": 933,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 4,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.13039779663085938,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:41:33.4756951Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 3.683795928955078,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:41:37.6057025Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 2.0119895935058595,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:41:40.2294628Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.351593017578125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:41:42.5327857Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 3.3693466186523439,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:41:49.6533799Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 4.4026336669921879,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:42:26.9090880Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 7.8966522216796879,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T18:42:36.1376548Z"
+        }
+    ],
+    "easterEggs": [
+        {
+            "pickupId": "hitem3d",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        }
+    ]
+}

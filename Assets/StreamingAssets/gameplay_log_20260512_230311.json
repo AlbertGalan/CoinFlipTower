@@ -1,0 +1,160 @@
+{
+    "sessionId": "20260512_230311",
+    "startTime": "2026-05-12T23:03:11.5614900Z",
+    "endTime": "2026-05-12T23:13:09.3694652Z",
+    "totalPlaytime": 459.3363342285156,
+    "totalScore": 641,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 27,
+            "objectFlips": 46
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 1.2860355377197266,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:24.0192095Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 2.5052080154418947,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:27.6292706Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 6.8411054611206059,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:36.2499550Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 0.37924766540527346,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:37.9924314Z"
+        },
+        {
+            "objectName": "CubVermell(Clone)",
+            "duration": 0.2515907287597656,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:42.6003812Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.4287567138671876,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:03:54.4681853Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 3.66656494140625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:00.4126292Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 6.4659881591796879,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:09.1843193Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 0.89874267578125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:11.1910322Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 0.18634033203125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:11.5051121Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.4075546264648438,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:13.8076924Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.1382484436035157,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:15.9935573Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.5241165161132814,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:22.9909660Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.7621917724609377,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:26.5043156Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.557861328125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:29.4119801Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 0.9359970092773438,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:04:31.5022605Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.019561767578125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:11:22.4451667Z"
+        },
+        {
+            "objectName": "CubGelPista",
+            "duration": 0.002655029296875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:11:29.7924926Z"
+        },
+        {
+            "objectName": "CubGelPista(Clone)",
+            "duration": 0.40484619140625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:11:41.5744786Z"
+        },
+        {
+            "objectName": "CubGelPista(Clone)",
+            "duration": 1.20709228515625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:11:52.3365789Z"
+        },
+        {
+            "objectName": "CubGelPista(Clone)",
+            "duration": 0.1951904296875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:12:03.5751973Z"
+        },
+        {
+            "objectName": "CubGelPista(Clone)",
+            "duration": 0.39349365234375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:12:07.5473256Z"
+        }
+    ],
+    "easterEggs": [
+        {
+            "pickupId": "PowerStar",
+            "pickupName": "PowerStar",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-12T23:10:10.2742685Z"
+        }
+    ]
+}

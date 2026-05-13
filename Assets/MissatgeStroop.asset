@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::TutorialMessage
   messageId: 
   lines:
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: "Molt b\xE9 Edgar,  <br> has arribat enfora..."
     guardianAnimationTrigger: Clap
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: Ara et toca fer el test de Stroop
     guardianAnimationTrigger: Idle
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: "Aqu\xED hi ha un petit dibuix perqu\xE8 vegis com funciona<br> recorda
       apuntar amb la vareta<la teva resposta>"
     guardianAnimationTrigger: Pointing
@@ -36,7 +36,7 @@ MonoBehaviour:
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: "Basta completis 5 rondes<br> correctament, i ho completar\xE0s,<br> sort!"
     guardianAnimationTrigger: Tombat2
     overrideGuardianPosition: 0

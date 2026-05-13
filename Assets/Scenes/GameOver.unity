@@ -3043,6 +3043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::GameOverManager
   nameDisplayText: {fileID: 2098115605}
   menuPrincipalButton: {fileID: 1258752661}
+  gameoverAudioSource: {fileID: 2004944742}
+  gameoverMusicClip: {fileID: 8300000, guid: 08d6526175cf1dd43bce3dba6e12c178, type: 3}
 --- !u!82 &2004944742
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3055,7 +3057,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 6152013749233593817, guid: c37a17a10b32d5442aa55a18848a3e74, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

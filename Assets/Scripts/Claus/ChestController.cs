@@ -1,66 +1,60 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))] // Asegura que haya un AudioSource
 public class ChestController : MonoBehaviour
 {
     public RouletteWheel.TipoElemento tipoCofre;
     
     [Header("Configuración de Interacción")]
-    public float interactionDistance = 3f; // Distancia máxima para poder abrirlo
+    public float interactionDistance = 3f; 
     
     [Header("Referencias de Objetos")]
-    [Tooltip("El objeto que ya está en la escena pero desactivado.")]
     public GameObject elementInScene; 
     
     [Header("Referencias de Animación")]
     public Animator chestAnimator;   
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip openSound;
     
     private bool opened = false;
     private Transform playerTransform;
 
     void Start()
     {
-        // Buscamos al jugador por el tag "Player"
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerTransform = player.transform;
-        }
+        if (player != null) playerTransform = player.transform;
+
+        // Si no asignaste el AudioSource en el inspector, lo buscamos
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        // Si el cofre ya está abierto, no hacemos nada más
-        if (opened) return;
-
-        // Si pulsamos la E...
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // ...y el jugador está cerca
-            if (IsPlayerClose())
-            {
-                OpenChest();
-            }
-        }
-    }
+    // Se eliminó el Update para que no use la tecla 'E'
 
     private bool IsPlayerClose()
     {
         if (playerTransform == null) return false;
-
         float distance = Vector3.Distance(transform.position, playerTransform.position);
         return distance <= interactionDistance;
     }
 
     public void OpenChest()
     {
-        if (opened || chestAnimator == null) return;
+        // Solo abrimos si no está abierto Y el jugador está en rango
+        if (opened || chestAnimator == null || !IsPlayerClose()) return;
 
         opened = true;
         
-        // Ejecutamos la animación de apertura (Bool isOpened = true)
+        // Animación
         chestAnimator.SetBool("isOpened", true);
+
+        // Sonido
+        if (audioSource != null && openSound != null)
+        {
+            audioSource.PlayOneShot(openSound);
+        }
         
-        // Activamos el objeto visual después de un pequeño delay
         Invoke(nameof(ActivateElement), 0.6f); 
     }
 
@@ -69,11 +63,10 @@ public class ChestController : MonoBehaviour
         if (elementInScene != null)
         {
             elementInScene.SetActive(true);
-            Debug.Log($"<color=yellow>Cofre {tipoCofre}:</color> ¡Abierto y objeto activado!");
+            Debug.Log($"<color=yellow>Cofre {tipoCofre}:</color> ¡Abierto con magia!");
         }
     }
 
-    // Opcional: Dibujar el radio de interacción en el Editor para que sea fácil de ajustar
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

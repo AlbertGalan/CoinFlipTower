@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::TutorialMessage
   messageId: 
   lines:
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: "Molt b\xE9 Edgar,<br>  ara ja pots posar l'artefacte de la teva ruta<br>
       al altar\nprement <E>"
     guardianAnimationTrigger: 

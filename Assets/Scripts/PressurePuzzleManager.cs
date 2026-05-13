@@ -24,6 +24,14 @@ public class PressurePuzzleManager : MonoBehaviour
     [Tooltip("Texto de TextMeshPro para el contador numérico")]
     public TextMeshProUGUI counterText; 
 
+    [Header("Audio")]
+    [Tooltip("Fuente de audio que reproducirá los sonidos")]
+    public AudioSource audioSource;
+    [Tooltip("Sonido cuando el puzzle se resuelve correctamente")]
+    public AudioClip solveClip;
+    [Tooltip("Sonido cuando el resultado es incorrecto")]
+    public AudioClip wrongClip;
+
     [Header("Efectos y Salida")]
     public GameObject lavaWaterfall;
     public UnityEvent OnSolved;
@@ -35,6 +43,9 @@ public class PressurePuzzleManager : MonoBehaviour
     {
         InitializeBulbs();
         UpdateVisualBar();
+
+        // Intento automático de obtener el AudioSource si no se asignó
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
     private void InitializeBulbs()
@@ -62,18 +73,16 @@ public class PressurePuzzleManager : MonoBehaviour
 
     private void UpdateVisualBar()
     {
-        // 1. Resetear bombillas a color normal y estado según presión
         for (int i = 0; i < bulbLights.Count; i++)
         {
             bulbLights[i].enabled = (i < currentPressure);
             bulbLights[i].color = colorNormal; 
         }
 
-        // 2. Resetear TEXTO (Esto es lo que faltaba)
         if (counterText != null)
         {
             counterText.text = currentPressure.ToString();
-            counterText.color = colorNormal; // <--- VOLVER A BLANCO SIEMPRE
+            counterText.color = colorNormal;
         }
     }
 
@@ -96,7 +105,7 @@ public class PressurePuzzleManager : MonoBehaviour
             if (counterText != null) 
             {
                 counterText.text = resultPressure.ToString();
-                counterText.color = colorResta; // Ponemos el número en rojo/amarillo mientras resta
+                counterText.color = colorResta;
             }
         }
 
@@ -110,12 +119,16 @@ public class PressurePuzzleManager : MonoBehaviour
         // 2. COMPROBACIÓN
         if (resultPressure == targetPressure)
         {
+            // --- ÉXITO ---
+            PlaySound(solveClip);
             if (counterText != null) counterText.color = colorCorrecto;
             SetAllActiveBulbsColor(colorCorrecto, resultPressure);
             Solve();
         }
         else
         {
+            // --- FALLO ---
+            PlaySound(wrongClip);
             if (counterText != null) counterText.color = colorError;
             SetAllActiveBulbsColor(colorError, resultPressure);
             
@@ -125,9 +138,16 @@ public class PressurePuzzleManager : MonoBehaviour
 
             // 3. RESTAURACIÓN
             currentPressure = initialValue;
-            // Al llamar a UpdateVisualBar, el código que añadimos arriba pondrá el texto en Blanco
             UpdateVisualBar(); 
             isChecking = false;
+        }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 

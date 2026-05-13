@@ -24,6 +24,10 @@ public class PuzzleButton : MonoBehaviour
     private bool isActivated = false;
     private bool isProcessing = false;
 
+      [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+
     void Start()
     {
         if (playerCamera == null) playerCamera = Camera.main;
@@ -62,6 +66,10 @@ public class PuzzleButton : MonoBehaviour
     {
         isProcessing = true;
         isActivated = true;
+
+          // 1. Sonido y Feedback Visual
+        if (audioSource != null && clickSound != null) audioSource.PlayOneShot(clickSound);
+        if (visualIndicator != null) visualIndicator.SetActive(true);
 
         // 1. Hundimiento físico ("Click")
         Vector3 originalPos = buttonMesh != null ? buttonMesh.localPosition : Vector3.zero;

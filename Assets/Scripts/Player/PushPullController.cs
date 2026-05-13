@@ -58,6 +58,7 @@ public class PushPullController : MonoBehaviour
     [Tooltip("Suavidad de la curva (0-1, menor = más suave)")]
     public float curveSmoothing = 0.3f;
 
+    private PauseManager pauseManager;
     private Vector3 lastPushDirection = Vector3.forward;
 
     void Start()
@@ -66,6 +67,8 @@ public class PushPullController : MonoBehaviour
         if (playerCamera == null) playerCamera = Camera.main;
         moveController = GetComponent<MoveCharacter>();
         originalPlayerMass = playerRb.mass;
+
+        pauseManager = Object.FindFirstObjectByType<PauseManager>();
     }
 
     void FixedUpdate()
@@ -129,6 +132,12 @@ public class PushPullController : MonoBehaviour
 
     void Update()
     {
+        if (pauseManager != null && pauseManager.IsPaused) 
+    {
+        // Si por algún motivo se quedó algo a medias al pausar, podrías forzar el Release aquí
+        // pero con bloquear el input suele ser suficiente.
+        return; 
+    }
         // Si el objeto agarrado se destruye externamente, soltamos el enlace.
         if (isGrabbing && grabbedRb == null)
         {

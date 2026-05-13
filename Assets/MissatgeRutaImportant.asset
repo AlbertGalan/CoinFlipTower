@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::TutorialMessage
   messageId: 
   lines:
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: Perfecte, ara es molt important <br>que segueixis la ruta que se t'ha assignat.
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: Edgar
+  - characterName: <color=orange>Edgar</color>
     text: D'acord.
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0
     guardianPosition: {x: 0, y: 0, z: 0}
     overrideGuardianRotation: 0
     guardianRotation: {x: 0, y: 0, z: 0}
-  - characterName: "Guardi\xE0"
+  - characterName: "<color=red>El Guardi\xE0</color>"
     text: Es molt important, entesos?
     guardianAnimationTrigger: 
     overrideGuardianPosition: 0

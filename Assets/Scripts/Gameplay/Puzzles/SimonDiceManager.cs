@@ -27,6 +27,7 @@ public class SimonDiceManager : MonoBehaviour
 
     [Header("Audio de Fallo")]
     [SerializeField] private AudioClip sonidoError; // <--- NUEVA VARIABLE
+     [SerializeField] private AudioClip solveClip;
 
     [Header("Indicador Único")]
     public MeshRenderer indicadorUnico; 
@@ -138,6 +139,10 @@ public class SimonDiceManager : MonoBehaviour
 
     void FinalizarPuzzle()
     {
+        if (solveClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(solveClip);
+        }
         puzzleCompletado = true;
         esperandoJugador = false;
         if (indicadorUnico != null) indicadorUnico.material = materialGris;

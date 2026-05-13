@@ -5,6 +5,9 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager Instance;
     private Vector3 lastCheckpointPosition;
 
+    public AudioClip lastCheckpointSound;
+
+    public AudioSource audioSource;
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -17,6 +20,10 @@ public class CheckpointManager : MonoBehaviour
 
     public void RespawnPlayer(GameObject player)
     {
+            if (lastCheckpointSound != null)
+            {
+                AudioSource.PlayClipAtPoint(lastCheckpointSound, player.transform.position);
+            }
         Debug.Log($"<color=cyan>--- INICIO RESPAWN ---</color>");
         Debug.Log($"Posición deseada: {lastCheckpointPosition}");
 

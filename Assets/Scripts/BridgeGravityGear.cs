@@ -19,6 +19,11 @@ public class BridgeGravityGear : MonoBehaviour
     public float mouseDragThreshold = 0.2f; // Bajado un poco para que sea más reactivo
     public float transitionSpeed = 5f; 
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip stepClip;
+    [Range(0f,1f)] public float stepVolume = 1f;
+
     private bool isInteracting = false;
     private float mouseAccumulator = 0f;
     private Camera mainCam;
@@ -32,6 +37,7 @@ public class BridgeGravityGear : MonoBehaviour
         
         // Si no asignaste el playerMove manualmente, intentamos buscarlo
         if (playerMove == null) playerMove = FindFirstObjectByType<MoveCharacter>();
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -56,12 +62,18 @@ public class BridgeGravityGear : MonoBehaviour
 
             if (Mathf.Abs(mouseAccumulator) > mouseDragThreshold)
             {
+                int prevIndex = currentStepIndex;
                 if (mouseAccumulator > 0 && currentStepIndex < targetAngles.Length - 1)
                     currentStepIndex++;
                 else if (mouseAccumulator < 0 && currentStepIndex > 0)
                     currentStepIndex--;
 
-                mouseAccumulator = 0; 
+                if (prevIndex != currentStepIndex)
+                {
+                    PlayStepSound();
+                }
+
+                mouseAccumulator = 0;
             }
             }
 
@@ -136,5 +148,13 @@ public class BridgeGravityGear : MonoBehaviour
         return hitTransform == gearRoot
             || hitTransform.IsChildOf(gearRoot)
             || gearRoot.IsChildOf(hitTransform);
+    }
+
+    private void PlayStepSound()
+    {
+        if (audioSource != null && stepClip != null)
+        {
+            audioSource.PlayOneShot(stepClip, stepVolume);
+        }
     }
 }
