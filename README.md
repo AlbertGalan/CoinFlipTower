@@ -2,8 +2,9 @@
 Created by Albert Galán
 
 Game Design Document
-https://docs.google.com/document/d/1FVoWEXXmOErEJP0BCs7oSst2x4OFjqSHjX5W3Pa24xM/edit?usp=sharing
-
+[https://docs.google.com/document/d/1FVoWEXXmOErEJP0BCs7oSst2x4OFjqSHjX5W3Pa24xM/edit?usp=sharing
+](https://docs.google.com/presentation/d/1rNuF0BYEFjHClSK4pDh54gb_dJ3yjNHL/edit?usp=sharing&ouid=103441686682432629387&rtpof=true&sd=true
+)
 ItchIO:
 
 Assets:
