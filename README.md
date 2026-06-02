@@ -8,17 +8,42 @@ Created by Albert Galán
 ## ItchIO:
 
 ### Assets:
+-Model Hay Bay: `https://assetstore.unity.com/packages/3d/props/props-pack-hay-bale-305506`
+
+-BrickWalls: `https://assetstore.unity.com/packages/2d/textures-materials/brick/tileable-bricks-wall-24530`
+
+-InfernoWorld: `https://assetstore.unity.com/packages/3d/environments/fantasy/inferno-world-free-low-poly-3d-models-328402`
+
 -Free Pixel Font: `https://assetstore.unity.com/packages/2d/fonts/free-retro-pixel-font-gnf-322855`
+
 -Ultimate Low Poly Dungeon: `https://assetstore.unity.com/packages/3d/environments/dungeons/ultimate-low-poly-dungeon-143535`
+
 -FREE Low Poly Human: `https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/free-low-poly-human-rpg-character-219979`
+
+-Lowpoly Magician Rio: `https://assetstore.unity.com/packages/3d/characters/humanoids/lowpoly-magician-rio-288942`
+
 -Magic Effects Free: `https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933`
+
+-AnimatedTextReveal: `https://assetstore.unity.com/packages/2d/gui/animated-text-reveal-314861`
+
+-2D RPG Button: `https://assetstore.unity.com/packages/2d/gui/icons/2d-rpg-button-7-278861`
+
+-Ultimate Low: `https://assetstore.unity.com/packages/3d/environments/dungeons/ultimate-low-poly-dungeon-143535`
+
 -Model Koopa Smash Bros:`https://models.spriters-resource.com/wii/ssbb/asset/286277/`
+
 -Model DryBones Smash Bros: `https://models.spriters-resource.com/wii/ssbb/asset/286295/`
+
 -Model SuperStar Mario Galaxy:`https://models.spriters-resource.com/wii/supermariogalaxy/asset/284048/`
+
 -Model MetalGearBox: `"Metal Gear Box" (https://skfb.ly/pID9H) by giandb99 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).`
+
 -Model Ration Metal Gear: `https://models.spriters-resource.com/playstation_2/mgs2/asset/333319/`
+
 -Model Serp: `"Snake" (https://skfb.ly/UpVV) by Anette Rana is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).`
+
 -Model bonfire: `https://models.spriters-resource.com/pc_computer/darksouls/asset/345088/`
+
 -Estus Flask: `"Estus flask" (https://skfb.ly/oTGQr) by Bonifacio is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).`
 
 
