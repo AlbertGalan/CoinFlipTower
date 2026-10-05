@@ -2,12 +2,19 @@
 Created by Albert Galán
 Coin Flip Tower is a 3D arcade game that involves puzzles with gravity, the game was created for the event "Pau Jam 2026" (of the CIFP Pau Casesnoves) under the theme "Two Sides of the same Coin", this project emerged with that initial idea in mind.
 
+The game is only supported in catalan.
 ## DEMO of Coin Flip Tower
 Initial version of the project:
 `https://albert-galan.itch.io/coinfliptowertutorial`
 
+## Official Web
+`https://albertgalan.github.io/Coin-Flip-Tower-Web/`
 
-## Game Design Document
+The repository of the web:
+`https://github.com/AlbertGalan/Coin-Flip-Tower-Web`
+
+
+## Game Design Document EN-ES-CAT
 `https://docs.google.com/presentation/d/1rNuF0BYEFjHClSK4pDh54gb_dJ3yjNHL/edit?usp=sharing&ouid=103441686682432629387&rtpof=true&sd=true`
 
 
@@ -68,3 +75,10 @@ Initial version of the project:
 
 ## Disclaimer: 
 This is an original, non-profit project. Any third-party references, as "Easer Eggs" included are minor, and for curious players, and don't constitute the core content of the game. No copyright infringement is intend. All rights belong to their respective owners.
+
+## Ownership & Usage Restrictions
+This project, including its code, design, lore, and original content, is the sole property of the author.
+
+* **No Redistribution or Commercial Use:** You may not copy, sell, monetize, or use any part of this project for commercial purposes.
+* **No Modifications or Derivative Works:** Modifying, re-uploading, altering, or creating derivative works based on this project without explicit written permission from the author is strictly prohibited.
+* **Personal Use Only:** This project is provided exclusively for personal and non-commercial gameplay/demonstration purposes.
