@@ -1,5 +1,11 @@
 # Coin Flip Tower
 Created by Albert Galán
+Coin Flip Tower is a 3D arcade game that involves puzzles with gravity, the game was created for the event "Pau Jam 2026" (of the CIFP Pau Casesnoves) under the theme "Two Sides of the same Coin", this project emerged with that initial idea in mind.
+
+## DEMO of Coin Flip Tower
+Initial version of the project:
+`https://albert-galan.itch.io/coinfliptowertutorial`
+
 
 ## Game Design Document
 `https://docs.google.com/presentation/d/1rNuF0BYEFjHClSK4pDh54gb_dJ3yjNHL/edit?usp=sharing&ouid=103441686682432629387&rtpof=true&sd=true`
