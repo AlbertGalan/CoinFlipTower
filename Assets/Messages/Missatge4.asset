@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03fddb06cad0684baa0f4d22349b759, type: 3}
+  m_Name: Missatge4
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialMessage
+  messageId: Missatge4
+  lines:
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Per aqu\xED <color=orange>Edgar</color>"
+    guardianAnimationTrigger: Pointing
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -12.16, y: -0.63, z: -9.158}
+    overrideGuardianRotation: 1
+    guardianRotation: {x: 0, y: 0, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Per agafar un objecte <br>et sortir\xE0 un contorn de color <color=yellow>groc</color>"
+    guardianAnimationTrigger: Tombat2
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -12.352, y: 0.126, z: -9.158}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  - characterName: "<color=red>El Guardi\xE0</color>"
+    text: "Llavors mant\xE9 pitjat <color=green>click esquerre</color><br>\nper agafar-ho
+      i <color=green>W o A</color> per empenyer o estirar"
+    guardianAnimationTrigger: Tombat2
+    overrideGuardianPosition: 1
+    guardianPosition: {x: -12.352, y: 0.126, z: -9.158}
+    overrideGuardianRotation: 0
+    guardianRotation: {x: 0, y: 0, z: 0}
+  playerControlledAdvance: 1
+  lineDisplayTime: 1
+  timeBetweenLines: 2
+  advanceKey: 101
+  canSkip: 1
+  skipKey: 112
+  showGuardian: 1
+  guardianPosition: {x: -12.16, y: -0.63, z: -9.158}
+  guardianRotation: {x: 0, y: 0, z: 0}
+  guardianScale: {x: 1, y: 1, z: 1}
+  guardianRelativeToCamera: 1
+  guardianAnimationTrigger: Pointing
+  fadeOutLastLine: 0

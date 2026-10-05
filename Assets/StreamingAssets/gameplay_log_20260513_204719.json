@@ -1,0 +1,38 @@
+{
+    "sessionId": "20260513_204719",
+    "startTime": "2026-05-13T20:47:19.8309988Z",
+    "endTime": "2026-05-13T20:48:54.2717805Z",
+    "totalPlaytime": 26.14969253540039,
+    "totalScore": 993,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 4.679653167724609,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T20:47:55.4396152Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 1.2764930725097657,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T20:47:59.9155125Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 2.1410179138183595,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T20:48:09.2669079Z"
+        }
+    ],
+    "easterEggs": []
+}

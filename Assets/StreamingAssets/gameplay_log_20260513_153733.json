@@ -1,0 +1,27 @@
+{
+    "sessionId": "20260513_153733",
+    "startTime": "2026-05-13T15:37:33.3144745Z",
+    "endTime": "2026-05-13T15:38:43.3018605Z",
+    "totalPlaytime": 28.19078254699707,
+    "totalScore": 972,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 4,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "terra_",
+            "pickupName": "terra_",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-13T15:38:25.6314209Z"
+        }
+    ]
+}

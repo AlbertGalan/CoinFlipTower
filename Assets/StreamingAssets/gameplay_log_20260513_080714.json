@@ -1,0 +1,42 @@
+{
+    "sessionId": "20260513_080714",
+    "startTime": "2026-05-13T08:07:14.3702768Z",
+    "endTime": "2026-05-13T08:07:56.4566036Z",
+    "totalPlaytime": 39.638099670410159,
+    "totalScore": 960,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.420351982116699,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:07:35.3157218Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.191488265991211,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:07:39.3553626Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.2712459564208985,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:07:46.8613830Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 1.086019515991211,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:07:49.1306475Z"
+        },
+        {
+            "objectName": "CubBlau(Clone)",
+            "duration": 2.3612518310546877,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T08:07:52.8768422Z"
+        }
+    ],
+    "easterEggs": []
+}

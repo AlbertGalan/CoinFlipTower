@@ -1,0 +1,27 @@
+{
+    "sessionId": "20260513_075028",
+    "startTime": "2026-05-13T07:50:28.5069273Z",
+    "endTime": "2026-05-13T07:50:50.4095660Z",
+    "totalPlaytime": 20.180156707763673,
+    "totalScore": 1080,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "Assassin",
+            "pickupName": "Assassin",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-13T07:50:38.9145200Z"
+        }
+    ]
+}

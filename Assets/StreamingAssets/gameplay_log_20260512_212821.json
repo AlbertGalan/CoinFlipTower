@@ -1,0 +1,40 @@
+{
+    "sessionId": "20260512_212821",
+    "startTime": "2026-05-12T21:28:21.9644172Z",
+    "endTime": "2026-05-12T21:28:39.5392843Z",
+    "totalPlaytime": 14.832817077636719,
+    "totalScore": 891,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "moneda2",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        },
+        {
+            "pickupId": "moneda4",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        },
+        {
+            "pickupId": "moneda3",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        },
+        {
+            "pickupId": "moneda5",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        }
+    ]
+}

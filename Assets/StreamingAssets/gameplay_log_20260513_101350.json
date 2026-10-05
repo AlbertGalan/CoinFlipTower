@@ -1,0 +1,26 @@
+{
+    "sessionId": "20260513_101350",
+    "startTime": "2026-05-13T10:13:50.6880560Z",
+    "endTime": "2026-05-13T10:15:25.5663522Z",
+    "totalPlaytime": 53.46289825439453,
+    "totalScore": 947,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 7,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "PedraPlaca",
+            "duration": 3.28387451171875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T10:14:54.7625062Z"
+        }
+    ],
+    "easterEggs": []
+}

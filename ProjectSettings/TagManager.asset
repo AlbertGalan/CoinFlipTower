@@ -2,8 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Pushable
+  - Placa
+  - EasterEgg
+  - Ice
+  - Soldier
+  - Lava
+  - Ball
+  - Meta
+  - Ground
+  - IceBlock
   layers:
   - Default
   - TransparentFX
@@ -11,16 +21,16 @@ TagManager:
   - 
   - Water
   - UI
+  - Outline
+  - Raycast
+  - Grabable
+  - Player
+  - PressureSwitch
+  - Trigger
+  - GrabbableLayer
+  - PlayerHead
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnviromentWall
   - 
   - 
   - 
@@ -41,6 +51,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PantallaPrincipal
+    uniqueID: 388766355
+    locked: 0
+  - name: Loading
+    uniqueID: 3182564257
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
@@ -50,27 +66,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 

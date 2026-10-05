@@ -1,0 +1,62 @@
+{
+    "sessionId": "20260513_154016",
+    "startTime": "2026-05-13T15:40:16.5036128Z",
+    "endTime": "2026-05-13T15:40:56.0930418Z",
+    "totalPlaytime": 33.158363342285159,
+    "totalScore": 967,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 0,
+            "objectFlips": 1
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Triangle (3)",
+            "duration": 1.8617992401123047,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:42.2905452Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 0.9498767852783203,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:44.3939401Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 0.7265129089355469,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:45.7894858Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 0.6200675964355469,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:48.0694488Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 1.8377609252929688,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:51.0277349Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 0.635711669921875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:52.8787787Z"
+        },
+        {
+            "objectName": "Triangle (3)",
+            "duration": 0.5084609985351563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-13T15:40:54.7326620Z"
+        }
+    ],
+    "easterEggs": []
+}

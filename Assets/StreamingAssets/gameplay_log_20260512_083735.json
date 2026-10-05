@@ -1,0 +1,122 @@
+{
+    "sessionId": "20260512_083735",
+    "startTime": "2026-05-12T08:37:35.1761928Z",
+    "endTime": "2026-05-12T08:39:13.7785383Z",
+    "totalPlaytime": 66.52094268798828,
+    "totalScore": 933,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 2,
+            "objectFlips": 3
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Cube_Straw",
+            "duration": 2.4165878295898439,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:16.7774338Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.470123291015625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:18.8140757Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.8011245727539063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:33.1370607Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:33.7959783Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:34.9738243Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:36.0617068Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:37.9360129Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:39.1903480Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.5770645141601563,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:41.5580783Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:42.3955597Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:42.9902633Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:45.0789934Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:45.7805674Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 0.0,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:46.7199422Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 1.8292694091796876,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:52.5583315Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 2.7435684204101564,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:38:58.0357322Z"
+        },
+        {
+            "objectName": "Cube_Straw",
+            "duration": 6.822059631347656,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T08:39:05.5677221Z"
+        }
+    ],
+    "easterEggs": []
+}

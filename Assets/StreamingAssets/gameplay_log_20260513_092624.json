@@ -1,0 +1,45 @@
+{
+    "sessionId": "20260513_092624",
+    "startTime": "2026-05-13T09:26:24.7417605Z",
+    "endTime": "2026-05-13T09:28:04.2584417Z",
+    "totalPlaytime": 37.53642272949219,
+    "totalScore": 962,
+    "zoneVisits": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-13T09:26:53.6322711Z",
+            "exitedAt": "2026-05-13T09:27:36.2918639Z",
+            "duration": 22.35999298095703,
+            "playerFlips": 2,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_02",
+            "visitIndexForZone": 1,
+            "enteredAt": "2026-05-13T09:27:36.2918639Z",
+            "exitedAt": "2026-05-13T09:27:36.5602158Z",
+            "duration": 0.279998779296875,
+            "playerFlips": 0,
+            "objectFlips": 0
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "TutorialRoom_01",
+            "timeSpent": 22.35999298095703,
+            "entries": 1,
+            "playerFlips": 2,
+            "objectFlips": 1
+        },
+        {
+            "zoneId": "TutorialRoom_02",
+            "timeSpent": 0.279998779296875,
+            "entries": 1,
+            "playerFlips": 0,
+            "objectFlips": 0
+        }
+    ],
+    "grabbedObjects": [],
+    "easterEggs": []
+}

@@ -1,0 +1,161 @@
+{
+    "sessionId": "20260512_231559",
+    "startTime": "2026-05-12T23:15:59.4191653Z",
+    "endTime": "2026-05-12T23:25:22.3041649Z",
+    "totalPlaytime": 478.95086669921877,
+    "totalScore": 621,
+    "zoneVisits": [],
+    "zones": [
+        {
+            "zoneId": "NoZone",
+            "timeSpent": 0.0,
+            "entries": 0,
+            "playerFlips": 38,
+            "objectFlips": 18
+        }
+    ],
+    "grabbedObjects": [
+        {
+            "objectName": "Desk (1)",
+            "duration": 0.9528579711914063,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:16:30.2006225Z"
+        },
+        {
+            "objectName": "Bucket",
+            "duration": 3.3152084350585939,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:16:37.6129786Z"
+        },
+        {
+            "objectName": "Bucket",
+            "duration": 1.3511886596679688,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:16:40.3786229Z"
+        },
+        {
+            "objectName": "Stool_round",
+            "duration": 1.4066238403320313,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:16:53.7255404Z"
+        },
+        {
+            "objectName": "Cadira",
+            "duration": 0.855621337890625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:16:58.1687051Z"
+        },
+        {
+            "objectName": "Cadira",
+            "duration": 1.2011642456054688,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:17:03.1241070Z"
+        },
+        {
+            "objectName": "Chest",
+            "duration": 3.345672607421875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:17:13.9740463Z"
+        },
+        {
+            "objectName": "Shelf_Wall",
+            "duration": 1.0185394287109376,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:17:16.0616648Z"
+        },
+        {
+            "objectName": "Cor",
+            "duration": 0.7226409912109375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:17:41.8007315Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.841705322265625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:17:58.4547863Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.726959228515625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:00.7772261Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 3.63909912109375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:05.5902609Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 1.2100677490234376,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:07.5053703Z"
+        },
+        {
+            "objectName": "Triangle",
+            "duration": 0.995880126953125,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:09.4014293Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 2.668060302734375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:13.7457033Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.9132537841796875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:33.3828375Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 3.1258392333984377,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:39.5524150Z"
+        },
+        {
+            "objectName": "Diamant",
+            "duration": 2.674041748046875,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:43.7449976Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.8062591552734375,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:50.9568998Z"
+        },
+        {
+            "objectName": "Creu",
+            "duration": 0.455718994140625,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:52.6768610Z"
+        },
+        {
+            "objectName": "Cercle",
+            "duration": 2.9806976318359377,
+            "zoneId": "NoZone",
+            "timestamp": "2026-05-12T23:18:59.9556184Z"
+        }
+    ],
+    "easterEggs": [
+        {
+            "pickupId": "hitem3d",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        },
+        {
+            "pickupId": "Ration",
+            "pickupName": "Ration",
+            "collected": true,
+            "zoneId": "NoZone",
+            "collectedAt": "2026-05-12T23:21:01.2477702Z"
+        }
+    ]
+}

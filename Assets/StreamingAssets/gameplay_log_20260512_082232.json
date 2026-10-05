@@ -1,0 +1,19 @@
+{
+    "sessionId": "20260512_082232",
+    "startTime": "2026-05-12T08:22:32.7876404Z",
+    "endTime": "2026-05-12T08:22:38.0393316Z",
+    "totalPlaytime": 0.0,
+    "totalScore": 999,
+    "zoneVisits": [],
+    "zones": [],
+    "grabbedObjects": [],
+    "easterEggs": [
+        {
+            "pickupId": "hitem3d",
+            "pickupName": "Pickup",
+            "collected": false,
+            "zoneId": "Unknown",
+            "collectedAt": ""
+        }
+    ]
+}

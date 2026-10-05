@@ -1,0 +1,38 @@
+GlowMat
+=======
+  Textures:
+    - Glow
+
+  Ambient Colors:
+    - 100, 100, 100, 195
+
+  Material Colors:
+    - 167, 163, 90, 255
+    - 167, 163, 90, 255
+
+  Color Registers:
+    - 190, 194, 119, 255
+
+
+
+NovaMat_v_x
+===========
+  Textures:
+    - Nova
+        Offset: 0, -0.0439453125
+    - Nova
+        Offset: 0, -0.3333333432674408
+        Scale: 1, 4.3798828125
+
+  Ambient Colors:
+    - 100, 100, 100, 195
+
+  Constant Colors:
+    - 50, 26, 0, 255
+
+  Material Colors:
+    - 42, 46, 0, 255
+    - 42, 46, 0, 255
+
+  Color Registers:
+    - 255, 255, 255, 250
