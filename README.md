@@ -10,11 +10,14 @@ Created by **Albert Galán**
 --- 
 
 ## 🎮 Links & Project Overview
-
 * 🕹️ **Demo (Initial Version):** [Play on Itch.io](https://albert-galan.itch.io/coinfliptowertutorial)
 * 🌐 **Official Website:** [Coin Flip Tower Web](https://albertgalan.github.io/Coin-Flip-Tower-Web/)
 * 💻 **Web Repository:** [GitHub - Coin-Flip-Tower-Web](https://github.com/AlbertGalan/Coin-Flip-Tower-Web)
-* 📄 **Game Design Document (EN / ES / CAT):** [View GDD on Google Drive](https://docs.google.com/presentation/d/1rNuF0BYEFjHClSK4pDh54gb_dJ3yjNHL/edit?usp=sharing&ouid=103441686682432629387&rtpof=true&sd=true)
+
+### ⬇️Download Coin FlipTower(1.0) and GDD
+* 📄🎮 **Website with GDD and CoinFlipTower Downloadable:** [Coin-FlipTower Download_and_GDD](https://albertgalan.github.io/ProvingReact/)
+
+For more information about it click here [RepoGDDWebsite](https://github.com/AlbertGalan/ProvingReact)
 
 ## 📦 Asset Credits & Acknowledgments
 
